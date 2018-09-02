@@ -34,7 +34,7 @@ public class ContextServiceImpl implements IContextService {
     public Content getContext(String url) {
         try {
             String result = CrawlUtil.crawl( url );
-            result = result.replace("&nbsp;", "  ").replace("<br />", "\n").replace("<br/>", "\n");
+            result = result.replace("&nbsp;", "  ").replace( "m.11kt.cn","" ).replace( "顶点小说手机站","" );
             Document doc = Jsoup.parse( result );
             doc.setBaseUri( url );
 
