@@ -1,0 +1,55 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/spider?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 456718293
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      min-idle: 5
+      max-active: 100
+      initial-size: 10
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 50
+      remove-abandoned: true
+      filter:
+        stat:
+          merge-sql: true
+          slow-sql-millis: 5000
+          enabled: true
+        wall:
+          enabled: true
+  #热部署生效
+  devtools:
+    restart:
+      enabled: true
+  thymeleaf:
+    cache: false
+
+## 该配置节点为独立的节点，有很多同学容易将这个配置放在spring的节点下，导致配置无法被识别
+mybatis:
+  mapper-locations: classpath:mapper/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: com.wsbxd.spider.domain  # 注意：对应实体类的路径
+
+mapper:
+  mappers:
+  - com.wsbxd.common.utils.TkMapper
+  not-empty: false
+  identity: MYSQL
+
+#pagehelper分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql

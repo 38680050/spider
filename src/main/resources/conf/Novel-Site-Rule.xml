@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sites>
+    <site>
+        <title>顶点小说</title>
+        <charset>GBK</charset>
+        <url>https://www.11kt.cn/</url>
+        <chapter-list-selector index="">#at td a</chapter-list-selector>
+        <content-title-selector index="0">#amain h1</content-title-selector>
+        <content-content-selector index="">#contents</content-content-selector>
+        <content-prev-selector index="">#footlink a</content-prev-selector>
+        <content-next-selector index="2">#footlink a</content-next-selector>
+    </site>
+    <site>
+        <title>笔趣阁</title>
+        <charset>UTF-8</charset>
+        <url>https://www.xs.la</url>
+        <chapter-list-selector index="">#list dd a</chapter-list-selector>
+        <content-title-selector index="">.bookname h1</content-title-selector>
+        <content-content-selector index="">#content</content-content-selector>
+        <content-prev-selector index="">#pager_prev</content-prev-selector>
+        <content-next-selector index="">#pager_next</content-next-selector>
+    </site>
+</sites>
