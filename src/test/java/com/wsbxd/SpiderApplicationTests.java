@@ -3,7 +3,9 @@ package com.wsbxd;
 import com.wsbxd.common.utils.NovelSiteEnum;
 import com.wsbxd.common.utils.NovelSiteUtil;
 import com.wsbxd.spider.domain.po.Chapter;
+import com.wsbxd.spider.domain.po.Content;
 import com.wsbxd.spider.service.IChapterService;
+import com.wsbxd.spider.service.IContextService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,15 @@ public class SpiderApplicationTests {
 
     @Autowired
     private IChapterService chapterService;
+
+    @Autowired
+    private IContextService contextService;
+
+    @Test
+    public void testGetContext() {
+        Content context = contextService.getContext( "https://www.xs.la/130_130127/6811971.html" );
+        System.out.println(context);
+    }
 
     @Test
     public void testGetChapters() {
