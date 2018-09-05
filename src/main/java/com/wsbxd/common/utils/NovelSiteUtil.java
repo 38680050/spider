@@ -1,7 +1,6 @@
 package com.wsbxd.common.utils;
 
 import com.wsbxd.common.domain.NovelSiteXmlPares;
-import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -22,7 +21,7 @@ public final class NovelSiteUtil {
     /**
      * 初始化常量时要把常量放在前面，否则初始化失败
      */
-    private final static Map<NovelSiteEnum,NovelSiteXmlPares> CONTEXT_MAP = new HashMap<>();
+    private final static Map<NovelSiteEnum,NovelSiteXmlPares> NOVEL_SITE_MAP = new HashMap<>();
 
     static {
         init();
@@ -48,37 +47,27 @@ public final class NovelSiteUtil {
                 //链接选择器
                 String url = site.element( "url" ).getTextTrim();
                 //章节列表选择器
-                Element element = site.element( "chapter-list-selector" );
-                String chapterListSelector = element.getTextTrim();
-                String chapterListSelectorIndex = element.attribute( "index" ).getValue();
+                String chapterListSelector = site.element("chapter-list-selector").getTextTrim();
                 //章节标题选择器
-                Element element1 = site.element( "content-title-selector" );
-                String contentTitleSelector = element1.getTextTrim();
-                String contentTitleSelectorIndex = element1.attribute( "index" ).getValue();
+                String contentTitleSelector = site.element("content-title-selector").getTextTrim();
                 //章节内容选择器
-                Element element2 = site.element( "content-content-selector" );
-                String contentContentSelector = element2.getTextTrim();
-                String contentContentSelectorIndex = element2.attribute( "index" ).getValue();
+                String contentContentSelector = site.element("content-content-selector").getTextTrim();
                 //上一章选择器
-                Element element3 = site.element( "content-prev-selector" );
-                String contentPrevSelector = element3.getTextTrim();
-                String contentPrevSelectorIndex = element3.attribute( "index" ).getValue();
+                String contentPrevSelector = site.element("content-prev-selector").getTextTrim();
                 //下一章选择器
-                Element element4 = site.element( "content-next-selector" );
-                String contentNextSelector = element4.getTextTrim();
-                String contentNextSelectorIndex = element4.attribute( "index" ).getValue();
+                String contentNextSelector = site.element("content-next-selector").getTextTrim();
                 NovelSiteXmlPares novelSiteXmlPares = new NovelSiteXmlPares(
                         title,
                         charset,
                         url,
-                        new NovelSiteXmlPares.Selector( chapterListSelector, chapterListSelectorIndex ),
-                        new NovelSiteXmlPares.Selector( contentTitleSelector, contentTitleSelectorIndex ),
-                        new NovelSiteXmlPares.Selector( contentContentSelector, contentContentSelectorIndex ),
-                        new NovelSiteXmlPares.Selector( contentPrevSelector, contentPrevSelectorIndex ),
-                        new NovelSiteXmlPares.Selector( contentNextSelector, contentNextSelectorIndex )
+                        chapterListSelector,
+                        contentTitleSelector,
+                        contentContentSelector,
+                        contentPrevSelector,
+                        contentNextSelector
                 );
                 NovelSiteEnum novelSiteEnum = NovelSiteEnum.getByUrl(url);
-                CONTEXT_MAP.put(novelSiteEnum, novelSiteXmlPares);
+                NOVEL_SITE_MAP.put(novelSiteEnum, novelSiteXmlPares);
             }
         } catch (DocumentException e) {
             e.printStackTrace();
@@ -91,7 +80,7 @@ public final class NovelSiteUtil {
      * @return
      */
     public static NovelSiteXmlPares getParserRule(NovelSiteEnum novelSiteEnum){
-        return CONTEXT_MAP.get(novelSiteEnum);
+        return NOVEL_SITE_MAP.get(novelSiteEnum);
     }
 
     /**

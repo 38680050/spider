@@ -43,45 +43,20 @@ public class ContextServiceImpl implements IContextService {
             Content content = new Content();
 
             //获取标题内容
-            NovelSiteXmlPares.Selector contentTitleSelector = parserRule.getContentTitleSelector();
-            String contentTitleSelectorSelect = contentTitleSelector.getSelect();
-            String contentTitleSelectorIndex = contentTitleSelector.getIndex();
-            content.setTitle( doc.select(contentTitleSelectorSelect).get( getIndex( contentTitleSelectorIndex ) ).text() );
+            content.setTitle( doc.select(parserRule.getContentTitleSelector(0)).get( Integer.parseInt(parserRule.getContentTitleSelector(1)) ).text() );
 
             //获取章节内容
-            NovelSiteXmlPares.Selector contentContentSelector = parserRule.getContentContentSelector();
-            String contentContentSelectorSelect = contentContentSelector.getSelect();
-            String contentContentSelectorIndex = contentContentSelector.getIndex();
-            content.setContent( doc.select( contentContentSelectorSelect ).get( getIndex( contentContentSelectorIndex ) ).text() );
+            content.setContent( doc.select( parserRule.getContentContentSelector(0) ).get( Integer.parseInt(parserRule.getContentContentSelector(1) ) ).text() );
 
             //获取上一章
-            NovelSiteXmlPares.Selector parserRuleContentPrevSelector = parserRule.getContentPrevSelector();
-            String contentPrevSelectorSelect = parserRuleContentPrevSelector.getSelect();
-            String contentPrevSelectorIndex = parserRuleContentPrevSelector.getIndex();
-            content.setPrev( doc.select( contentPrevSelectorSelect ).get( getIndex( contentPrevSelectorIndex ) ).text() );
+            content.setPrev( doc.select( parserRule.getContentPrevSelector(0) ).get( Integer.parseInt(parserRule.getContentPrevSelector(1)) ).text() );
 
             //获取下一章
-            NovelSiteXmlPares.Selector contentNextSelector = parserRule.getContentNextSelector();
-            String nextSelectorSelect = contentNextSelector.getSelect();
-            String nextSelectorIndex = contentNextSelector.getIndex();
-            content.setNext( doc.select( nextSelectorSelect ).get( getIndex( nextSelectorIndex ) ).text() );
+            content.setNext( doc.select( parserRule.getContentNextSelector(0) ).get( Integer.parseInt(parserRule.getContentNextSelector(1)) ).text() );
 
             return content;
         } catch (NumberFormatException e) {
             throw new RuntimeException( e + " | 获取小说内容错误！" );
         }
-    }
-
-    /**
-     * 获取下标，如果下表为空，则默认返回0
-     * @param selectorIndex 选择器下标
-     * @return 下标数
-     */
-    private int getIndex(String selectorIndex) {
-        int index = 0;
-        if (!StringUtils.isEmpty( selectorIndex )){
-            index = Integer.parseInt( selectorIndex );
-        }
-        return index;
     }
 }

@@ -1,5 +1,6 @@
 package com.wsbxd.spider.service.impl;
 
+import com.wsbxd.common.domain.NovelSiteXmlPares;
 import com.wsbxd.common.utils.CrawlUtil;
 import com.wsbxd.common.utils.NovelSiteEnum;
 import com.wsbxd.common.utils.NovelSiteUtil;
@@ -38,7 +39,9 @@ public class ChapterServiceImpl implements IChapterService {
         try {
             String result = CrawlUtil.crawl(url);
             Document doc = Jsoup.parse(result);
-            Elements elements = doc.select( NovelSiteUtil.getParserRule( NovelSiteEnum.getByUrl( url ) ).getChapterListSelector().getSelect() );
+            NovelSiteXmlPares parserRule = NovelSiteUtil.getParserRule(NovelSiteEnum.getByUrl(url));
+            //根据章节列表选择器获取对应的标签
+            Elements elements = doc.select(parserRule.getChapterListSelector(0));
             List<Chapter> chapters = new ArrayList<>();
             for (Element a:elements) {
                 chapters.add(new Chapter(null,a.text(),a.attr("href")));

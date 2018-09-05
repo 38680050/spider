@@ -27,7 +27,7 @@ public class SpiderApplicationTests {
     @Test
     public void testGetContext() {
         Content context = contextService.getContext( "https://www.11kt.cn/read/103221/34086723.html" );
-        System.out.println(context.getContent());
+        System.out.println(context);
     }
 
     @Test
