@@ -3,7 +3,7 @@ package com.wsbxd.common.domain;
 import lombok.*;
 
 /**
- * description: 小说站点XML解析
+ * description: 小说站点选择器XML解析
  *
  * @author chenhaoxuan
  * @date 2018/9/2 17:57
@@ -29,23 +29,23 @@ public class NovelSiteXmlPares {
     /**
      * 章节列表选择器
      */
-    private String chapterListSelector;
+    private String chapterList;
     /**
      * 小说标题选择器
      */
-    private String contentTitleSelector;
+    private String contentTitle;
     /**
      * 小说内容选择器
      */
-    private String contentContentSelector;
+    private String contentContent;
     /**
      * 上一章选择器
      */
-    private String contentPrevSelector;
+    private String contentPrev;
     /**
      * 下一章选择器
      */
-    private String contentNextSelector;
+    private String contentNext;
     /**
      * 最大数组长度
      */
@@ -63,28 +63,28 @@ public class NovelSiteXmlPares {
         return url;
     }
 
-    public String getChapterListSelector(Integer index) {
-        String[] split = chapterListSelector.split("\\|");
+    public String getChapterList(Integer index) {
+        String[] split = chapterList.split("\\|");
         return getIndex(index, split);
     }
 
-    public String getContentTitleSelector(Integer index) {
-        String[] split = contentTitleSelector.split("\\|");
+    public String getContentTitle(Integer index) {
+        String[] split = contentTitle.split("\\|");
         return getIndex(index, split);
     }
 
-    public String getContentContentSelector(Integer index) {
-        String[] split = contentContentSelector.split("\\|");
+    public String getContentContent(Integer index) {
+        String[] split = contentContent.split("\\|");
         return getIndex(index, split);
     }
 
-    public String getContentPrevSelector(Integer index) {
-        String[] split = contentPrevSelector.split("\\|");
+    public String getContentPrev(Integer index) {
+        String[] split = contentPrev.split("\\|");
         return getIndex(index, split);
     }
 
-    public String getContentNextSelector(Integer index) {
-        String[] split = contentNextSelector.split("\\|");
+    public String getContentNext(Integer index) {
+        String[] split = contentNext.split("\\|");
         return getIndex(index, split);
     }
 

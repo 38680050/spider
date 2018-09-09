@@ -47,24 +47,24 @@ public final class NovelSiteUtil {
                 //链接选择器
                 String url = site.element( "url" ).getTextTrim();
                 //章节列表选择器
-                String chapterListSelector = site.element("chapter-list-selector").getTextTrim();
+                String chapterList = site.element("chapter-list-").getTextTrim();
                 //章节标题选择器
-                String contentTitleSelector = site.element("content-title-selector").getTextTrim();
+                String contentTitle = site.element("content-title-").getTextTrim();
                 //章节内容选择器
-                String contentContentSelector = site.element("content-content-selector").getTextTrim();
+                String contentContent = site.element("content-content-").getTextTrim();
                 //上一章选择器
-                String contentPrevSelector = site.element("content-prev-selector").getTextTrim();
+                String contentPrev = site.element("content-prev-").getTextTrim();
                 //下一章选择器
-                String contentNextSelector = site.element("content-next-selector").getTextTrim();
+                String contentNext = site.element("content-next-").getTextTrim();
                 NovelSiteXmlPares novelSiteXmlPares = new NovelSiteXmlPares(
                         title,
                         charset,
                         url,
-                        chapterListSelector,
-                        contentTitleSelector,
-                        contentContentSelector,
-                        contentPrevSelector,
-                        contentNextSelector
+                        chapterList,
+                        contentTitle,
+                        contentContent,
+                        contentPrev,
+                        contentNext
                 );
                 NovelSiteEnum novelSiteEnum = NovelSiteEnum.getByUrl(url);
                 NOVEL_SITE_MAP.put(novelSiteEnum, novelSiteXmlPares);

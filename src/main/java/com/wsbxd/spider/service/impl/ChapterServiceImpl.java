@@ -41,7 +41,7 @@ public class ChapterServiceImpl implements IChapterService {
             Document doc = Jsoup.parse(result);
             NovelSiteXmlPares parserRule = NovelSiteUtil.getParserRule(NovelSiteEnum.getByUrl(url));
             //根据章节列表选择器获取对应的标签
-            Elements elements = doc.select(parserRule.getChapterListSelector(0));
+            Elements elements = doc.select(parserRule.getChapterList(0));
             List<Chapter> chapters = new ArrayList<>();
             for (Element a:elements) {
                 chapters.add(new Chapter(null,a.text(),a.attr("href")));

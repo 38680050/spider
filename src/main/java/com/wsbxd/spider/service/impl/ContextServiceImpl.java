@@ -43,16 +43,16 @@ public class ContextServiceImpl implements IContextService {
             Content content = new Content();
 
             //获取标题内容
-            content.setTitle( doc.select(parserRule.getContentTitleSelector(0)).get( Integer.parseInt(parserRule.getContentTitleSelector(1)) ).text() );
+            content.setTitle( doc.select(parserRule.getContentTitle(0)).get( Integer.parseInt(parserRule.getContentTitle(1)) ).text() );
 
             //获取章节内容
-            content.setContent( doc.select( parserRule.getContentContentSelector(0) ).get( Integer.parseInt(parserRule.getContentContentSelector(1) ) ).text() );
+            content.setContent( doc.select( parserRule.getContentContent(0) ).get( Integer.parseInt(parserRule.getContentContent(1) ) ).text() );
 
             //获取上一章
-            content.setPrev( doc.select( parserRule.getContentPrevSelector(0) ).get( Integer.parseInt(parserRule.getContentPrevSelector(1)) ).text() );
+            content.setPrev( doc.select( parserRule.getContentPrev(0) ).get( Integer.parseInt(parserRule.getContentPrev(1)) ).text() );
 
             //获取下一章
-            content.setNext( doc.select( parserRule.getContentNextSelector(0) ).get( Integer.parseInt(parserRule.getContentNextSelector(1)) ).text() );
+            content.setNext( doc.select( parserRule.getContentNext(0) ).get( Integer.parseInt(parserRule.getContentNext(1)) ).text() );
 
             return content;
         } catch (NumberFormatException e) {
