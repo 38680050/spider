@@ -27,8 +27,7 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
     /**
-     * @description 自定义的缓存key的生成策略
-     *              若想使用这个key  只需要讲注解上keyGenerator的值设置为keyGenerator即可</br>
+     * @description 自定义的缓存key的生成策略  若想使用这个key  只需要讲注解上keyGenerator的值设置为keyGenerator即可</br>
      * @return 自定义策略生成的key
      */
     @Bean

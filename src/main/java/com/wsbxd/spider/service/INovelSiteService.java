@@ -12,6 +12,10 @@ import java.util.List;
  */
 public interface INovelSiteService {
 
+    /**
+     * 查询所有小说站点
+     * @return 所有小说站点
+     */
     List<NovelSite> findAll();
 
 }

@@ -12,6 +12,10 @@ import java.util.List;
  */
 public interface INovelSelectorService {
 
+    /**
+     * 查询所有小说选择器
+     * @return 所有小说选择器
+     */
     List<NovelSelector> findAll();
 
 }

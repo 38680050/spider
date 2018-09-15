@@ -1,6 +1,5 @@
 package com.wsbxd;
 
-import com.wsbxd.common.utils.NovelSiteEnum;
 import com.wsbxd.spider.domain.po.Chapter;
 import com.wsbxd.spider.domain.po.Content;
 import com.wsbxd.spider.service.IChapterService;

@@ -62,7 +62,7 @@ public class CrawlUtil {
             }else{
                 throw new RuntimeException("您的选择器下标不在规定的选择器下标范围内!");
             }
-        }else if(split.length == 2){
+        }else if(split.length == Constant.NUMBER_TWO){
             return split[index];
         }else{
             throw new RuntimeException("您的选择器下标不在规定的选择器下标范围内!");
