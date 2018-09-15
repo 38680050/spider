@@ -1,7 +1,6 @@
 package com.wsbxd;
 
 import com.wsbxd.common.utils.NovelSiteEnum;
-import com.wsbxd.common.utils.NovelSiteUtil;
 import com.wsbxd.spider.domain.po.Chapter;
 import com.wsbxd.spider.domain.po.Content;
 import com.wsbxd.spider.service.IChapterService;
@@ -36,11 +35,6 @@ public class SpiderApplicationTests {
         for (Chapter chapter:chapters) {
             System.out.println(chapter);
         }
-    }
-
-    @Test
-    public void testGetSiteContext() {
-        System.out.println(NovelSiteUtil.getParserRule(NovelSiteEnum.getByUrl("https://www.xs.la/0_5/")));
     }
 
 }

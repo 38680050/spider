@@ -16,38 +16,31 @@ import java.io.Serializable;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "t_context")
 public class Content implements Serializable {
 
     /**
      * id
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     /**
      * 标题
      */
-    @Column
     private String title;
 
     /**
      * 内容
      */
-    @Column
     private String content;
 
     /**
      * 上一页
      */
-    @Column
     private String prev;
 
     /**
      * 下一页
      */
-    @Column
     private String next;
 
     @Override

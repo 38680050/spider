@@ -2,22 +2,24 @@ package com.wsbxd.spider.domain.po;
 
 import lombok.*;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
- * description: 小说实体章节
+ * description: 图书标题
  *
  * @author chenhaoxuan
- * @date 2018/9/1 15:49
+ * @date 2018/9/15 15:37
  */
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Table(name = "t_chapter")
-public class Chapter implements Serializable {
+@Table(name = "t_book")
+public class Book {
 
     /**
      * id
@@ -31,6 +33,12 @@ public class Chapter implements Serializable {
      */
     @Column
     private String title;
+
+    /**
+     * 作者
+     */
+    @Column
+    private String author;
 
     /**
      * 链接

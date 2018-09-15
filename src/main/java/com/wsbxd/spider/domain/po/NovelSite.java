@@ -3,21 +3,20 @@ package com.wsbxd.spider.domain.po;
 import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
- * description: 小说实体章节
+ * description: 小说站点实体类
  *
  * @author chenhaoxuan
- * @date 2018/9/1 15:49
+ * @date 2018/9/2 17:57
  */
 @Setter
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
-@Table(name = "t_chapter")
-public class Chapter implements Serializable {
+@Table(name = "t_novel_site")
+public class NovelSite {
 
     /**
      * id
@@ -25,13 +24,16 @@ public class Chapter implements Serializable {
     @Id
     @GeneratedValue(generator = "JDBC")
     private Integer id;
-
     /**
-     * 标题
+     * 站点名
      */
     @Column
     private String title;
-
+    /**
+     * 字符编码
+     */
+    @Column
+    private String charset;
     /**
      * 链接
      */

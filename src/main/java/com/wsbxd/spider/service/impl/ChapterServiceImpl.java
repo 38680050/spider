@@ -1,9 +1,9 @@
 package com.wsbxd.spider.service.impl;
 
-import com.wsbxd.common.domain.NovelSiteXmlPares;
+import com.wsbxd.common.utils.RedisSelectorEnum;
+import com.wsbxd.spider.domain.po.NovelSite;
 import com.wsbxd.common.utils.CrawlUtil;
 import com.wsbxd.common.utils.NovelSiteEnum;
-import com.wsbxd.common.utils.NovelSiteUtil;
 import com.wsbxd.spider.domain.po.Chapter;
 import com.wsbxd.spider.mapper.ChapterMapper;
 import com.wsbxd.spider.service.IChapterService;
@@ -27,6 +27,9 @@ import java.util.List;
 public class ChapterServiceImpl implements IChapterService {
 
     @Autowired
+    private CrawlUtil crawlUtil;
+
+    @Autowired
     private ChapterMapper chapterMapper;
 
     /**
@@ -37,11 +40,10 @@ public class ChapterServiceImpl implements IChapterService {
     @Override
     public List<Chapter> getChapter(String url) {
         try {
-            String result = CrawlUtil.crawl(url);
+            String result = crawlUtil.crawl(url);
             Document doc = Jsoup.parse(result);
-            NovelSiteXmlPares parserRule = NovelSiteUtil.getParserRule(NovelSiteEnum.getByUrl(url));
             //根据章节列表选择器获取对应的标签
-            Elements elements = doc.select(parserRule.getChapterList(0));
+            Elements elements = doc.select(crawlUtil.getSelectorByIndex(url, RedisSelectorEnum.LIST,0));
             List<Chapter> chapters = new ArrayList<>();
             for (Element a:elements) {
                 chapters.add(new Chapter(null,a.text(),a.attr("href")));

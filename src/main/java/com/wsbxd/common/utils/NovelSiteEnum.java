@@ -35,11 +35,12 @@ public enum NovelSiteEnum {
      * @return
      */
     public static NovelSiteEnum getById(Integer id){
-        switch (id){
-            case 1:return DingDianXiaoShuo;
-            case 2:return BiQuGe;
-            default:throw new RuntimeException("id = " + id +"的小说网站未被支持");
+        for (NovelSiteEnum novelSiteEnum:values()){
+            if(id.equals(novelSiteEnum.id)) {
+                return novelSiteEnum;
+            }
         }
+        throw new RuntimeException("id = " + id + "的小说网站未被支持");
     }
 
     /**
