@@ -1,7 +1,8 @@
 package com.wsbxd;
 
 import com.wsbxd.spider.domain.po.Chapter;
-import com.wsbxd.spider.domain.po.Content;
+import com.wsbxd.spider.factory.ChapterSpiderFactory;
+import com.wsbxd.spider.interfaces.IChapterSpider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,24 +15,18 @@ import java.util.List;
 @SpringBootTest
 public class SpiderApplicationTests {
 
-    /*@Autowired
-    private IChapterService chapterService;
-
-    @Autowired
-    private IContextService contextService;
-
     @Test
     public void testGetContext() {
-        Content context = contextService.getContext( "https://www.11kt.cn/read/103221/34086723.html" );
-        System.out.println(context);
+
     }
 
     @Test
     public void testGetChapters() {
-        List<Chapter> chapters = chapterService.getChapter("https://www.11kt.cn/read/72453/index.html");
-        for (Chapter chapter:chapters) {
+        IChapterSpider chapterSpider = ChapterSpiderFactory.getChapterSpider("https://www.11kt.cn/read/72453/index.html");
+        List<Chapter> chapters = chapterSpider.getChapters("https://www.11kt.cn/read/72453/index.html");
+        for (Chapter chapter:chapters){
             System.out.println(chapter);
         }
-    }*/
+    }
 
 }

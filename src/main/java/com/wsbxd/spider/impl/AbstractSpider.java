@@ -36,10 +36,13 @@ public abstract class AbstractSpider {
                 CloseableHttpResponse httpResponse = httpClient.execute(new HttpGet(url))
         ) {
             //根据Response和页面编码格式获取页面result
-            return EntityUtils.toString(httpResponse.getEntity(),
-                    (String) redisUtil.getHashKey(Constant.REDIS_NOVEL_SITE_CHARSET, NovelSiteEnum.getByUrl(url).getUrl()));
+            String hashKey = null;
+            if (redisUtil.hashKey(Constant.REDIS_NOVEL_SITE_CHARSET, NovelSiteEnum.getByUrl(url).getUrl())){
+                hashKey = (String) redisUtil.getHashKey(Constant.REDIS_NOVEL_SITE_CHARSET, NovelSiteEnum.getByUrl(url).getUrl());
+            }
+            return EntityUtils.toString(httpResponse.getEntity(), hashKey);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e + "页面爬取失败!");
         }
     }
 
