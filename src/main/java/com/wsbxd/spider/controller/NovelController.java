@@ -1,7 +1,5 @@
 package com.wsbxd.spider.controller;
 
-import com.wsbxd.spider.service.IChapterService;
-import com.wsbxd.spider.service.IContextService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("spider")
 public class NovelController {
 
-    @Autowired
-    private IChapterService chapterService;
 
-    @Autowired
-    private IContextService contextService;
 
 }

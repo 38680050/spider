@@ -1,22 +1,24 @@
-package com.wsbxd.common.utils;
+package com.wsbxd.spider.impl;
 
 import com.wsbxd.common.constant.Constant;
+import com.wsbxd.common.utils.NovelSiteEnum;
+import com.wsbxd.common.utils.RedisSelectorEnum;
+import com.wsbxd.common.utils.RedisUtil;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
- * description: 抓取工具类
+ * description: 抽象爬虫类
  *
- * @author chenhaoxuan
- * @date 2018/9/2 10:19
+ * @author 38680
+ * @version 1.0
+ * @date 2018/9/19 15:56
  */
-@Component
-public class CrawlUtil {
+public abstract class AbstractSpider {
 
     @Autowired
     private RedisUtil redisUtil;
@@ -34,11 +36,8 @@ public class CrawlUtil {
                 CloseableHttpResponse httpResponse = httpClient.execute(new HttpGet(url))
         ) {
             //根据Response和页面编码格式获取页面result
-            String hashKey = null;
-            if (redisUtil.hashKey(Constant.REDIS_NOVEL_SITE_CHARSET,NovelSiteEnum.getByUrl(url).getUrl())){
-                hashKey = (String) redisUtil.getHashKey(Constant.REDIS_NOVEL_SITE_CHARSET, NovelSiteEnum.getByUrl(url).getUrl());
-            }
-            return EntityUtils.toString(httpResponse.getEntity(), hashKey);
+            return EntityUtils.toString(httpResponse.getEntity(),
+                    (String) redisUtil.getHashKey(Constant.REDIS_NOVEL_SITE_CHARSET, NovelSiteEnum.getByUrl(url).getUrl()));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -51,7 +50,7 @@ public class CrawlUtil {
      * @param index              下标
      * @return 选择器
      */
-    public String getSelectorByIndex(String url,RedisSelectorEnum redisSelectorEnum,Integer index){
+    public String getSelectorByIndex(String url, RedisSelectorEnum redisSelectorEnum, Integer index){
         //获取Redis中的选择器
         String[] split = ((String)redisUtil.getHashKey(redisSelectorEnum.getRedisName(), NovelSiteEnum.getByUrl(url).getUrl())).split("\\|");
         if (split.length == 1){

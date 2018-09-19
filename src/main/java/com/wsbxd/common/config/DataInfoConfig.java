@@ -4,8 +4,6 @@ import com.wsbxd.common.constant.Constant;
 import com.wsbxd.common.utils.RedisUtil;
 import com.wsbxd.spider.domain.po.NovelSelector;
 import com.wsbxd.spider.domain.po.NovelSite;
-import com.wsbxd.spider.service.INovelSelectorService;
-import com.wsbxd.spider.service.INovelSiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -24,11 +22,11 @@ import java.util.stream.Collectors;
 @Component
 public class DataInfoConfig implements CommandLineRunner {
 
-    @Autowired
+    /*@Autowired
     private INovelSiteService novelSiteService;
 
     @Autowired
-    private INovelSelectorService novelSelectorService;
+    private INovelSelectorService novelSelectorService;*/
 
     @Autowired
     private RedisUtil redisUtil;
@@ -38,15 +36,15 @@ public class DataInfoConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //添加小说站点到Redis
-        addNovelSiteToRedis();
+        //addNovelSiteToRedis();
         //添加小说选择器到Redis
-        addNovelSelectorToRedis();
+        //addNovelSelectorToRedis();
     }
 
     /**
      * 添加小说选择器到Redis
      */
-    private void addNovelSelectorToRedis() {
+    /*private void addNovelSelectorToRedis() {
         List<NovelSelector> novelSelectors = novelSelectorService.findAll();
         Map<String,String> list = new HashMap<>(mapSize);
         Map<String,String> title = new HashMap<>(mapSize);
@@ -67,15 +65,15 @@ public class DataInfoConfig implements CommandLineRunner {
         redisUtil.putAll(Constant.REDIS_NOVEL_NEXT,next);
     }
 
-    /**
+    *//**
      * 添加小说站点到Redis
-     */
+     *//*
     private void addNovelSiteToRedis() {
         //获取所有站点
         List<NovelSite> novelSites = novelSiteService.findAll();
         //转换为map,key为链接,value为字符编码格式
         Map<String,String> map = novelSites.stream().collect(Collectors.toMap(NovelSite::getUrl,NovelSite::getCharset));
         redisUtil.putAll(Constant.REDIS_NOVEL_SITE_CHARSET,map);
-    }
+    }*/
 
 }

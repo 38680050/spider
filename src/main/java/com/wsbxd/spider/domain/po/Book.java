@@ -35,15 +35,45 @@ public class Book {
     private String title;
 
     /**
+     * 链接
+     */
+    @Column
+    private String url;
+
+    /**
      * 作者
      */
     @Column
     private String author;
 
     /**
-     * 链接
+     * 小说的类别：如武侠修真，都市言情
      */
     @Column
-    private String url;
+    private String type;
+
+    /**
+     * 小说最后更新的时间
+     */
+    @Column
+    private String lastUpdateTime;
+
+    /**
+     * 小说的状态：1 连载 2 完结
+     */
+    @Column
+    private Integer status;
+
+    /**
+     * 入库时间
+     */
+    @Column
+    private String addTime;
+
+    /**
+     * 站点ID
+     */
+    @Column
+    private Integer siteId;
 
 }

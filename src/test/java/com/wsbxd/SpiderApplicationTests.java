@@ -2,8 +2,6 @@ package com.wsbxd;
 
 import com.wsbxd.spider.domain.po.Chapter;
 import com.wsbxd.spider.domain.po.Content;
-import com.wsbxd.spider.service.IChapterService;
-import com.wsbxd.spider.service.IContextService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,7 @@ import java.util.List;
 @SpringBootTest
 public class SpiderApplicationTests {
 
-    @Autowired
+    /*@Autowired
     private IChapterService chapterService;
 
     @Autowired
@@ -34,6 +32,6 @@ public class SpiderApplicationTests {
         for (Chapter chapter:chapters) {
             System.out.println(chapter);
         }
-    }
+    }*/
 
 }

@@ -14,4 +14,12 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface NovelSiteMapper extends TkMapper<NovelSite> {
+
+    /**
+     * 根据URL获取站点ID
+     * @param url 链接
+     * @return 站点ID
+     */
+    Integer findSiteIdByUrl(String url);
+
 }

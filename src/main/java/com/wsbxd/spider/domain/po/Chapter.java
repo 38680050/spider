@@ -38,4 +38,16 @@ public class Chapter implements Serializable {
     @Column
     private String url;
 
+    /**
+     * 链接
+     */
+    @Column
+    private String sort;
+
+    /**
+     * bookID
+     */
+    @Column
+    private Integer bookId;
+
 }
