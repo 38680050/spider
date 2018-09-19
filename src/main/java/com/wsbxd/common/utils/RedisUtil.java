@@ -4,9 +4,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;  
 import java.util.Set;  
-import java.util.concurrent.TimeUnit;  
-  
-import org.springframework.beans.factory.annotation.Autowired;  
+import java.util.concurrent.TimeUnit;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations.TypedTuple;
@@ -23,6 +23,16 @@ public class RedisUtil {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
+
+    /**
+     * 判断键是否存在
+     * @param key       键
+     * @return 是否存在
+     */
+    public boolean isExists(String key) {
+        return redisTemplate.hasKey(key);
+    }
+
 
     /**
      * 设置 String 类型 key-value

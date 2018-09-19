@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
  */
 @Mapper
 @Repository
-public interface ContextMapper extends TkMapper<Content> {
+public interface ContentMapper extends TkMapper<Content> {
 
 
 

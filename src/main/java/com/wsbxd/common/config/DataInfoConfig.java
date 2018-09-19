@@ -4,6 +4,8 @@ import com.wsbxd.common.constant.Constant;
 import com.wsbxd.common.utils.RedisUtil;
 import com.wsbxd.spider.domain.po.NovelSelector;
 import com.wsbxd.spider.domain.po.NovelSite;
+import com.wsbxd.spider.service.INovelSelectorService;
+import com.wsbxd.spider.service.INovelSiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -22,11 +24,11 @@ import java.util.stream.Collectors;
 @Component
 public class DataInfoConfig implements CommandLineRunner {
 
-    /*@Autowired
+    @Autowired
     private INovelSiteService novelSiteService;
 
     @Autowired
-    private INovelSelectorService novelSelectorService;*/
+    private INovelSelectorService novelSelectorService;
 
     @Autowired
     private RedisUtil redisUtil;
@@ -36,15 +38,15 @@ public class DataInfoConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //添加小说站点到Redis
-        //addNovelSiteToRedis();
+        addNovelSiteToRedis();
         //添加小说选择器到Redis
-        //addNovelSelectorToRedis();
+        addNovelSelectorToRedis();
     }
 
     /**
      * 添加小说选择器到Redis
      */
-    /*private void addNovelSelectorToRedis() {
+    private void addNovelSelectorToRedis() {
         List<NovelSelector> novelSelectors = novelSelectorService.findAll();
         Map<String,String> list = new HashMap<>(mapSize);
         Map<String,String> title = new HashMap<>(mapSize);
@@ -58,22 +60,40 @@ public class DataInfoConfig implements CommandLineRunner {
             prev.put(novelSelector.getUrl(),novelSelector.getPrev());
             next.put(novelSelector.getUrl(),novelSelector.getNext());
         }
+        if (redisUtil.isExists(Constant.REDIS_NOVEL_LIST)){
+            redisUtil.delete(Constant.REDIS_NOVEL_LIST);
+        }
         redisUtil.putAll(Constant.REDIS_NOVEL_LIST,list);
+        if (redisUtil.isExists(Constant.REDIS_NOVEL_TITLE)){
+            redisUtil.delete(Constant.REDIS_NOVEL_TITLE);
+        }
         redisUtil.putAll(Constant.REDIS_NOVEL_TITLE,title);
+        if (redisUtil.isExists(Constant.REDIS_NOVEL_CONTENT)){
+            redisUtil.delete(Constant.REDIS_NOVEL_CONTENT);
+        }
         redisUtil.putAll(Constant.REDIS_NOVEL_CONTENT,content);
+        if (redisUtil.isExists(Constant.REDIS_NOVEL_PREV)){
+            redisUtil.delete(Constant.REDIS_NOVEL_PREV);
+        }
         redisUtil.putAll(Constant.REDIS_NOVEL_PREV,prev);
+        if (redisUtil.isExists(Constant.REDIS_NOVEL_NEXT)){
+            redisUtil.delete(Constant.REDIS_NOVEL_NEXT);
+        }
         redisUtil.putAll(Constant.REDIS_NOVEL_NEXT,next);
     }
 
-    *//**
+    /**
      * 添加小说站点到Redis
-     *//*
+     */
     private void addNovelSiteToRedis() {
         //获取所有站点
         List<NovelSite> novelSites = novelSiteService.findAll();
         //转换为map,key为链接,value为字符编码格式
         Map<String,String> map = novelSites.stream().collect(Collectors.toMap(NovelSite::getUrl,NovelSite::getCharset));
+        if (redisUtil.isExists(Constant.REDIS_NOVEL_SITE_CHARSET)){
+            redisUtil.delete(Constant.REDIS_NOVEL_SITE_CHARSET);
+        }
         redisUtil.putAll(Constant.REDIS_NOVEL_SITE_CHARSET,map);
-    }*/
+    }
 
 }

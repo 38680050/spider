@@ -21,7 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public abstract class AbstractSpider {
 
     @Autowired
-    private RedisUtil redisUtil;
+    protected RedisUtil redisUtil;
 
     /**
      * 抓取页面元素
@@ -36,11 +36,7 @@ public abstract class AbstractSpider {
                 CloseableHttpResponse httpResponse = httpClient.execute(new HttpGet(url))
         ) {
             //根据Response和页面编码格式获取页面result
-            String hashKey = null;
-            if (redisUtil.hashKey(Constant.REDIS_NOVEL_SITE_CHARSET, NovelSiteEnum.getByUrl(url).getUrl())){
-                hashKey = (String) redisUtil.getHashKey(Constant.REDIS_NOVEL_SITE_CHARSET, NovelSiteEnum.getByUrl(url).getUrl());
-            }
-            return EntityUtils.toString(httpResponse.getEntity(), hashKey);
+            return EntityUtils.toString(httpResponse.getEntity(), (String) redisUtil.getHashKey(Constant.REDIS_NOVEL_SITE_CHARSET, NovelSiteEnum.getByUrl(url).getUrl()));
         } catch (Exception e) {
             throw new RuntimeException(e + "页面爬取失败!");
         }
