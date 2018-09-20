@@ -1,6 +1,7 @@
 package com.wsbxd.spider.impl;
 
 import com.wsbxd.common.constant.Constant;
+import com.wsbxd.common.utils.BeanHelper;
 import com.wsbxd.common.utils.NovelSiteEnum;
 import com.wsbxd.common.utils.RedisSelectorEnum;
 import com.wsbxd.common.utils.RedisUtil;
@@ -10,6 +11,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 /**
  * description: 抽象爬虫类
@@ -18,10 +20,14 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @version 1.0
  * @date 2018/9/19 15:56
  */
-public abstract class AbstractSpider {
+public abstract class AbstractSpider  {
 
-    @Autowired
-    protected RedisUtil redisUtil;
+    private static RedisUtil redisUtil;
+
+    static{
+        //抽象类中无法实例化,无法用@Autowired注入,因此在这使用BeanHelper加载bean
+        redisUtil = BeanHelper.getBean(RedisUtil.class);
+    }
 
     /**
      * 抓取页面元素
@@ -30,7 +36,7 @@ public abstract class AbstractSpider {
      * @param url 链接
      * @return 页面内容
      */
-    public String crawl(String url){
+    protected String crawl(String url){
         try (
                 CloseableHttpClient httpClient = HttpClientBuilder.create().build();
                 CloseableHttpResponse httpResponse = httpClient.execute(new HttpGet(url))
@@ -38,7 +44,7 @@ public abstract class AbstractSpider {
             //根据Response和页面编码格式获取页面result
             return EntityUtils.toString(httpResponse.getEntity(), (String) redisUtil.getHashKey(Constant.REDIS_NOVEL_SITE_CHARSET, NovelSiteEnum.getByUrl(url).getUrl()));
         } catch (Exception e) {
-            throw new RuntimeException(e + "页面爬取失败!");
+            throw new RuntimeException(e + " | 页面爬取失败!");
         }
     }
 

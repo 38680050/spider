@@ -39,7 +39,7 @@ public class DefaultChapterSpider extends AbstractChapterSpider {
             }
             return chapters;
         } catch (Exception e) {
-            throw new RuntimeException(e + "章节列表爬取失败!");
+            throw new RuntimeException(e + " | 章节列表爬取失败!");
         }
     }
 

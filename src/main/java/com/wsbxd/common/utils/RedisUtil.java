@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @author chenhaoxuan
  * @date 2018/9/15 16:09
  */
-@Component
+@Component("redisUtil")
 public class RedisUtil {
 
     @Autowired
