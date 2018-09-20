@@ -1,6 +1,5 @@
 package com.wsbxd.spider.impl.chapter;
 
-import com.wsbxd.common.utils.RedisSelectorEnum;
 import com.wsbxd.spider.domain.po.Chapter;
 import com.wsbxd.spider.impl.AbstractSpider;
 import com.wsbxd.spider.interfaces.IChapterSpider;

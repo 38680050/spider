@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * description:
+ * description: 小说Controller
  *
  * @author chenhaoxuan
  * @date 2018/9/1 15:42

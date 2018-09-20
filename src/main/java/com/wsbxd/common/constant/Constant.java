@@ -43,4 +43,9 @@ public interface Constant {
      */
     Integer NUMBER_TWO = 2;
 
+    /**
+     * 最大尝试次数
+     */
+    Integer MAX_TRY_NUM = 3;
+
 }

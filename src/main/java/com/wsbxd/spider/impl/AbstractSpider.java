@@ -22,7 +22,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
  */
 public abstract class AbstractSpider  {
 
-    private static RedisUtil redisUtil;
+    protected static RedisUtil redisUtil;
 
     static{
         //抽象类中无法实例化,无法用@Autowired注入,因此在这使用BeanHelper加载bean
