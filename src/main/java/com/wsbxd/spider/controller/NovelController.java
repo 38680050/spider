@@ -1,17 +1,14 @@
 package com.wsbxd.spider.controller;
 
 import com.wsbxd.spider.domain.po.Chapter;
+import com.wsbxd.spider.domain.po.Content;
 import com.wsbxd.spider.factory.ChapterSpiderFactory;
-import com.wsbxd.spider.interfaces.IChapterSpider;
+import com.wsbxd.spider.factory.ContentSpiderFactory;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,22 +18,27 @@ import java.util.List;
  * @author chenhaoxuan
  * @date 2018/9/1 15:42
  */
-@Controller
+@RestController
 @RequestMapping("spider")
-@Api(value = "小说API")
+@Api(value = "小说API", tags = {"小说API"})
 public class NovelController {
 
     @ApiOperation(value = "爬取小说章节列表", notes = "爬取小说章节列表数据")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "url", value = "要爬取的链接", required = true, dataType = "String", paramType = "query", defaultValue = "https://www.11kt.cn/read/72453/index.html")
     })
-    @RequestMapping(value = "crawl",method = RequestMethod.GET)
-    public void crawl(@RequestParam(value = "url")String url){
-        IChapterSpider chapterSpider = ChapterSpiderFactory.getChapterSpider(url);
-        List<Chapter> chapters = chapterSpider.getChapters(url);
-        for (Chapter chapter:chapters){
-            System.out.println(chapter);
-        }
+    @RequestMapping(value = "crawlChapterList",method = RequestMethod.GET)
+    public List<Chapter> crawlChapterList(@RequestParam(value = "url")String url){
+        return ChapterSpiderFactory.getChapterSpider(url).getChapters(url);
+    }
+
+    @ApiOperation(value = "爬取小说实体内容", notes = "爬取小说实体内容数据")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "url", value = "要爬取的链接", required = true, dataType = "String", paramType = "query", defaultValue = "https://www.11kt.cn/read/72453/33962963.html")
+    })
+    @RequestMapping(value = "crawlContent",method = RequestMethod.GET)
+    public Content crawlContent(@RequestParam(value = "url")String url){
+        return ContentSpiderFactory.getContentSpider(url).getContent(url);
     }
 
 }
