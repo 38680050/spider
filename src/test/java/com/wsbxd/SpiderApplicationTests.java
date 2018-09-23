@@ -1,7 +1,10 @@
 package com.wsbxd;
 
+import com.wsbxd.common.utils.DownloadConfig;
 import com.wsbxd.spider.domain.po.Chapter;
 import com.wsbxd.spider.impl.chapter.DefaultChapterSpider;
+import com.wsbxd.spider.impl.download.DownloadImpl;
+import com.wsbxd.spider.interfaces.IDownload;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,6 +28,16 @@ public class SpiderApplicationTests {
         for (Chapter chapter:chapters){
             System.out.println(chapter);
         }
+    }
+
+    @Test
+    public void testDownload() {
+        IDownload download = new DownloadImpl();
+        DownloadConfig config = new DownloadConfig();
+        config.setPath("D:/1");
+        config.setSize(50);
+        config.setMaxTryNum(3);
+        System.out.println("下载好了，文件保存在：" + download.download("https://www.11kt.cn/read/72453/index.html", config) + "这里，赶紧去看看吧！");
     }
 
 }

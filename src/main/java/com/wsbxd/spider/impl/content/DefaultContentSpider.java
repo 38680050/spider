@@ -40,11 +40,11 @@ public class DefaultContentSpider extends AbstractContentSpider {
 
             //获取上一章
             content.setPrev( doc.select( getSelectorByIndex(url, RedisSelectorEnum.PREV,0) )
-                    .get( Integer.parseInt( getSelectorByIndex(url, RedisSelectorEnum.PREV,1) ) ).text() );
+                    .get( Integer.parseInt( getSelectorByIndex(url, RedisSelectorEnum.PREV,1) ) ).absUrl("href") );
 
             //获取下一章
             content.setNext( doc.select( getSelectorByIndex(url, RedisSelectorEnum.NEXT,0) )
-                    .get( Integer.parseInt( getSelectorByIndex(url, RedisSelectorEnum.NEXT,1) ) ).text() );
+                    .get( Integer.parseInt( getSelectorByIndex(url, RedisSelectorEnum.NEXT,1) ) ).absUrl("href") );
 
             return content;
         } catch (NumberFormatException e) {

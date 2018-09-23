@@ -12,6 +12,6 @@ import org.springframework.stereotype.Repository;
  * @date 2018/9/15 16:57
  */
 @Mapper
-@Repository
+@Repository("novelMapper")
 public interface NovelMapper extends TkMapper<NovelSelector> {
 }

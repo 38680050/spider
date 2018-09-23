@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
  * @date 2018/9/1 15:46
  */
 @Mapper
-@Repository
+@Repository("contentMapper")
 public interface ContentMapper extends TkMapper<Content> {
 
 

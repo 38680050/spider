@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
  * @date 2018/9/15 15:50
  */
 @Mapper
-@Repository
+@Repository("novelSiteMapper")
 public interface NovelSiteMapper extends TkMapper<NovelSite> {
 
     /**

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
  * @date 2018/9/19 11:41
  */
 @Mapper
-@Repository
+@Repository("bookMapper")
 public interface BookMapper extends TkMapper<Book> {
 
 
