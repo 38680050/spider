@@ -1,5 +1,7 @@
 package com.wsbxd.spider.controller;
 
+import com.wsbxd.common.admin.po.BusinessMsg;
+import com.wsbxd.common.utils.BusinessCode;
 import com.wsbxd.spider.domain.po.Chapter;
 import com.wsbxd.spider.domain.po.Content;
 import com.wsbxd.spider.factory.ChapterSpiderFactory;
@@ -23,13 +25,17 @@ import java.util.List;
 @Api(value = "小说API", tags = {"小说API"})
 public class NovelController {
 
+    public void downloadBook(){
+
+    }
+
     @ApiOperation(value = "爬取小说章节列表", notes = "爬取小说章节列表数据")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "url", value = "要爬取的链接", required = true, dataType = "String", paramType = "query", defaultValue = "https://www.11kt.cn/read/72453/index.html")
     })
     @RequestMapping(value = "crawlChapterList",method = RequestMethod.GET)
-    public List<Chapter> crawlChapterList(@RequestParam(value = "url")String url){
-        return ChapterSpiderFactory.getChapterSpider(url).getChapters(url);
+    public BusinessMsg crawlChapterList(@RequestParam(value = "url")String url){
+        return new BusinessMsg(BusinessCode.GLOBAL_SUCCESS,ChapterSpiderFactory.getChapterSpider(url).getChapters(url));
     }
 
     @ApiOperation(value = "爬取小说实体内容", notes = "爬取小说实体内容数据")
@@ -37,8 +43,8 @@ public class NovelController {
             @ApiImplicitParam(name = "url", value = "要爬取的链接", required = true, dataType = "String", paramType = "query", defaultValue = "https://www.11kt.cn/read/72453/33962963.html")
     })
     @RequestMapping(value = "crawlContent",method = RequestMethod.GET)
-    public Content crawlContent(@RequestParam(value = "url")String url){
-        return ContentSpiderFactory.getContentSpider(url).getContent(url);
+    public BusinessMsg crawlContent(@RequestParam(value = "url")String url){
+        return new BusinessMsg(BusinessCode.GLOBAL_SUCCESS,ContentSpiderFactory.getContentSpider(url).getContent(url));
     }
 
 }

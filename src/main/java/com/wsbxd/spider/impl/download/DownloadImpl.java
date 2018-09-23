@@ -51,7 +51,6 @@ public class DownloadImpl implements IDownload {
         new File(savePath).mkdirs();
 
         for (String key : keySet) {
-
             tasks.add(executorService.submit(new DownloadCallable( downloadTaskAlloc.get(key),(savePath + "/" + key + ".txt"), downloadConfig.getMaxTryNum())));
         }
         executorService.shutdown();
