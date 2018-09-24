@@ -25,10 +25,6 @@ import java.util.List;
 @Api(value = "小说API", tags = {"小说API"})
 public class NovelController {
 
-    public void downloadBook(){
-
-    }
-
     @ApiOperation(value = "爬取小说章节列表", notes = "爬取小说章节列表数据")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "url", value = "要爬取的链接", required = true, dataType = "String", paramType = "query", defaultValue = "https://www.11kt.cn/read/72453/index.html")

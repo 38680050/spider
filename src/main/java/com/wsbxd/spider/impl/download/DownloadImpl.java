@@ -1,5 +1,6 @@
 package com.wsbxd.spider.impl.download;
 
+import com.wsbxd.common.factory.CustomThreadFactory;
 import com.wsbxd.common.utils.DownloadConfig;
 import com.wsbxd.common.utils.FileUtil;
 import com.wsbxd.common.utils.NovelSiteEnum;
@@ -42,8 +43,9 @@ public class DownloadImpl implements IDownload {
             int currentDownIndex = i == maxThreadSize - 1 ? chaptersSize : i * configSize + configSize;
             downloadTaskAlloc.put(currentStartIndex+"-"+currentDownIndex, chapters.subList(currentStartIndex,currentDownIndex));
         }
-        //创建线程池,这样创建的线程池最大线程为MAX_INTEGER,以后得换方式创建
-        ExecutorService executorService = Executors.newFixedThreadPool(maxThreadSize);
+        //创建线程池
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10, 15, 100L, TimeUnit.SECONDS, new LinkedBlockingDeque(), new CustomThreadFactory("download-book"));
+
         Set<String> keySet = downloadTaskAlloc.keySet();
         List<Future<String>> tasks = new ArrayList<>();
         //创建路径
@@ -51,9 +53,9 @@ public class DownloadImpl implements IDownload {
         new File(savePath).mkdirs();
 
         for (String key : keySet) {
-            tasks.add(executorService.submit(new DownloadCallable( downloadTaskAlloc.get(key),(savePath + "/" + key + ".txt"), downloadConfig.getMaxTryNum())));
+            tasks.add(threadPoolExecutor.submit(new DownloadCallable( downloadTaskAlloc.get(key),(savePath + "/" + key + ".txt"), downloadConfig.getMaxTryNum())));
         }
-        executorService.shutdown();
+        threadPoolExecutor.shutdown();
         for (Future<String> future : tasks) {
             try {
                 System.out.println(future.get() + ",下载完成！");

@@ -53,33 +53,52 @@ public class DataInfoConfig implements CommandLineRunner {
         Map<String,String> content = new HashMap<>(mapSize);
         Map<String,String> prev = new HashMap<>(mapSize);
         Map<String,String> next = new HashMap<>(mapSize);
+        Map<String,String> book = new HashMap<>(mapSize);
+        Map<String,String> nextBook = new HashMap<>(mapSize);
         for (NovelSelector novelSelector:novelSelectors) {
             list.put(novelSelector.getUrl(),novelSelector.getList());
             title.put(novelSelector.getUrl(),novelSelector.getTitle());
             content.put(novelSelector.getUrl(),novelSelector.getContent());
             prev.put(novelSelector.getUrl(),novelSelector.getPrev());
             next.put(novelSelector.getUrl(),novelSelector.getNext());
+            book.put(novelSelector.getUrl(),novelSelector.getBook());
+            nextBook.put(novelSelector.getUrl(),novelSelector.getNextBook());
         }
+        //章节列表选择器
         if (redisUtil.isExists(Constant.REDIS_NOVEL_LIST)){
             redisUtil.delete(Constant.REDIS_NOVEL_LIST);
         }
         redisUtil.putAll(Constant.REDIS_NOVEL_LIST,list);
+        //小说标题选择器
         if (redisUtil.isExists(Constant.REDIS_NOVEL_TITLE)){
             redisUtil.delete(Constant.REDIS_NOVEL_TITLE);
         }
         redisUtil.putAll(Constant.REDIS_NOVEL_TITLE,title);
+        //小说内容选择器
         if (redisUtil.isExists(Constant.REDIS_NOVEL_CONTENT)){
             redisUtil.delete(Constant.REDIS_NOVEL_CONTENT);
         }
         redisUtil.putAll(Constant.REDIS_NOVEL_CONTENT,content);
+        //上一页选择器
         if (redisUtil.isExists(Constant.REDIS_NOVEL_PREV)){
             redisUtil.delete(Constant.REDIS_NOVEL_PREV);
         }
         redisUtil.putAll(Constant.REDIS_NOVEL_PREV,prev);
+        //下一页选择器
         if (redisUtil.isExists(Constant.REDIS_NOVEL_NEXT)){
             redisUtil.delete(Constant.REDIS_NOVEL_NEXT);
         }
         redisUtil.putAll(Constant.REDIS_NOVEL_NEXT,next);
+        //图书选择器
+        if (redisUtil.isExists(Constant.REDIS_NOVEL_BOOK)){
+            redisUtil.delete(Constant.REDIS_NOVEL_BOOK);
+        }
+        redisUtil.putAll(Constant.REDIS_NOVEL_BOOK,book);
+        //下一本图书选择器
+        if (redisUtil.isExists(Constant.REDIS_NOVEL_NEXT_BOOK)){
+            redisUtil.delete(Constant.REDIS_NOVEL_NEXT_BOOK);
+        }
+        redisUtil.putAll(Constant.REDIS_NOVEL_NEXT_BOOK,nextBook);
     }
 
     /**

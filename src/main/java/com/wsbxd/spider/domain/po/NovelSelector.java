@@ -57,6 +57,16 @@ public class NovelSelector {
     @Column
     private String next;
     /**
+     * 图书选择器
+     */
+    @Column
+    private String book;
+    /**
+     * 下一本图书选择器
+     */
+    @Column(name = "nextBook")
+    private String nextBook;
+    /**
      * 最大数组长度
      */
     @Transient
@@ -90,6 +100,14 @@ public class NovelSelector {
         return next;
     }
 
+    public String getBook() {
+        return book;
+    }
+
+    public String getNextBook() {
+        return nextBook;
+    }
+
     public String getList(Integer index) {
         String[] split = list.split("\\|");
         return getSelectorByIndex(index, split);
@@ -112,6 +130,16 @@ public class NovelSelector {
 
     public String getNext(Integer index) {
         String[] split = next.split("\\|");
+        return getSelectorByIndex(index, split);
+    }
+
+    public String getBook(Integer index) {
+        String[] split = book.split("\\|");
+        return getSelectorByIndex(index, split);
+    }
+
+    public String getNextBook(Integer index) {
+        String[] split = nextBook.split("\\|");
         return getSelectorByIndex(index, split);
     }
 

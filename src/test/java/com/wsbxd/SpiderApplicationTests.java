@@ -5,6 +5,7 @@ import com.wsbxd.spider.domain.po.Chapter;
 import com.wsbxd.spider.impl.chapter.DefaultChapterSpider;
 import com.wsbxd.spider.impl.download.DownloadImpl;
 import com.wsbxd.spider.interfaces.IDownload;
+import com.zaxxer.hikari.util.UtilityElf;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
