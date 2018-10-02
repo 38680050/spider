@@ -25,7 +25,7 @@ public class SpiderApplicationTests {
     @Test
     public void testGetChapters() {
         DefaultChapterSpider spider = new DefaultChapterSpider();
-        List<Chapter> chapters = spider.getChapters("https://www.11kt.cn/read/72453/index.html");
+        List<Chapter> chapters = spider.getChapters("http://www.kanshuzhong.com/book/23729/");
         for (Chapter chapter:chapters){
             System.out.println(chapter);
         }

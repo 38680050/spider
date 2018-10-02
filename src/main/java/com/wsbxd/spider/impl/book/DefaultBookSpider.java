@@ -5,7 +5,7 @@ import com.wsbxd.spider.domain.po.Book;
 import java.util.List;
 
 /**
- * description: TODO
+ * description: 默认图书爬虫
  *
  * @author 38680
  * @version 1.0

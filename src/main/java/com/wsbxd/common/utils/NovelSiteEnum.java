@@ -12,13 +12,13 @@ import lombok.Getter;
 public enum NovelSiteEnum {
 
     /**
-     * 起点小说
+     * 看书中
      */
-    DingDianXiaoShuo(1,"11kt.cn"),
+    DingDianXiaoShuo(1,"kanshuzhong.com"),
     /**
-     * 笔趣阁
+     * 笔下文学
      */
-    BiQuGe(2,"xs.la");
+    BiQuGe(2,"bxwx8.org");
 
     /**
      * 编号
