@@ -1,5 +1,6 @@
 package com.wsbxd.common.utils;
 
+import com.wsbxd.common.constant.Constant;
 import lombok.Getter;
 
 /**
@@ -14,23 +15,31 @@ public enum RedisSelectorEnum {
     /**
      * 章节列表选择器
      */
-    LIST(1,"list","spider:novel-list-all"),
+    LIST(1,"list", Constant.REDIS_NOVEL_LIST),
     /**
-     * 章节列表选择器
+     * 章节标题选择器
      */
-    TITLE(2,"title","spider:novel-title-all"),
+    TITLE(2,"title",Constant.REDIS_NOVEL_TITLE),
     /**
-     * 章节列表选择器
+     * 章节内容选择器
      */
-    CONTENT(3,"content","spider:novel-content-all"),
+    CONTENT(3,"content",Constant.REDIS_NOVEL_CONTENT),
     /**
-     * 章节列表选择器
+     * 上一章选择器
      */
-    PREV(4,"prev","spider:novel-prev-all"),
+    PREV(4,"prev",Constant.REDIS_NOVEL_PREV),
     /**
-     * 章节列表选择器
+     * 下一章选择器
      */
-    NEXT(5,"next","spider:novel-next-all");
+    NEXT(5,"next",Constant.REDIS_NOVEL_NEXT),
+    /**
+     * 书籍选择器选择器
+     */
+    BOOK(6,"book",Constant.REDIS_NOVEL_BOOK),
+    /**
+     * 下一本书籍选择器
+     */
+    NEXT_BOOK(7,"bookNext",Constant.REDIS_NOVEL_NEXT_BOOK);
 
     /**
      * id

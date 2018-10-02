@@ -14,11 +14,11 @@ public enum NovelSiteEnum {
     /**
      * 看书中
      */
-    DingDianXiaoShuo(1,"kanshuzhong.com"),
+    KSZ(1,"kanshuzhong.com"),
     /**
      * 笔下文学
      */
-    BiQuGe(2,"bxwx8.org");
+    BXWX(2,"bxwx8.org");
 
     /**
      * 编号

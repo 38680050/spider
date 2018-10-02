@@ -22,11 +22,13 @@ public final class ContentSpiderFactory {
         IContentSpider spider;
         NovelSiteEnum novelSiteEnum = NovelSiteEnum.getByUrl(url);
         switch (novelSiteEnum){
-            case BiQuGe:            spider = new DefaultContentSpider();break;
-            case DingDianXiaoShuo:  spider = new DefaultContentSpider();break;
-            default:                spider = new DefaultContentSpider();break;
+            case BXWX: spider = new DefaultContentSpider();break;
+            case KSZ: spider = new DefaultContentSpider();break;
+            default: spider = new DefaultContentSpider();break;
         }
         return spider;
     }
 
+    private ContentSpiderFactory() {
+    }
 }

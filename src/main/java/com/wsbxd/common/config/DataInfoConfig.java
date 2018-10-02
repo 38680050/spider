@@ -89,12 +89,12 @@ public class DataInfoConfig implements CommandLineRunner {
             redisUtil.delete(Constant.REDIS_NOVEL_NEXT);
         }
         redisUtil.putAll(Constant.REDIS_NOVEL_NEXT,next);
-        //图书选择器
+        //书籍选择器
         if (redisUtil.isExists(Constant.REDIS_NOVEL_BOOK)){
             redisUtil.delete(Constant.REDIS_NOVEL_BOOK);
         }
         redisUtil.putAll(Constant.REDIS_NOVEL_BOOK,book);
-        //下一本图书选择器
+        //下一本书籍选择器
         if (redisUtil.isExists(Constant.REDIS_NOVEL_NEXT_BOOK)){
             redisUtil.delete(Constant.REDIS_NOVEL_NEXT_BOOK);
         }

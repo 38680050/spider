@@ -22,11 +22,13 @@ public final class ChapterSpiderFactory {
         IChapterSpider spider;
         NovelSiteEnum novelSiteEnum = NovelSiteEnum.getByUrl(url);
         switch (novelSiteEnum){
-            case BiQuGe:            spider = new DefaultChapterSpider();break;
-            case DingDianXiaoShuo:  spider = new DefaultChapterSpider();break;
-            default:                spider = new DefaultChapterSpider();break;
+            case BXWX: spider = new DefaultChapterSpider();break;
+            case KSZ: spider = new DefaultChapterSpider();break;
+            default: spider = new DefaultChapterSpider();break;
         }
         return spider;
     }
 
+    private ChapterSpiderFactory() {
+    }
 }

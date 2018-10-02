@@ -1,16 +1,28 @@
 package com.wsbxd;
 
+import com.wsbxd.common.utils.DateUtil;
 import com.wsbxd.common.utils.DownloadConfig;
+import com.wsbxd.common.utils.NovelSpiderUtil;
+import com.wsbxd.spider.domain.po.Book;
 import com.wsbxd.spider.domain.po.Chapter;
+import com.wsbxd.spider.domain.po.Content;
+import com.wsbxd.spider.factory.BookSpiderFactory;
 import com.wsbxd.spider.impl.chapter.DefaultChapterSpider;
+import com.wsbxd.spider.impl.content.DefaultContentSpider;
 import com.wsbxd.spider.impl.download.DownloadImpl;
+import com.wsbxd.spider.interfaces.IBookSpider;
 import com.wsbxd.spider.interfaces.IDownload;
 import com.zaxxer.hikari.util.UtilityElf;
+import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -18,8 +30,24 @@ import java.util.List;
 public class SpiderApplicationTests {
 
     @Test
-    public void testGetContext() {
+    public void test() throws Exception {
 
+    }
+
+    @Test
+    public void testGetBooks() {
+        IBookSpider spider = BookSpiderFactory.getBookSpider("http://www.kanshuzhong.com/map/A/1/");
+        List<Book> Books = spider.getBooks("http://www.kanshuzhong.com/map/A/1/", 10);
+        for (Book Book : Books) {
+            System.out.println(Book);
+        }
+    }
+
+    @Test
+    public void testGetContext() {
+        DefaultContentSpider spider = new DefaultContentSpider();
+        Content content = spider.getContent("http://www.kanshuzhong.com/book/23729/5669551.html");
+        System.out.println(content);
     }
 
     @Test
@@ -38,7 +66,7 @@ public class SpiderApplicationTests {
         config.setPath("D:/1");
         config.setSize(50);
         config.setMaxTryNum(3);
-        System.out.println("下载好了，文件保存在：" + download.download("https://www.11kt.cn/read/72453/index.html", config) + "这里，赶紧去看看吧！");
+        System.out.println("下载好了，文件保存在：" + download.download("http://www.kanshuzhong.com/book/23729/", config) + "这里，赶紧去看看吧！");
     }
 
 }

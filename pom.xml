@@ -115,6 +115,13 @@
             <version>${mysql.version}</version>
         </dependency>
 
+        <!-- apache -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.8.1</version>
+        </dependency>
+
         <!-- thymeleaf -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

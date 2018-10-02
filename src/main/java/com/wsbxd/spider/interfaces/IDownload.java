@@ -11,6 +11,12 @@ import com.wsbxd.common.utils.DownloadConfig;
  */
 public interface IDownload {
 
+    /**
+     * 整本小说下载
+     * @param url               链接
+     * @param downloadConfig    下载配置
+     * @return 路径书名
+     */
     String download(String url, DownloadConfig downloadConfig);
 
 }

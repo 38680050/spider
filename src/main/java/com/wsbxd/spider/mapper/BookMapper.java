@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 /**
- * description: 图书mapper
+ * description: 书籍mapper
  *
  * @author 38680
  * @version 1.0

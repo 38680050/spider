@@ -5,7 +5,7 @@ import com.wsbxd.spider.domain.po.Book;
 import java.util.List;
 
 /**
- * description: 图书爬取接口
+ * description: 书籍爬取接口
  *
  * @author 38680
  * @version 1.0
@@ -14,10 +14,10 @@ import java.util.List;
 public interface IBookSpider {
 
     /**
-     * 根据链接获取图书集合
+     * 根据链接获取书籍集合
      * @param url           链接
      * @param maxTryNum     最大尝试次数
-     * @return  图书集合
+     * @return  书籍集合
      */
     List<Book> getBooks(String url,Integer maxTryNum);
 

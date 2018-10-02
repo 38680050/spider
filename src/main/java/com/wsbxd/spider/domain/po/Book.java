@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * description: 图书标题
+ * description: 书籍标题
  *
  * @author chenhaoxuan
  * @date 2018/9/15 15:37
@@ -59,6 +59,18 @@ public class Book {
     private String lastUpdateTime;
 
     /**
+     * 小说最后更新的章节名
+     */
+    @Column
+    private String lastUpdateContent;
+
+    /**
+     * 小说最后更新的章节链接
+     */
+    @Column
+    private String lastUpdateContentUrl;
+
+    /**
      * 小说的状态：1 连载 2 完结
      */
     @Column
@@ -69,6 +81,12 @@ public class Book {
      */
     @Column
     private String addTime;
+
+    /**
+     * 修改时间
+     */
+    @Column
+    private String updateTime;
 
     /**
      * 站点ID

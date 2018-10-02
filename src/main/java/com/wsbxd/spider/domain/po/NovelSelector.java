@@ -57,12 +57,12 @@ public class NovelSelector {
     @Column
     private String next;
     /**
-     * 图书选择器
+     * 书籍选择器
      */
     @Column
     private String book;
     /**
-     * 下一本图书选择器
+     * 下一本书籍选择器
      */
     @Column(name = "nextBook")
     private String nextBook;

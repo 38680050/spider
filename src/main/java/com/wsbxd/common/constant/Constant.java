@@ -39,12 +39,12 @@ public interface Constant {
     String REDIS_NOVEL_NEXT = "spider:novel-next-all";
 
     /**
-     * Redis中的图书选择器
+     * Redis中的书籍选择器
      */
     String REDIS_NOVEL_BOOK = "spider:novel-book-all";
 
     /**
-     * Redis中的下一本图书选择器
+     * Redis中的下一本书籍选择器
      */
     String REDIS_NOVEL_NEXT_BOOK = "spider:novel-nextBook-all";
 
