@@ -2,9 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>首页</title>
 </head>
+<link rel="shortcut icon" href="/favicon.ico">
+<link  rel="stylesheet" href="/webjars/bootstrap/4.1.3/css/bootstrap.css" />
+<link  rel="stylesheet" href="/bootstrap-table/src/bootstrap-table.css" />
 <body>
-
+<div class="container-fluid">
+    <table id="bookTable"></table>
+</div>
+<script type="text/javascript" src="/webjars/jquery/3.0.0/jquery.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/4.1.3/js/bootstrap.js"></script>
+<script type="text/javascript" src="/bootstrap-table/src/bootstrap-table.js"></script>
+<script type="text/javascript" src="/bootstrap-table/src/locale/bootstrap-table-zh-CN.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#bookTable').bootstrapTable({
+            url: "/spider/getBooks",
+            method: 'post',
+            dataType:"json",
+            toolbar: "#toolbar",
+            striped: true,
+            sidePagination: 'server',
+            idField: "id",
+            pagination: true,
+            pageNumber: 1,
+            pageSize: 10,
+            pageList: [10,15,20, 50, 100],
+            paginationPreText: '‹',
+            paginationNextText: '›',
+            queryParams : function (params) {
+               var temp = {
+                   page : params.pageNumber,
+                   limit : params.pageSize,
+                   property:params.property,
+                   value : params.value
+               };
+               return temp;
+            },
+            columns: [{
+                field: 'id',
+                title: 'ID'
+            }, {
+                field: 'title',
+                title: '书名'
+            }, {
+                field: 'author',
+                title: '作者'
+            }, {
+                field: 'type',
+                title: '类型'
+            }, {
+                field: 'lastUpdateTime',
+                title: '最后更新时间'
+            }, {
+                field: 'lastUpdateContent',
+                title: '最后更新章节'
+            }, {
+                field: 'status',
+                title: '状态'
+            }]
+        });
+    });
+</script>
 </body>
 </html>

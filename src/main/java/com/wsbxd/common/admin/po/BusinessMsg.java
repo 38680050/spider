@@ -51,4 +51,11 @@ public class BusinessMsg {
         this.code = code;
         this.msg = msg;
     }
+
+    public BusinessMsg(Object data) {
+        BusinessCode success = BusinessCode.GLOBAL_SUCCESS;
+        this.code = success.getCode();
+        this.msg = success.getMsg();
+        this.data = data;
+    }
 }
