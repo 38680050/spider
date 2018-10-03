@@ -14,7 +14,7 @@ import tk.mybatis.mapper.entity.Example;
 import java.util.List;
 
 /**
- * description:
+ * description: 书籍service实现类
  *
  * @author chenhaoxuan
  * @date 2018/10/3 14:52

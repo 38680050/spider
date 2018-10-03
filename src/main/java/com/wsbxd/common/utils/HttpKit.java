@@ -32,6 +32,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * description: Http工具类
+ *
+ * @author chenhaoxuan
+ * @date 2018/10/3 14:59
+ */
 public class HttpKit {
 
     public static String getIp(){

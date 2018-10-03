@@ -2404,7 +2404,6 @@
     BootstrapTable.prototype.horizontalScroll = function () {
         var that = this;
         // horizontal scroll event
-        // TODO: it's probably better improving the layout than binding to scroll event
 
         that.trigger('scroll-body');
         this.$tableBody.off('scroll').on('scroll', function () {
