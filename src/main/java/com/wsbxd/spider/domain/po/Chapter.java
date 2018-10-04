@@ -29,25 +29,25 @@ public class Chapter implements Serializable {
     /**
      * 标题
      */
-    @Column
+    @Column(name = "title")
     private String title;
 
     /**
      * 链接
      */
-    @Column
+    @Column(name = "url")
     private String url;
 
     /**
      * 链接
      */
-    @Column
+    @Column(name = "sort")
     private String sort;
 
     /**
      * bookID
      */
-    @Column
+    @Column(name = "bookId")
     private Integer bookId;
 
 }

@@ -1,10 +1,12 @@
 package com.wsbxd.spider.impl.book;
 
 import com.wsbxd.common.constant.Constant;
+import com.wsbxd.common.utils.BeanHelper;
 import com.wsbxd.common.utils.RedisSelectorEnum;
 import com.wsbxd.spider.domain.po.Book;
 import com.wsbxd.spider.impl.AbstractSpider;
 import com.wsbxd.spider.interfaces.IBookSpider;
+import com.wsbxd.spider.mapper.BookMapper;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
@@ -23,6 +25,12 @@ import java.util.List;
  * @date 2018/9/20 14:39
  */
 public abstract class AbstractBookSpider extends AbstractSpider implements IBookSpider {
+
+    protected static BookMapper bookMapper;
+
+    static {
+        bookMapper = BeanHelper.getBean(BookMapper.class);
+    }
 
     /**
      * 下一页的元素

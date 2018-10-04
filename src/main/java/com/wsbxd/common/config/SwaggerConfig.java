@@ -34,7 +34,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.wsbxd.spider.controller"))
-                .paths(PathSelectors.any())
+                .paths(PathSelectors.ant("/spider/*"))
                 .build();
     }
 

@@ -1,5 +1,6 @@
 package com.wsbxd.spider.impl.chapter;
 
+import com.wsbxd.common.utils.BeanHelper;
 import com.wsbxd.spider.domain.po.Chapter;
 import com.wsbxd.spider.impl.AbstractSpider;
 import com.wsbxd.spider.interfaces.IChapterSpider;
@@ -22,8 +23,11 @@ import java.util.List;
  */
 public abstract class AbstractChapterSpider extends AbstractSpider implements IChapterSpider {
 
-    @Autowired
-    protected ChapterMapper chapterMapper;
+    protected static ChapterMapper chapterMapper;
+
+    static {
+        chapterMapper = BeanHelper.getBean(ChapterMapper.class);
+    }
 
     public List<Chapter> findAll(){
         return chapterMapper.selectAll();

@@ -40,6 +40,8 @@ import java.util.Map;
  */
 public class HttpKit {
 
+    private final static String AND_SIGN = "&";
+
     public static String getIp(){
        return HttpKit.getRequest().getRemoteHost();
     }
@@ -93,7 +95,7 @@ public class HttpKit {
                 query.append(URLEncoder.encode(kv.getKey(), "UTF-8") + "=");
                 query.append(URLEncoder.encode(kv.getValue(), "UTF-8") + "&");
             }
-            if (query.lastIndexOf("&") > 0) {
+            if (query.lastIndexOf(AND_SIGN) > 0) {
                 query.deleteCharAt(query.length() - 1);
             }
 
@@ -152,7 +154,7 @@ public class HttpKit {
             for (String key : param.keySet()) {
                 para += (key + "=" + param.get(key) + "&");
             }
-            if (para.lastIndexOf("&") > 0) {
+            if (para.lastIndexOf(AND_SIGN) > 0) {
                 para = para.substring(0, para.length() - 1);
             }
             String urlNameString = url + "?" + para;
