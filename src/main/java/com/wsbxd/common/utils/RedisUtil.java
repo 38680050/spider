@@ -21,8 +21,12 @@ import org.springframework.stereotype.Component;
 @Component("redisUtil")
 public class RedisUtil {
 
-    @Autowired
     private StringRedisTemplate redisTemplate;
+
+    @Autowired
+    public RedisUtil(StringRedisTemplate redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
 
     /**
      * 判断键是否存在
@@ -89,7 +93,7 @@ public class RedisUtil {
      * 如果不存在,返回null 并添加
      * @param key       键
      * @param value     值
-     * @return
+     * @return 旧值
      */
     public String getAndSet(String key,String value){
         return (String) redisTemplate.opsForValue().getAndSet(key, value);
@@ -98,7 +102,7 @@ public class RedisUtil {
 
     /**
      * 批量添加 key-value (重复的键会覆盖)
-     * @param keyAndValue
+     * @param keyAndValue 键值map
      */
     public void batchSet(Map<String,String> keyAndValue){
         redisTemplate.opsForValue().multiSet(keyAndValue);
@@ -107,7 +111,7 @@ public class RedisUtil {
     /**
      * 批量添加 key-value 只有在键不存在时,才添加
      * map 中只要有一个key存在,则全部不添加
-     * @param keyAndValue
+     * @param keyAndValue 键值map
      */
     public void batchSetIfAbsent(Map<String,String> keyAndValue){
         redisTemplate.opsForValue().multiSetIfAbsent(keyAndValue);
@@ -117,8 +121,8 @@ public class RedisUtil {
      * 对一个 key-value 的值进行加减操作,
      * 如果该 key 不存在 将创建一个key 并赋值该 number
      * 如果 key 存在,但 value 不是长整型 ,将报错
-     * @param key
-     * @param number
+     * @param key       建
+     * @param number    值
      */
     public Long increment(String key,long number){
         return redisTemplate.opsForValue().increment(key, number);
@@ -128,8 +132,8 @@ public class RedisUtil {
      * 对一个 key-value 的值进行加减操作,
      * 如果该 key 不存在 将创建一个key 并赋值该 number
      * 如果 key 存在,但 value 不是 纯数字 ,将报错
-     * @param key
-     * @param number
+     * @param key       建
+     * @param number    加减值
      */
     public Double increment(String key,double number){
         return redisTemplate.opsForValue().increment(key, number);
@@ -138,10 +142,10 @@ public class RedisUtil {
 
     /**
      * 给一个指定的 key 值附加过期时间
-     * @param key
-     * @param time
-     * @param type
-     * @return
+     * @param key       键
+     * @param time      时间长度
+     * @param type      时间类型
+     * @return  是否成功
      */
     public boolean expire(String key,long time,TimeUnit type){
         return redisTemplate.boundValueOps(key).expire(time, type);
@@ -149,8 +153,8 @@ public class RedisUtil {
 
     /**
      * 移除指定key 的过期时间
-     * @param key
-     * @return
+     * @param key   键
+     * @return      是否成功
      */
     public boolean persist(String key){
         return redisTemplate.boundValueOps(key).persist();

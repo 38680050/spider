@@ -61,4 +61,11 @@ public class NovelController {
         return new BusinessMsg(BusinessCode.GLOBAL_SUCCESS,ContentSpiderFactory.getContentSpider(url).getContent(url));
     }
 
+    @ApiOperation(value = "测试json", notes = "测试json")
+    @RequestMapping(value = "testJson", method = RequestMethod.POST)
+    public String testJson(@RequestBody String[] strings){
+        System.out.println(strings);
+        return null;
+    }
+
 }

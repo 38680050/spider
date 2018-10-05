@@ -48,6 +48,7 @@ public class KanShuZhongBookSpider extends AbstractBookSpider {
                 book.setSiteId(NovelSiteEnum.getByUrl(url).getId());
                 books.add(book);
             }
+            bookMapper.insertList(books);
         } catch (Exception e) {
             throw new RuntimeException("url = " + url +" 书籍信息获取失败!");
         }
