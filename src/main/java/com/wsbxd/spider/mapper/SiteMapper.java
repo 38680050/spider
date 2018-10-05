@@ -1,7 +1,7 @@
 package com.wsbxd.spider.mapper;
 
 import com.wsbxd.common.utils.TkMapper;
-import com.wsbxd.spider.domain.po.NovelSite;
+import com.wsbxd.spider.domain.po.Site;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
  */
 @Mapper
 @Repository("novelSiteMapper")
-public interface NovelSiteMapper extends TkMapper<NovelSite> {
+public interface SiteMapper extends TkMapper<Site> {
 
     /**
      * 根据URL获取站点ID

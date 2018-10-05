@@ -16,7 +16,7 @@ public class ScheduledTasks {
     /**
      * 定时任务,每天中午12点触发一次
      */
-    @Scheduled(cron = "“0 0 12 * * ?”")
+    @Scheduled(cron = "0 0 12 * * ?")
     public void test(){
         System.out.println("123");
     }

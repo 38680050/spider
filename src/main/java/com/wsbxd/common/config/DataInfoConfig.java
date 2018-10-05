@@ -3,9 +3,9 @@ package com.wsbxd.common.config;
 import com.wsbxd.common.constant.Constant;
 import com.wsbxd.common.utils.RedisUtil;
 import com.wsbxd.spider.domain.po.NovelSelector;
-import com.wsbxd.spider.domain.po.NovelSite;
+import com.wsbxd.spider.domain.po.Site;
 import com.wsbxd.spider.service.INovelSelectorService;
-import com.wsbxd.spider.service.INovelSiteService;
+import com.wsbxd.spider.service.ISiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 public class DataInfoConfig implements CommandLineRunner {
 
     @Autowired
-    private INovelSiteService novelSiteService;
+    private ISiteService novelSiteService;
 
     @Autowired
     private INovelSelectorService novelSelectorService;
@@ -106,9 +106,9 @@ public class DataInfoConfig implements CommandLineRunner {
      */
     private void addNovelSiteToRedis() {
         //获取所有站点
-        List<NovelSite> novelSites = novelSiteService.findAll();
+        List<Site> sites = novelSiteService.findAll();
         //转换为map,key为链接,value为字符编码格式
-        Map<String,String> map = novelSites.stream().collect(Collectors.toMap(NovelSite::getUrl,NovelSite::getCharset));
+        Map<String,String> map = sites.stream().collect(Collectors.toMap(Site::getUrl, Site::getCharset));
         if (redisUtil.isExists(Constant.REDIS_NOVEL_SITE_CHARSET)){
             redisUtil.delete(Constant.REDIS_NOVEL_SITE_CHARSET);
         }

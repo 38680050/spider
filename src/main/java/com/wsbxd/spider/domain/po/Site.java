@@ -15,8 +15,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Table(name = "t_novel_site")
-public class NovelSite {
+@Table(name = "t_site")
+public class Site {
 
     /**
      * id

@@ -31,6 +31,7 @@ public class SpiderApplicationTests {
 
     @Test
     public void test() throws Exception {
+        String url = "http://www.kanshuzhong.com/";
 
     }
 
