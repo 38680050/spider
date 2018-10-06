@@ -14,7 +14,7 @@ import java.util.List;
 public interface IChapterSpider {
 
     /**
-     * 根据链接获取章节列表
+     * 根据链接抓取章节列表
      * @param url 链接
      * @return 章节列表
      */

@@ -20,7 +20,7 @@ import java.util.List;
 public class BxwxBookSpider extends AbstractBookSpider {
 
     @Override
-    public List<Book> getBooks(String url, Integer maxTryNum) {
+    public List<Book> crawlBooks(String url, Integer maxTryNum) {
         List<Book> books = new ArrayList<>();
         try {
             Elements trs = super.crawlBooksPage(url, maxTryNum);

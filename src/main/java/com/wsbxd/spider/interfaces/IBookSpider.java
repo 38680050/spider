@@ -14,12 +14,12 @@ import java.util.List;
 public interface IBookSpider {
 
     /**
-     * 根据链接获取书籍集合
+     * 根据链接抓取书籍集合
      * @param url           链接
      * @param maxTryNum     最大尝试次数
      * @return  书籍集合
      */
-    List<Book> getBooks(String url,Integer maxTryNum);
+    List<Book> crawlBooks(String url, Integer maxTryNum);
 
     /**
      * 是否有下一章

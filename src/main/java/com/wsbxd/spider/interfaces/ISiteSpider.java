@@ -1,5 +1,9 @@
 package com.wsbxd.spider.interfaces;
 
+import com.wsbxd.spider.domain.po.Type;
+
+import java.util.List;
+
 /**
  * description: 小说站点爬取接口
  *
@@ -8,6 +12,6 @@ package com.wsbxd.spider.interfaces;
  */
 public interface ISiteSpider {
 
-
+    List<Type> crawlType(String url);
 
 }

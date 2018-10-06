@@ -26,7 +26,7 @@ public class KanShuZhongBookSpider extends AbstractBookSpider {
      * @return  书籍列表
      */
     @Override
-    public List<Book> getBooks(String url, Integer maxTryNum) {
+    public List<Book> crawlBooks(String url, Integer maxTryNum) {
         List<Book> books = new ArrayList<>();
         try {
             Elements trs = super.crawlBooksPage(url, maxTryNum);

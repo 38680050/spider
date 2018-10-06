@@ -1,8 +1,6 @@
 package com.wsbxd;
 
-import com.wsbxd.common.utils.DateUtil;
 import com.wsbxd.common.utils.DownloadConfig;
-import com.wsbxd.common.utils.NovelSpiderUtil;
 import com.wsbxd.spider.domain.po.Book;
 import com.wsbxd.spider.domain.po.Chapter;
 import com.wsbxd.spider.domain.po.Content;
@@ -12,17 +10,11 @@ import com.wsbxd.spider.impl.content.DefaultContentSpider;
 import com.wsbxd.spider.impl.download.DownloadImpl;
 import com.wsbxd.spider.interfaces.IBookSpider;
 import com.wsbxd.spider.interfaces.IDownload;
-import com.zaxxer.hikari.util.UtilityElf;
-import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -38,7 +30,7 @@ public class SpiderApplicationTests {
     @Test
     public void testGetBooks() {
         IBookSpider spider = BookSpiderFactory.getBookSpider("http://www.kanshuzhong.com/map/A/1/");
-        List<Book> Books = spider.getBooks("http://www.kanshuzhong.com/map/A/1/", 10);
+        List<Book> Books = spider.crawlBooks("http://www.kanshuzhong.com/map/A/1/", 10);
         for (Book Book : Books) {
             System.out.println(Book);
         }

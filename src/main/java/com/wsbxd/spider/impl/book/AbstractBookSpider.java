@@ -35,12 +35,12 @@ public abstract class AbstractBookSpider extends AbstractSpider implements IBook
     /**
      * 下一页的元素
      */
-    protected Element nextBookElement;
+    protected Element nextPageElement;
 
     /**
      * 下一页的url
      */
-    protected String nextBook;
+    protected String nextPage;
 
     /**
      * 默认抓取方法,最多尝试 {@link Constant#MAX_TRY_NUM} 次获取书籍调用
@@ -69,11 +69,11 @@ public abstract class AbstractBookSpider extends AbstractSpider implements IBook
             bookElements = document.select(getSelectorByIndex(url, RedisSelectorEnum.BOOK, 0));
             Elements nextBookElements = document.select(getSelectorByIndex(url, RedisSelectorEnum.NEXT_BOOK, 0));
             //如果获取元素不为空,则获取第一个
-            nextBookElement = nextBookElements == null ? null : nextBookElements.first();
-            if (nextBookElement != null) {
-                nextBook = nextBookElement.absUrl("href");
+            nextPageElement = nextBookElements == null ? null : nextBookElements.first();
+            if (nextPageElement != null) {
+                nextPage = nextPageElement.absUrl("href");
             } else {
-                nextBook = "";
+                nextPage = "";
             }
         }
         if (bookElements == null){
@@ -84,12 +84,12 @@ public abstract class AbstractBookSpider extends AbstractSpider implements IBook
 
     @Override
     public boolean hasNext() {
-        return StringUtils.isNotEmpty(nextBook);
+        return StringUtils.isNotEmpty(nextPage);
     }
 
     @Override
     public String next() {
-        return nextBook;
+        return nextPage;
     }
 
     @Override
