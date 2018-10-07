@@ -1,16 +1,15 @@
 package com.wsbxd;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.wsbxd.common.utils.DownloadConfig;
-import com.wsbxd.common.utils.FileUtil;
 import com.wsbxd.spider.domain.po.Book;
 import com.wsbxd.spider.domain.po.Chapter;
 import com.wsbxd.spider.domain.po.Content;
+import com.wsbxd.spider.domain.po.Type;
 import com.wsbxd.spider.factory.BookSpiderFactory;
 import com.wsbxd.spider.impl.chapter.DefaultChapterSpider;
 import com.wsbxd.spider.impl.content.DefaultContentSpider;
 import com.wsbxd.spider.impl.download.DownloadImpl;
+import com.wsbxd.spider.impl.site.KanShuZhongSiteSpider;
 import com.wsbxd.spider.interfaces.IBookSpider;
 import com.wsbxd.spider.interfaces.IDownload;
 import org.junit.Test;
@@ -19,7 +18,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import java.util.Set;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -28,6 +26,15 @@ public class SpiderApplicationTests {
     @Test
     public void test() throws Exception {
 
+    }
+
+    @Test
+    public void testGetTypes() {
+        KanShuZhongSiteSpider kanShuZhongSiteSpider = new KanShuZhongSiteSpider();
+        List<Type> types = kanShuZhongSiteSpider.crawlType("http://www.kanshuzhong.com");
+        for (Type type:types) {
+            System.out.println(type);
+        }
     }
 
     @Test
