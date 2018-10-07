@@ -39,7 +39,11 @@ public enum RedisSelectorEnum {
     /**
      * 下一本书籍选择器
      */
-    NEXT_BOOK(7,"bookNext",Constant.REDIS_NOVEL_NEXT_BOOK);
+    NEXT_BOOK(7,"nextPage",Constant.REDIS_NOVEL_NEXT_BOOK),
+    /**
+     * 书籍类型选择器
+     */
+    TYPE(8,"type",Constant.REDIS_NOVEL_TYPE);
 
     /**
      * id

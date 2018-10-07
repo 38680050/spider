@@ -1,5 +1,9 @@
 package com.wsbxd.common.utils;
 
+import com.alibaba.fastjson.JSONObject;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+
 import java.io.*;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -156,5 +160,20 @@ public class FileUtil {
         } else {
             return false;
         }
+    }
+
+    /**
+     * 读取JSON文件返回对象
+     * @param path 文件路径
+     * @return  json对象
+     * @throws IOException IO异常
+     */
+    public static JSONObject readJsonFile(String path) throws IOException {
+        //读取关系文件获取其对象
+        Resource resource = new ClassPathResource(path);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getInputStream()));
+        StringBuilder subjectRelationJson = new StringBuilder();
+        reader.lines().forEach(subjectRelationJson::append);
+        return JSONObject.parseObject(subjectRelationJson.toString());
     }
 }

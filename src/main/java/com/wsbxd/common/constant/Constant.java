@@ -44,9 +44,14 @@ public interface Constant {
     String REDIS_NOVEL_BOOK = "spider:novel-book-all";
 
     /**
-     * Redis中的下一本书籍选择器
+     * Redis中的下一页书籍列表选择器
      */
     String REDIS_NOVEL_NEXT_BOOK = "spider:novel-nextBook-all";
+
+    /**
+     * Redis中的书籍类型选择器
+     */
+    String REDIS_NOVEL_TYPE = "spider:novel-type-all";
 
     /**
      * 数字2

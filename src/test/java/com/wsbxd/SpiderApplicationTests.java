@@ -1,6 +1,9 @@
 package com.wsbxd;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.wsbxd.common.utils.DownloadConfig;
+import com.wsbxd.common.utils.FileUtil;
 import com.wsbxd.spider.domain.po.Book;
 import com.wsbxd.spider.domain.po.Chapter;
 import com.wsbxd.spider.domain.po.Content;
@@ -16,6 +19,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Set;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -23,7 +27,6 @@ public class SpiderApplicationTests {
 
     @Test
     public void test() throws Exception {
-        String url = "http://www.kanshuzhong.com/";
 
     }
 

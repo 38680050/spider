@@ -64,8 +64,13 @@ public class NovelSelector {
     /**
      * 下一本书籍选择器
      */
-    @Column(name = "nextBook")
-    private String nextBook;
+    @Column(name = "nextPage")
+    private String nextPage;
+    /**
+     * 书籍类型选择器
+     */
+    @Column
+    private String type;
     /**
      * 最大数组长度
      */
@@ -100,12 +105,20 @@ public class NovelSelector {
         return next;
     }
 
+    public String getPage() {
+        return book;
+    }
+
+    public String getNextPage() {
+        return nextPage;
+    }
+
     public String getBook() {
         return book;
     }
 
-    public String getNextBook() {
-        return nextBook;
+    public String getType() {
+        return type;
     }
 
     public String getList(Integer index) {
@@ -138,8 +151,13 @@ public class NovelSelector {
         return getSelectorByIndex(index, split);
     }
 
-    public String getNextBook(Integer index) {
-        String[] split = nextBook.split("\\|");
+    public String getNextPage(Integer index) {
+        String[] split = nextPage.split("\\|");
+        return getSelectorByIndex(index, split);
+    }
+
+    public String getType(Integer index) {
+        String[] split = type.split("\\|");
         return getSelectorByIndex(index, split);
     }
 
