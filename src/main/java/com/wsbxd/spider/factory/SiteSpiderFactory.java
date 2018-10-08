@@ -13,7 +13,7 @@ import com.wsbxd.spider.interfaces.ISiteSpider;
  */
 public final class SiteSpiderFactory {
 
-    public ISiteSpider getSiteService(String url){
+    public static ISiteSpider getSiteService(String url){
         NovelSiteEnum novelSiteEnum = NovelSiteEnum.getByUrl(url);
         switch (novelSiteEnum) {
             case BXWX: return new BxwxSiteSpider();

@@ -21,7 +21,7 @@ import java.util.List;
 public class KszSiteSpider extends AbstractSiteSpider {
 
     @Override
-    public List<Type> crawlType(String url) {
+    public List<Type> crawlTypes(String url) {
         String result = crawl( url );
         Document doc = Jsoup.parse( result );
         doc.setBaseUri( url );

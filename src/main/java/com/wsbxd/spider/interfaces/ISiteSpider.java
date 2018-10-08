@@ -12,6 +12,6 @@ import java.util.List;
  */
 public interface ISiteSpider {
 
-    List<Type> crawlType(String url);
+    List<Type> crawlTypes(String url);
 
 }

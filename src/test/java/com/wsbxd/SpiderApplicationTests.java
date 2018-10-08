@@ -6,12 +6,13 @@ import com.wsbxd.spider.domain.po.Chapter;
 import com.wsbxd.spider.domain.po.Content;
 import com.wsbxd.spider.domain.po.Type;
 import com.wsbxd.spider.factory.BookSpiderFactory;
+import com.wsbxd.spider.factory.SiteSpiderFactory;
 import com.wsbxd.spider.impl.chapter.DefaultChapterSpider;
 import com.wsbxd.spider.impl.content.DefaultContentSpider;
 import com.wsbxd.spider.impl.download.DownloadImpl;
-import com.wsbxd.spider.impl.site.KszSiteSpider;
 import com.wsbxd.spider.interfaces.IBookSpider;
 import com.wsbxd.spider.interfaces.IDownload;
+import com.wsbxd.spider.interfaces.ISiteSpider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,8 +31,8 @@ public class SpiderApplicationTests {
 
     @Test
     public void testGetTypes() {
-        KszSiteSpider spider = new KszSiteSpider();
-        List<Type> types = spider.crawlType("https://www.bxwx9.org");
+        ISiteSpider spider = SiteSpiderFactory.getSiteService("https://www.bxwx9.org");
+        List<Type> types = spider.crawlTypes("https://www.bxwx9.org");
         for (Type type:types) {
             System.out.println(type);
         }
