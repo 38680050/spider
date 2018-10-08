@@ -2,6 +2,7 @@ package com.wsbxd.spider.interfaces;
 
 import com.wsbxd.spider.domain.po.Book;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -39,6 +40,6 @@ public interface IBookSpider {
      * @param maxTryNum 最大尝试次数
      * @return 迭代器
      */
-    Iterable<List<Book>> iterator(String firstPage, Integer maxTryNum);
+    Iterator<List<Book>> iterator(String firstPage, Integer maxTryNum);
 
 }

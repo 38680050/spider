@@ -93,8 +93,9 @@ public abstract class AbstractBookSpider extends AbstractSpider implements IBook
     }
 
     @Override
-    public Iterable<List<Book>> iterator(String firstPage, Integer maxTryNum) {
-        return null;
+    public Iterator<List<Book>> iterator(String firstPage, Integer maxTryNum) {
+        nextPage = firstPage;
+        return new BookIterator(maxTryNum);
     }
 
     /**
@@ -115,7 +116,7 @@ public abstract class AbstractBookSpider extends AbstractSpider implements IBook
 
         @Override
         public List<Book> next() {
-            return null;
+            return crawlBooks(nextPage,maxTryNum);
         }
     }
 

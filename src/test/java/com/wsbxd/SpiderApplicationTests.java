@@ -18,6 +18,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Iterator;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -27,6 +28,19 @@ public class SpiderApplicationTests {
     @Test
     public void test() throws Exception {
 
+    }
+
+    @Test
+    public void testKszIterator() {
+        IBookSpider spider = BookSpiderFactory.getBookSpider("http://www.kanshuzhong.com/map/A/1/");
+        Iterator<List<Book>> iterator = spider.iterator("http://www.kanshuzhong.com/map/A/1/", 3);
+        while (iterator.hasNext()) {
+            List<Book> books = iterator.next();
+            System.err.println("URL：" + spider.next());
+			for (Book book : books) {
+				System.out.println(book);
+			}
+        }
     }
 
     @Test
