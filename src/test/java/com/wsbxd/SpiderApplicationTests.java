@@ -9,7 +9,7 @@ import com.wsbxd.spider.factory.BookSpiderFactory;
 import com.wsbxd.spider.impl.chapter.DefaultChapterSpider;
 import com.wsbxd.spider.impl.content.DefaultContentSpider;
 import com.wsbxd.spider.impl.download.DownloadImpl;
-import com.wsbxd.spider.impl.site.KanShuZhongSiteSpider;
+import com.wsbxd.spider.impl.site.KszSiteSpider;
 import com.wsbxd.spider.interfaces.IBookSpider;
 import com.wsbxd.spider.interfaces.IDownload;
 import org.junit.Test;
@@ -30,8 +30,8 @@ public class SpiderApplicationTests {
 
     @Test
     public void testGetTypes() {
-        KanShuZhongSiteSpider kanShuZhongSiteSpider = new KanShuZhongSiteSpider();
-        List<Type> types = kanShuZhongSiteSpider.crawlType("http://www.kanshuzhong.com");
+        KszSiteSpider spider = new KszSiteSpider();
+        List<Type> types = spider.crawlType("https://www.bxwx9.org");
         for (Type type:types) {
             System.out.println(type);
         }

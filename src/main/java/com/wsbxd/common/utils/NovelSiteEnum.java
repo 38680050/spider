@@ -18,7 +18,7 @@ public enum NovelSiteEnum {
     /**
      * 笔下文学
      */
-    BXWX(2,"bxwx8.org");
+    BXWX(2,"bxwx9.org");
 
     /**
      * 编号

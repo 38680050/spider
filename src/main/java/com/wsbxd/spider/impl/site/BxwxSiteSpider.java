@@ -18,7 +18,7 @@ import java.util.List;
  * @version 1.0
  * @date 2018/10/6 11:33
  */
-public class KanShuZhongSiteSpider extends AbstractSiteSpider {
+public class BxwxSiteSpider extends AbstractSiteSpider {
 
     @Override
     public List<Type> crawlType(String url) {
@@ -27,9 +27,8 @@ public class KanShuZhongSiteSpider extends AbstractSiteSpider {
         doc.setBaseUri( url );
         List<Type> types = new ArrayList<>();
         Elements elements = doc.select(getSelectorByIndex(url, RedisSelectorEnum.TYPE, 0));
-        for (int i = 1; i < 9; i++) {
-            Element element = elements.get(i);
-            types.add(new Type(null,element.text(),element.absUrl("href"),NovelSiteEnum.getByUrl(url).getId()));
+        for (Element element:elements) {
+            types.add(new Type(null,element.text().replaceAll(" ",""),element.absUrl("href"),NovelSiteEnum.getByUrl(url).getId()));
         }
         return types;
     }

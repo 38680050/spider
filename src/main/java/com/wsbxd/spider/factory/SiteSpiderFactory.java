@@ -1,7 +1,8 @@
 package com.wsbxd.spider.factory;
 
 import com.wsbxd.common.utils.NovelSiteEnum;
-import com.wsbxd.spider.impl.site.KanShuZhongSiteSpider;
+import com.wsbxd.spider.impl.site.BxwxSiteSpider;
+import com.wsbxd.spider.impl.site.KszSiteSpider;
 import com.wsbxd.spider.interfaces.ISiteSpider;
 
 /**
@@ -15,8 +16,8 @@ public final class SiteSpiderFactory {
     public ISiteSpider getSiteService(String url){
         NovelSiteEnum novelSiteEnum = NovelSiteEnum.getByUrl(url);
         switch (novelSiteEnum) {
-            case BXWX: return new KanShuZhongSiteSpider();
-            case KSZ: return new KanShuZhongSiteSpider();
+            case BXWX: return new BxwxSiteSpider();
+            case KSZ: return new KszSiteSpider();
             default : throw new RuntimeException(url + "暂时不被支持");
         }
     }

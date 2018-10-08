@@ -17,7 +17,7 @@ import java.util.List;
  * @version 1.0
  * @date 2018/9/20 14:41
  */
-public class KanShuZhongBookSpider extends AbstractBookSpider {
+public class KszBookSpider extends AbstractBookSpider {
 
     /**
      * 获取看书中书籍列表
