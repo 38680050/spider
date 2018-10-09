@@ -26,12 +26,6 @@ import java.util.List;
  */
 public abstract class AbstractBookSpider extends AbstractSpider implements IBookSpider {
 
-    protected static BookMapper bookMapper;
-
-    static {
-        bookMapper = BeanHelper.getBean(BookMapper.class);
-    }
-
     /**
      * 下一页的元素
      */

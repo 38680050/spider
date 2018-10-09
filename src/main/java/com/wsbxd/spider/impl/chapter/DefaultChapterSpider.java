@@ -38,7 +38,6 @@ public class DefaultChapterSpider extends AbstractChapterSpider {
             for (Element a:elements) {
                 chapters.add(new Chapter(null,a.text(),a.absUrl("href"),null,null));
             }
-            chapterMapper.insertList(chapters);
             return chapters;
         } catch (Exception e) {
             throw new RuntimeException(e + " | 章节列表爬取失败!");

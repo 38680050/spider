@@ -23,14 +23,6 @@ import java.util.List;
  */
 public abstract class AbstractChapterSpider extends AbstractSpider implements IChapterSpider {
 
-    protected static ChapterMapper chapterMapper;
 
-    static {
-        chapterMapper = BeanHelper.getBean(ChapterMapper.class);
-    }
-
-    public List<Chapter> findAll(){
-        return chapterMapper.selectAll();
-    }
 
 }
