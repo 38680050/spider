@@ -25,9 +25,14 @@ import java.util.*;
 import java.util.Map.Entry;
 
 /**
- * 高频方法集合类
+ * description: 高频方法集合类
+ *
+ * @author chenhaoxuan
+ * @date 2018/10/12 9:37
  */
 public class ToolUtil {
+
+    private final static String WINDOWS = "win";
 
     /**
      * 获取随机位数的字符串
@@ -217,7 +222,7 @@ public class ToolUtil {
             return true;
         }
         if (obj instanceof String) {
-            if (obj.toString().trim().equals("")) {
+            if ("".equals(obj.toString().trim())) {
                 return true;
             }
         } else if (obj instanceof List) {
@@ -505,7 +510,7 @@ public class ToolUtil {
      */
     public static Boolean isWinOs() {
         String os = System.getProperty("os.name");
-        if (os.toLowerCase().startsWith("win")) {
+        if (os.toLowerCase().startsWith(WINDOWS)) {
             return true;
         } else {
             return false;

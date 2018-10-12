@@ -12,6 +12,8 @@ import java.math.BigDecimal;
  */
 public class ReflectUtil {
 
+    private final static String UNDERLINE = "_";
+
     /**
      * 根据属性，获取get方法
      * @param ob 对象
@@ -73,12 +75,12 @@ public class ReflectUtil {
      * * @return
      * */
     private static  String removeLine(String str){
-        if(null != str && str.contains("_")){
-            int i = str.indexOf("_");
+        if(null != str && str.contains(UNDERLINE)){
+            int i = str.indexOf(UNDERLINE);
             char ch = str.charAt(i+1);
             char newCh = (ch+"").substring(0, 1).toUpperCase().toCharArray()[0];
             String newStr = str.replace(str.charAt(i+1), newCh);
-            String newStr2 = newStr.replace("_", "");
+            String newStr2 = newStr.replace(UNDERLINE, "");
             return newStr2;
         }
         return str;

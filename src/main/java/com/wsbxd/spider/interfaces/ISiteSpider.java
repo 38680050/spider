@@ -12,6 +12,11 @@ import java.util.List;
  */
 public interface ISiteSpider {
 
+    /**
+     * 爬取小说类型集合
+     * @param url   链接
+     * @return  小说类型集合
+     */
     List<Type> crawlTypes(String url);
 
 }
