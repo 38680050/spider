@@ -21,4 +21,12 @@ public interface IBookService {
      */
     PageInfo<Book> getBooks(String property, String value);
 
+    /**
+     * 添加书籍
+     * @param url           链接
+     * @param maxTryNum     最大尝试数
+     * @return  添加成功或失败
+     */
+    boolean insertBooks(String url,Integer maxTryNum);
+
 }

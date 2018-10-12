@@ -13,8 +13,10 @@ import com.wsbxd.spider.impl.download.DownloadImpl;
 import com.wsbxd.spider.interfaces.IBookSpider;
 import com.wsbxd.spider.interfaces.IDownload;
 import com.wsbxd.spider.interfaces.ISiteSpider;
+import com.wsbxd.spider.service.IBookService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -25,9 +27,18 @@ import java.util.List;
 @SpringBootTest
 public class SpiderApplicationTests {
 
+    @Autowired
+    private IBookService bookService;
+
     @Test
     public void test() throws Exception {
 
+    }
+
+    @Test
+    public void testInsertBooks() {
+        boolean flag = bookService.insertBooks("http://www.kanshuzhong.com/map/A/1/", 3);
+        System.out.println(flag);
     }
 
     @Test

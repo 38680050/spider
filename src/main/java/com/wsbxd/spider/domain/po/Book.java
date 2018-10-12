@@ -31,67 +31,67 @@ public class Book {
     /**
      * 标题
      */
-    @Column
+    @Column(name = "title")
     private String title;
 
     /**
      * 链接
      */
-    @Column
+    @Column(name = "url")
     private String url;
 
     /**
      * 作者
      */
-    @Column
+    @Column(name = "author")
     private String author;
 
     /**
      * 小说的类别：如武侠修真，都市言情
      */
-    @Column
+    @Column(name = "type")
     private String type;
 
     /**
      * 小说最后更新的时间
      */
-    @Column
+    @Column(name = "lastUpdateTime")
     private String lastUpdateTime;
 
     /**
      * 小说最后更新的章节名
      */
-    @Column
+    @Column(name = "lastUpdateContent")
     private String lastUpdateContent;
 
     /**
      * 小说最后更新的章节链接
      */
-    @Column
+    @Column(name = "lastUpdateContentUrl")
     private String lastUpdateContentUrl;
 
     /**
      * 小说的状态：1 连载 2 完结
      */
-    @Column
+    @Column(name = "status")
     private Integer status;
 
     /**
      * 入库时间
      */
-    @Column
+    @Column(name = "addTime")
     private String addTime;
 
     /**
      * 修改时间
      */
-    @Column
+    @Column(name = "updateTime")
     private String updateTime;
 
     /**
      * 站点ID
      */
-    @Column
+    @Column(name = "siteId")
     private Integer siteId;
 
 }

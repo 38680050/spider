@@ -31,6 +31,14 @@ public class DateUtil {
     private static final String ZERO = "00:00:00";
 
     /**
+     * 获取当前日期YYYY-MM-DD格式
+     * @return  当前日期YYYY-MM-DD格式
+     */
+    public static String getCurrentDay() {
+        return dateFormat(new Date(), "yyyy-MM-dd");
+    }
+
+    /**
      * 日期相加减天数
      * @param date 如果为Null，则为当前时间
      * @param days 加减天数
@@ -96,9 +104,8 @@ public class DateUtil {
      * 当时、分、秒不为00:00:00时，直接返回
      * @param dateTime Date
      * @return  日期字符串
-     * @throws ParseException   解析异常
      */
-    public static String dateTimeToDateStringIfTimeEndZero(Date dateTime) throws ParseException{
+    public static String dateTimeToDateStringIfTimeEndZero(Date dateTime){
         String dateTimeString = DateUtil.dateFormat(dateTime, DateUtil.DATE_TIME_PATTERN);
         if(dateTimeString.endsWith(ZERO)){
             return dateTimeString.substring(0, 10);
