@@ -739,7 +739,7 @@ public class CollectionKit {
 					case "double":
 						return Arrays.toString((double[]) obj);
 					default:
-						throw new ToolBoxException(e);
+						throw new RuntimeException("数组或集合转String失败!");
 				}
 			}
 		}
