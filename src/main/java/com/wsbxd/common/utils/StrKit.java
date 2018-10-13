@@ -37,15 +37,23 @@ public class StrKit {
 
 	public static final String EMPTY_JSON = "{}";
 
+	private static final char UPPER_A = 'A';
+    private static final char UPPER_Z = 'Z';
+    private static final char LOWER_A = 'a';
+    private static final char LOWER_Z = 'z';
+    private static final String GET = "get";
+    private static final String SET = "set";
+    private static final Integer TWO = 2;
+
 
 	/**
 	 * 首字母变小写
 	 */
 	public static String firstCharToLowerCase(String str) {
 		char firstChar = str.charAt(0);
-		if (firstChar >= 'A' && firstChar <= 'Z') {
+		if (firstChar >= UPPER_A && firstChar <= UPPER_Z) {
 			char[] arr = str.toCharArray();
-			arr[0] += ('a' - 'A');
+			arr[0] += (LOWER_A - UPPER_A);
 			return new String(arr);
 		}
 		return str;
@@ -56,9 +64,9 @@ public class StrKit {
 	 */
 	public static String firstCharToUpperCase(String str) {
 		char firstChar = str.charAt(0);
-		if (firstChar >= 'a' && firstChar <= 'z') {
+		if (firstChar >= LOWER_A && firstChar <= LOWER_Z) {
 			char[] arr = str.toCharArray();
-			arr[0] -= ('a' - 'A');
+			arr[0] -= (LOWER_A - UPPER_A);
 			return new String(arr);
 		}
 		return str;
@@ -421,7 +429,7 @@ public class StrKit {
 	 * @return 如果是set或get方法名，返回field， 否则null
 	 */
 	public static String getGeneralField(String getOrSetMethodName) {
-		if (getOrSetMethodName.startsWith("get") || getOrSetMethodName.startsWith("set")) {
+		if (getOrSetMethodName.startsWith(GET) || getOrSetMethodName.startsWith(SET)) {
 			return cutPreAndLowerFirst(getOrSetMethodName, 3);
 		}
 		return null;
@@ -838,7 +846,7 @@ public class StrKit {
 		if (StrKit.isBlank(str)) {
 			return false;
 		}
-		if (str.length() < 2) {
+		if (str.length() < TWO) {
 			return false;
 		}
 
