@@ -27,17 +27,22 @@ public class Site {
     /**
      * 站点名
      */
-    @Column
+    @Column(name = "title")
     private String title;
     /**
      * 字符编码
      */
-    @Column
+    @Column(name = "charset")
     private String charset;
     /**
      * 链接
      */
-    @Column
+    @Column(name = "url")
     private String url;
+    /**
+     * 全拼链接
+     */
+    @Column(name = "fullUrl")
+    private String fullUrl;
 
 }

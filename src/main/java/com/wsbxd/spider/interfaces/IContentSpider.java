@@ -16,6 +16,6 @@ public interface IContentSpider {
      * @param url 链接
      * @return  章节内容
      */
-    Content getContent(String url);
+    Content crawlContent(String url);
 
 }

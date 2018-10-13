@@ -18,6 +18,6 @@ public interface IChapterSpider {
      * @param url 链接
      * @return 章节列表
      */
-    List<Chapter> getChapters(String url);
+    List<Chapter> crawlChapters(String url);
 
 }

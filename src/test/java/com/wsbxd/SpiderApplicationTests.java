@@ -1,10 +1,7 @@
 package com.wsbxd;
 
 import com.wsbxd.common.utils.DownloadConfig;
-import com.wsbxd.spider.domain.po.Book;
-import com.wsbxd.spider.domain.po.Chapter;
-import com.wsbxd.spider.domain.po.Content;
-import com.wsbxd.spider.domain.po.Type;
+import com.wsbxd.spider.domain.po.*;
 import com.wsbxd.spider.factory.BookSpiderFactory;
 import com.wsbxd.spider.factory.SiteSpiderFactory;
 import com.wsbxd.spider.impl.chapter.DefaultChapterSpider;
@@ -14,6 +11,9 @@ import com.wsbxd.spider.interfaces.IBookSpider;
 import com.wsbxd.spider.interfaces.IDownload;
 import com.wsbxd.spider.interfaces.ISiteSpider;
 import com.wsbxd.spider.service.IBookService;
+import com.wsbxd.spider.service.IChapterService;
+import com.wsbxd.spider.service.IContentService;
+import com.wsbxd.spider.service.ISiteService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +30,32 @@ public class SpiderApplicationTests {
     @Autowired
     private IBookService bookService;
 
+    @Autowired
+    private ISiteService siteService;
+
+    @Autowired
+    private IChapterService chapterService;
+
+    @Autowired
+    private IContentService contentService;
+
     @Test
     public void test() throws Exception {
 
+    }
+
+    /**
+     * 遍历添加小说类型
+     */
+    @Test
+    public void insertTypes() {
+        List<Site> sites = siteService.findAll();
+        for (Site site : sites) {
+            boolean flag = siteService.insertTypes(site.getFullUrl());
+            if (!flag) {
+                System.out.println(site.getFullUrl()+"失败!");
+            }
+        }
     }
 
     @Test
@@ -47,7 +70,6 @@ public class SpiderApplicationTests {
         Iterator<List<Book>> iterator = spider.iterator("http://www.kanshuzhong.com/map/A/1/", 3);
         while (iterator.hasNext()) {
             List<Book> books = iterator.next();
-            System.err.println("URL：" + spider.next());
 			for (Book book : books) {
 				System.out.println(book);
 			}
@@ -75,14 +97,14 @@ public class SpiderApplicationTests {
     @Test
     public void testGetContext() {
         DefaultContentSpider spider = new DefaultContentSpider();
-        Content content = spider.getContent("http://www.kanshuzhong.com/book/23729/5669551.html");
+        Content content = spider.crawlContent("http://www.kanshuzhong.com/book/23729/5669551.html");
         System.out.println(content);
     }
 
     @Test
     public void testGetChapters() {
         DefaultChapterSpider spider = new DefaultChapterSpider();
-        List<Chapter> chapters = spider.getChapters("http://www.kanshuzhong.com/book/23729/");
+        List<Chapter> chapters = spider.crawlChapters("http://www.kanshuzhong.com/book/23729/");
         for (Chapter chapter:chapters){
             System.out.println(chapter);
         }

@@ -1,13 +1,9 @@
 package com.wsbxd.spider.controller;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.wsbxd.common.admin.po.BusinessMsg;
 import com.wsbxd.common.utils.BusinessCode;
-import com.wsbxd.common.utils.PageFactory;
 import com.wsbxd.spider.domain.po.Book;
-import com.wsbxd.spider.domain.po.Chapter;
-import com.wsbxd.spider.domain.po.Content;
 import com.wsbxd.spider.factory.ChapterSpiderFactory;
 import com.wsbxd.spider.factory.ContentSpiderFactory;
 import com.wsbxd.spider.service.IBookService;
@@ -17,8 +13,6 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * description: 小说Controller
@@ -49,7 +43,7 @@ public class NovelController {
     })
     @RequestMapping(value = "crawlChapterList",method = RequestMethod.GET)
     public BusinessMsg crawlChapterList(@RequestParam(value = "url")String url){
-        return new BusinessMsg(BusinessCode.GLOBAL_SUCCESS,ChapterSpiderFactory.getChapterSpider(url).getChapters(url));
+        return new BusinessMsg(BusinessCode.GLOBAL_SUCCESS,ChapterSpiderFactory.getChapterSpider(url).crawlChapters(url));
     }
 
     @ApiOperation(value = "爬取小说实体内容", notes = "爬取小说实体内容数据")
@@ -58,7 +52,7 @@ public class NovelController {
     })
     @RequestMapping(value = "crawlContent",method = RequestMethod.GET)
     public BusinessMsg crawlContent(@RequestParam(value = "url")String url){
-        return new BusinessMsg(BusinessCode.GLOBAL_SUCCESS,ContentSpiderFactory.getContentSpider(url).getContent(url));
+        return new BusinessMsg(BusinessCode.GLOBAL_SUCCESS,ContentSpiderFactory.getContentSpider(url).crawlContent(url));
     }
 
     @ApiOperation(value = "测试json", notes = "测试json")

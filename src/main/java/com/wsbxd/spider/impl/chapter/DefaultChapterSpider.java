@@ -27,7 +27,7 @@ public class DefaultChapterSpider extends AbstractChapterSpider {
      * @return 章节列表list
      */
     @Override
-    public List<Chapter> getChapters(String url) {
+    public List<Chapter> crawlChapters(String url) {
         try {
             String result = crawl(url);
             Document doc = Jsoup.parse(result);

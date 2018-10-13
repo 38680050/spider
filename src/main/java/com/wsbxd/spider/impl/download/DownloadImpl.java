@@ -28,7 +28,7 @@ public class DownloadImpl implements IDownload {
     @Override
     public String download(String url, DownloadConfig downloadConfig) {
         //根据章节列表爬虫工厂获取下载实现类,在用实现类获取章节列表
-        List<Chapter> chapters = ChapterSpiderFactory.getChapterSpider(url).getChapters(url);
+        List<Chapter> chapters = ChapterSpiderFactory.getChapterSpider(url).crawlChapters(url);
         //单个子线程下载完成后回复主线程,所有线程下载完成后合并
         int configSize = downloadConfig.getSize();
         int chaptersSize = chapters.size();
@@ -96,7 +96,7 @@ class DownloadCallable implements Callable<String> {
                 //循环下载
                 for (int i = 0; i < maxTryNum; i++) {
                     try {
-                        content = contentSpider.getContent(url);
+                        content = contentSpider.crawlContent(url);
                         out.println(content.getTitle());
                         out.println(content.getContent());
                         break;

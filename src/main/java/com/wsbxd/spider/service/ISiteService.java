@@ -18,4 +18,11 @@ public interface ISiteService {
      */
     List<Site> findAll();
 
+    /**
+     * 添加小说类型
+     * @param url   链接
+     * @return 是否成功
+     */
+    boolean insertTypes(String url);
+
 }

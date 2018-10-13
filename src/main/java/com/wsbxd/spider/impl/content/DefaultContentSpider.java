@@ -20,7 +20,7 @@ public class DefaultContentSpider extends AbstractContentSpider {
      * @return 小说内容
      */
     @Override
-    public Content getContent(String url) {
+    public Content crawlContent(String url) {
         try {
             String result = crawl( url );
             result = result.replace("&nbsp;", "  ").replace( "m.11kt.cn","" ).replace( "顶点小说手机站","" );

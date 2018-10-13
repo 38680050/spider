@@ -4,7 +4,7 @@
 <mapper namespace="com.wsbxd.spider.mapper.BookMapper">
 
     <sql id="Base_Column_List">
-        id,title,url
+        id,url,title,author,type,lastUpdateTime,lastUpdateContent,lastUpdateContentUrl,status,addTime,updateTime,siteId
     </sql>
 
 </mapper>

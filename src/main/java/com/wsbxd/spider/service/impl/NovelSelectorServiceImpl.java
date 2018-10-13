@@ -1,7 +1,7 @@
 package com.wsbxd.spider.service.impl;
 
 import com.wsbxd.spider.domain.po.NovelSelector;
-import com.wsbxd.spider.mapper.NovelMapper;
+import com.wsbxd.spider.mapper.NovelSelectorMapper;
 import com.wsbxd.spider.service.INovelSelectorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,11 +18,11 @@ import java.util.List;
 public class NovelSelectorServiceImpl implements INovelSelectorService {
 
     @Autowired
-    private NovelMapper novelMapper;
+    private NovelSelectorMapper novelSelectorMapper;
 
     @Override
     public List<NovelSelector> findAll() {
-        return novelMapper.selectAll();
+        return novelSelectorMapper.selectAll();
     }
 
 }
