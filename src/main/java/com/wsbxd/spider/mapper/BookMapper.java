@@ -16,6 +16,11 @@ import org.springframework.stereotype.Repository;
 @Repository("bookMapper")
 public interface BookMapper extends TkMapper<Book> {
 
-
+    /**
+     * 根据链接获取书籍id
+     * @param url   链接
+     * @return  书籍id
+     */
+    Integer getIdByUrl(String url);
 
 }

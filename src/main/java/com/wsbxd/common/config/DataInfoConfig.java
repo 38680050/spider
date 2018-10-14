@@ -24,16 +24,20 @@ import java.util.stream.Collectors;
 @Component
 public class DataInfoConfig implements CommandLineRunner {
 
-    @Autowired
-    private ISiteService novelSiteService;
+    private final ISiteService siteService;
+
+    private final INovelSelectorService novelSelectorService;
+
+    private final RedisUtil redisUtil;
 
     @Autowired
-    private INovelSelectorService novelSelectorService;
+    public DataInfoConfig(ISiteService siteService, INovelSelectorService novelSelectorService, RedisUtil redisUtil) {
+        this.siteService = siteService;
+        this.novelSelectorService = novelSelectorService;
+        this.redisUtil = redisUtil;
+    }
 
-    @Autowired
-    private RedisUtil redisUtil;
-
-    private Integer mapSize = 2^3;
+    private final static Integer MAP_SIZE = 2^3;
 
     @Override
     public void run(String... args) {
@@ -48,14 +52,14 @@ public class DataInfoConfig implements CommandLineRunner {
      */
     private void addNovelSelectorToRedis() {
         List<NovelSelector> novelSelectors = novelSelectorService.findAll();
-        Map<String,String> list = new HashMap<>(mapSize);
-        Map<String,String> title = new HashMap<>(mapSize);
-        Map<String,String> content = new HashMap<>(mapSize);
-        Map<String,String> prev = new HashMap<>(mapSize);
-        Map<String,String> next = new HashMap<>(mapSize);
-        Map<String,String> book = new HashMap<>(mapSize);
-        Map<String,String> nextPage = new HashMap<>(mapSize);
-        Map<String,String> type = new HashMap<>(mapSize);
+        Map<String,String> list = new HashMap<>(MAP_SIZE);
+        Map<String,String> title = new HashMap<>(MAP_SIZE);
+        Map<String,String> content = new HashMap<>(MAP_SIZE);
+        Map<String,String> prev = new HashMap<>(MAP_SIZE);
+        Map<String,String> next = new HashMap<>(MAP_SIZE);
+        Map<String,String> book = new HashMap<>(MAP_SIZE);
+        Map<String,String> nextPage = new HashMap<>(MAP_SIZE);
+        Map<String,String> type = new HashMap<>(MAP_SIZE);
         for (NovelSelector novelSelector:novelSelectors) {
             list.put(novelSelector.getUrl(),novelSelector.getList());
             title.put(novelSelector.getUrl(),novelSelector.getTitle());
@@ -113,7 +117,7 @@ public class DataInfoConfig implements CommandLineRunner {
      */
     private void addNovelSiteToRedis() {
         //获取所有站点
-        List<Site> sites = novelSiteService.findAll();
+        List<Site> sites = siteService.findAll();
         //转换为map,key为链接,value为字符编码格式
         Map<String,String> map = sites.stream().collect(Collectors.toMap(Site::getUrl, Site::getCharset));
         if (redisUtil.isExists(Constant.REDIS_NOVEL_SITE_CHARSET)){

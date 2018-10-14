@@ -62,4 +62,9 @@ public class BookServiceImpl implements IBookService {
             return false;
         }
     }
+
+    @Override
+    public Integer getIdByUrl(String url) {
+        return bookMapper.getIdByUrl(url);
+    }
 }

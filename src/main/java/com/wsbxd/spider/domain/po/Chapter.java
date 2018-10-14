@@ -42,12 +42,12 @@ public class Chapter implements Serializable {
      * 链接
      */
     @Column(name = "sort")
-    private String sort;
+    private Integer sort;
 
     /**
      * bookID
      */
-    @Column(name = "bookId")
-    private Integer bookId;
+    @Column(name = "bookUrl")
+    private String bookUrl;
 
 }

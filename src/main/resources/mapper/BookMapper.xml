@@ -7,4 +7,13 @@
         id,url,title,author,type,lastUpdateTime,lastUpdateContent,lastUpdateContentUrl,status,addTime,updateTime,siteId
     </sql>
 
+    <select id="getIdByUrl" parameterType="String" resultMap="Integer">
+        SELECT
+            id
+        FROM
+            t_book
+        WHERE
+            url = #{url}
+    </select>
+
 </mapper>

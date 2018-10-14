@@ -1,11 +1,14 @@
 package com.wsbxd.common.utils;
 
+import org.springframework.stereotype.Component;
+
 /**
  * description: 小说爬虫工具类
  *
  * @author chenhaoxuan
  * @date 2018/10/2 18:10
  */
+@Component
 public class NovelSpiderUtil {
 
     /**

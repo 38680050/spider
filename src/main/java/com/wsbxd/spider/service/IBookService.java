@@ -29,4 +29,10 @@ public interface IBookService {
      */
     boolean insertBooks(String url,Integer maxTryNum);
 
+    /**
+     * 根据链接获取书籍id
+     * @param url   链接
+     * @return  书籍id
+     */
+    Integer getIdByUrl(String url);
 }
