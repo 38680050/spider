@@ -4,7 +4,15 @@
 <mapper namespace="com.wsbxd.spider.mapper.TypeMapper">
 
     <sql id="Base_Column_List">
-        id,title,url
+        id,name,url,siteUrl
     </sql>
+
+    <select id="selectBySiteUrl" parameterType="String" resultType="com.wsbxd.spider.domain.po.Type">
+        select <include refid="Base_Column_List"/> from t_type where siteUrl = #{siteUrl}
+    </select>
+
+    <delete id="deleteBySiteUrl" parameterType="String">
+        delete from t_type where siteUrl = #{siteUrl}
+    </delete>
 
 </mapper>

@@ -19,10 +19,10 @@ public interface ISiteService {
     List<Site> findAll();
 
     /**
-     * 添加小说类型
-     * @param url   链接
+     * 根据链接清空并添加小说类型
+     * @param siteUrl   链接
      * @return 是否成功
      */
-    boolean insertTypes(String url);
+    boolean insertTypes(String siteUrl);
 
 }

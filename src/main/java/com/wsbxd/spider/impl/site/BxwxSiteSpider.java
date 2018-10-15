@@ -28,7 +28,7 @@ public class BxwxSiteSpider extends AbstractSiteSpider {
         List<Type> types = new ArrayList<>();
         Elements elements = doc.select(getSelectorByIndex(url, RedisSelectorEnum.TYPE, 0));
         for (Element element:elements) {
-            types.add(new Type(null,element.text().replaceAll(" ",""),element.absUrl("href"),NovelSiteEnum.getByUrl(url).getId()));
+            types.add(new Type(null,element.text().replaceAll(" ",""),element.absUrl("href"),url));
         }
         return types;
     }

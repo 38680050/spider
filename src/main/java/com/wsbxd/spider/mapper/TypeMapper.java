@@ -3,7 +3,10 @@ package com.wsbxd.spider.mapper;
 import com.wsbxd.common.utils.TkMapper;
 import com.wsbxd.spider.domain.po.Type;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * description: 小说类型mapper
@@ -16,6 +19,16 @@ import org.springframework.stereotype.Repository;
 @Repository("typeMapper")
 public interface TypeMapper extends TkMapper<Type> {
 
+    /**
+     * 根据站点URL查询小说类型集合
+     * @param siteUrl   链接
+     * @return  小说类型集合
+     */
+    List<Type> selectBySiteUrl(@Param("siteUrl") String siteUrl);
 
-
+    /**
+     * 根据siteUrl删除小说类型
+     * @param siteUrl   链接
+     */
+    void deleteBySiteUrl(@Param("siteUrl")String siteUrl);
 }

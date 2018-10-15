@@ -37,24 +37,6 @@ public class NovelController {
         return new BusinessMsg(books);
     }
 
-    @ApiOperation(value = "爬取小说章节列表", notes = "爬取小说章节列表数据")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "url", value = "要爬取的链接", required = true, dataType = "String", paramType = "query", defaultValue = "https://www.11kt.cn/read/72453/index.html")
-    })
-    @RequestMapping(value = "crawlChapterList",method = RequestMethod.GET)
-    public BusinessMsg crawlChapterList(@RequestParam(value = "url")String url){
-        return new BusinessMsg(BusinessCode.GLOBAL_SUCCESS,ChapterSpiderFactory.getChapterSpider(url).crawlChapters(url));
-    }
-
-    @ApiOperation(value = "爬取小说实体内容", notes = "爬取小说实体内容数据")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "url", value = "要爬取的链接", required = true, dataType = "String", paramType = "query", defaultValue = "https://www.11kt.cn/read/72453/33962963.html")
-    })
-    @RequestMapping(value = "crawlContent",method = RequestMethod.GET)
-    public BusinessMsg crawlContent(@RequestParam(value = "url")String url){
-        return new BusinessMsg(BusinessCode.GLOBAL_SUCCESS,ContentSpiderFactory.getContentSpider(url).crawlContent(url));
-    }
-
     @ApiOperation(value = "测试json", notes = "测试json")
     @RequestMapping(value = "testJson", method = RequestMethod.POST)
     public String testJson(@RequestBody String[] strings){

@@ -9,6 +9,8 @@ import com.wsbxd.spider.mapper.TypeMapper;
 import com.wsbxd.spider.service.ISiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.util.List;
 
@@ -37,13 +39,16 @@ public class SiteServiceImpl implements ISiteService {
     }
 
     @Override
-    public boolean insertTypes(String url) {
+    @Transactional(rollbackFor = Exception.class)
+    public boolean insertTypes(String siteUrl) {
         try {
-            ISiteSpider siteService = SiteSpiderFactory.getSiteService(url);
-            List<Type> types = siteService.crawlTypes(url);
-            typeMapper.insertList(types);
-            return true;
+            typeMapper.deleteBySiteUrl(siteUrl);
+            ISiteSpider siteService = SiteSpiderFactory.getSiteService(siteUrl);
+            List<Type> types = siteService.crawlTypes(siteUrl);
+            int successNum = typeMapper.insertList(types);
+            return successNum == types.size();
         } catch (Exception e) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             e.printStackTrace();
             return false;
         }

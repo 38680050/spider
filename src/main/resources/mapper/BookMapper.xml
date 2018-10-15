@@ -7,7 +7,7 @@
         id,url,title,author,type,lastUpdateTime,lastUpdateContent,lastUpdateContentUrl,status,addTime,updateTime,siteId
     </sql>
 
-    <select id="getIdByUrl" parameterType="String" resultMap="Integer">
+    <select id="getIdByUrl" parameterType="String" resultType="Integer">
         SELECT
             id
         FROM

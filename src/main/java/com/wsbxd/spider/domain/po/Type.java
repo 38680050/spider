@@ -41,9 +41,9 @@ public class Type {
     private String url;
 
     /**
-     * 站点id
+     * 站点url
      */
-    @Column(name = "siteId")
-    private Integer siteId;
+    @Column(name = "siteUrl")
+    private String siteUrl;
 
 }

@@ -31,7 +31,7 @@ public class KszSiteSpider extends AbstractSiteSpider {
         Elements elements = doc.select(getSelectorByIndex(url, RedisSelectorEnum.TYPE, 0));
         for (int i = 1; i < NINE; i++) {
             Element element = elements.get(i);
-            types.add(new Type(null,element.text(),element.absUrl("href"),NovelSiteEnum.getByUrl(url).getId()));
+            types.add(new Type(null,element.text(),element.absUrl("href"),url));
         }
         return types;
     }
