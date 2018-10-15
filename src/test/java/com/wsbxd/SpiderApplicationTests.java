@@ -78,8 +78,8 @@ public class SpiderApplicationTests {
 
     @Test
     public void testGetTypes() {
-        ISiteSpider spider = SiteSpiderFactory.getSiteService("https://www.bxwx9.org");
-        List<Type> types = spider.crawlTypes("https://www.bxwx9.org");
+        ISiteSpider spider = SiteSpiderFactory.getSiteService("http://www.kanshuzhong.com/");
+        List<Type> types = spider.crawlTypes("http://www.kanshuzhong.com/");
         for (Type type:types) {
             System.out.println(type);
         }

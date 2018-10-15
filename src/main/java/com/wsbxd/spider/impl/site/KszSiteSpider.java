@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class KszSiteSpider extends AbstractSiteSpider {
 
-    private final static int NINE = 9;
+    private final static int TWO = 2;
 
     @Override
     public List<Type> crawlTypes(String url) {
@@ -29,7 +29,8 @@ public class KszSiteSpider extends AbstractSiteSpider {
         doc.setBaseUri( url );
         List<Type> types = new ArrayList<>();
         Elements elements = doc.select(getSelectorByIndex(url, RedisSelectorEnum.TYPE, 0));
-        for (int i = 1; i < NINE; i++) {
+        //从第二个开始取,取到倒数第二个
+        for (int i = 1; i < elements.size() - TWO ; i++) {
             Element element = elements.get(i);
             types.add(new Type(null,element.text(),element.absUrl("href"),url));
         }
