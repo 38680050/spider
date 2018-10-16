@@ -35,6 +35,12 @@ public class Dict {
     private String name;
 
     /**
+     * 名称
+     */
+    @Column(name = "mapName")
+    private String mapName;
+
+    /**
      * 类型
      */
     @Column(name = "type")

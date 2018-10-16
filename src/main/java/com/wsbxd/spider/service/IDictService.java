@@ -10,11 +10,12 @@ public interface IDictService {
 
     /**
      * 添加字典数据
-     * @param name  名称
-     * @param type  类型
-     * @param pid   父id
+     * @param name      名称
+     * @param mapName   映射名称
+     * @param type      类型
+     * @param pid       父id
      * @return  是否添加成功
      */
-    boolean insertDict(String name, String type, Integer pid);
+    boolean insertDict(String name, String mapName, String type, Integer pid);
 
 }

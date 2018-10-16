@@ -36,6 +36,7 @@ public class BookServiceImpl implements IBookService {
 
     @Override
     public PageInfo<Book> getBooks(String property, String value) {
+        //分页方法
         PageFactory.defaultPage();
         Example example = new Example(Book.class);
         if (StringUtils.isNotBlank(property) && StringUtils.isNotBlank(value)){

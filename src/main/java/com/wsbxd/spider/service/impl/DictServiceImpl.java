@@ -23,8 +23,8 @@ public class DictServiceImpl implements IDictService {
     }
 
     @Override
-    public boolean insertDict(String name, String type, Integer pid) {
-        int successNum = dictMapper.insert(new Dict(null, name, type, pid));
+    public boolean insertDict(String name, String mapName, String type, Integer pid) {
+        int successNum = dictMapper.insert(new Dict(null, name, mapName, type, pid));
         return successNum == 1;
     }
 

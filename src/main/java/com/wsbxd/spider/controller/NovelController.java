@@ -44,6 +44,8 @@ public class NovelController {
 
     @ApiOperation(value = "获取书籍列表", notes = "根据条件获取书籍列表")
     @ApiImplicitParams({
+            @ApiImplicitParam(name = "page", value = "page", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name = "limit", value = "limit", dataType = "String",paramType = "query"),
             @ApiImplicitParam(name = "property", value = "属性名称", dataType = "String",paramType = "query",defaultValue = "title"),
             @ApiImplicitParam(name = "value", value = "查询值", dataType = "String",paramType = "query",defaultValue = "恶魔")
     })
@@ -59,16 +61,18 @@ public class NovelController {
     @ApiOperation(value = "添加字典数据", notes = "添加字典数据")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "name", value = "名称",required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name = "mapName", value = "映射名称",required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam(name = "type", value = "类型",required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam(name = "pid", value = "父id",required = true, dataType = "int",paramType = "query",example = "1")
     })
     @RequestMapping(value = "addDict",method = RequestMethod.POST)
     public BusinessMsg addDict(
             @RequestParam(value = "name")String name,
+            @RequestParam(value = "mapName")String mapName,
             @RequestParam(value = "type")String type,
             @RequestParam(value = "pid")Integer pid
     ){
-        boolean flag = dictService.insertDict(name,type,pid);
+        boolean flag = dictService.insertDict(name,mapName,type,pid);
         return flag ? new BusinessMsg() : new BusinessMsg(BusinessCode.GLOBAL_ERROR);
     }
 
