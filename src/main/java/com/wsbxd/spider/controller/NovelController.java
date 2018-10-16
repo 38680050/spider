@@ -46,8 +46,8 @@ public class NovelController {
 
     @ApiOperation(value = "获取书籍列表", notes = "根据条件获取书籍列表")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "page", value = "page", dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name = "limit", value = "limit", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name = "page", value = "page", dataType = "String",paramType = "query",defaultValue = "1"),
+            @ApiImplicitParam(name = "limit", value = "limit", dataType = "String",paramType = "query",defaultValue = "15"),
             @ApiImplicitParam(name = "property", value = "属性名称", dataType = "String",paramType = "query",defaultValue = "title"),
             @ApiImplicitParam(name = "value", value = "查询值", dataType = "String",paramType = "query",defaultValue = "恶魔")
     })

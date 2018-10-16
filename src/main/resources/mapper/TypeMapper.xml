@@ -11,7 +11,7 @@
         select <include refid="Base_Column_List"/> from t_type where siteUrl = #{siteUrl}
     </select>
 
-    <delete id="deleteBySiteUrl" parameterType="String">
+    <delete id="deleteTypeBySiteUrl" parameterType="String">
         delete from t_type where siteUrl = #{siteUrl}
     </delete>
 

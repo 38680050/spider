@@ -35,8 +35,8 @@ public class DefaultChapterSpider extends AbstractChapterSpider {
             //根据章节列表选择器获取对应的标签
             Elements elements = doc.select(getSelectorByIndex(url, RedisSelectorEnum.LIST,0));
             List<Chapter> chapters = new ArrayList<>();
-            Integer sort = 1;
-
+            //排序
+            int sort = 1;
             for (Element a:elements) {
                 chapters.add(new Chapter(null,a.text(),a.absUrl("href"),sort++,url));
             }

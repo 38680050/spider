@@ -49,9 +49,11 @@ public class SpiderApplicationTests {
      */
     @Test
     public void insertTypes() {
-        List<Site> sites = siteService.findAll();
+        List<Site> sites = siteService.selectSiteAll();
         for (Site site : sites) {
-            boolean flag = siteService.insertTypes(site.getFullUrl());
+            String fullUrl = site.getFullUrl();
+            siteService.deleteTypeBySiteUrl(fullUrl);
+            boolean flag = siteService.insertTypes(fullUrl);
             if (!flag) {
                 System.out.println(site.getFullUrl()+"失败!");
             }

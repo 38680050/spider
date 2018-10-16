@@ -21,7 +21,7 @@ public class NovelSelectorServiceImpl implements INovelSelectorService {
     private NovelSelectorMapper novelSelectorMapper;
 
     @Override
-    public List<NovelSelector> findAll() {
+    public List<NovelSelector> selectAll() {
         return novelSelectorMapper.selectAll();
     }
 

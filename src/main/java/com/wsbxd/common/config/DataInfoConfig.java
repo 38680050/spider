@@ -51,7 +51,7 @@ public class DataInfoConfig implements CommandLineRunner {
      * 添加小说选择器到Redis
      */
     private void addNovelSelectorToRedis() {
-        List<NovelSelector> novelSelectors = novelSelectorService.findAll();
+        List<NovelSelector> novelSelectors = novelSelectorService.selectAll();
         Map<String,String> list = new HashMap<>(MAP_SIZE);
         Map<String,String> title = new HashMap<>(MAP_SIZE);
         Map<String,String> content = new HashMap<>(MAP_SIZE);
@@ -117,7 +117,7 @@ public class DataInfoConfig implements CommandLineRunner {
      */
     private void addNovelSiteToRedis() {
         //获取所有站点
-        List<Site> sites = siteService.findAll();
+        List<Site> sites = siteService.selectSiteAll();
         //转换为map,key为链接,value为字符编码格式
         Map<String,String> map = sites.stream().collect(Collectors.toMap(Site::getUrl, Site::getCharset));
         if (redisUtil.isExists(Constant.REDIS_NOVEL_SITE_CHARSET)){
