@@ -1,5 +1,6 @@
 package com.wsbxd.spider.service.impl;
 
+import com.wsbxd.spider.domain.po.Dict;
 import com.wsbxd.spider.mapper.DictMapper;
 import com.wsbxd.spider.service.IDictService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,4 +21,11 @@ public class DictServiceImpl implements IDictService {
     public DictServiceImpl(DictMapper dictMapper) {
         this.dictMapper = dictMapper;
     }
+
+    @Override
+    public boolean insertDict(String name, String type, Integer pid) {
+        int successNum = dictMapper.insert(new Dict(null, name, type, pid));
+        return successNum == 1;
+    }
+
 }

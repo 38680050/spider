@@ -36,9 +36,19 @@ public class BusinessMsg {
     private Object  data;
 
     public BusinessMsg(BusinessCode bussinessCode, Object data) {
-        this.code = bussinessCode.getCode();
-        this.msg = bussinessCode.getMsg();
-        this.data = data;
+        this(bussinessCode.getCode(),bussinessCode.getMsg(),data);
+    }
+
+    public BusinessMsg(String code, String  msg) {
+        this(code,msg,null);
+    }
+
+    public BusinessMsg(Object data) {
+        this(BusinessCode.GLOBAL_SUCCESS.getCode(),BusinessCode.GLOBAL_SUCCESS.getMsg(),data);
+    }
+
+    public BusinessMsg() {
+        this(BusinessCode.GLOBAL_SUCCESS.getCode(),BusinessCode.GLOBAL_SUCCESS.getMsg(),null);
     }
 
     public BusinessMsg(String code, String msg, Object  data) {
@@ -47,15 +57,4 @@ public class BusinessMsg {
         this.data = data;
     }
 
-    public BusinessMsg(String code, String  msg) {
-        this.code = code;
-        this.msg = msg;
-    }
-
-    public BusinessMsg(Object data) {
-        BusinessCode success = BusinessCode.GLOBAL_SUCCESS;
-        this.code = success.getCode();
-        this.msg = success.getMsg();
-        this.data = data;
-    }
 }
