@@ -9,6 +9,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
  * @author chenhaoxuan
  * @date 2018/9/1 15:42
  */
+@Slf4j
 @RestController
 @RequestMapping("spider")
 @Api(value = "小说API", tags = {"小说API"})
@@ -55,6 +57,7 @@ public class NovelController {
             @RequestParam(value = "value",required = false)String value
     ){
         PageInfo<Book> books = bookService.getBooks(property,value);
+        log.info("书籍列表信息:共{}本书,当前查询{}页,{}本",books.getSize(),books.getPageNum(),books.getPageSize());
         return new BusinessMsg(books);
     }
 
