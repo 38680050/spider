@@ -68,6 +68,6 @@ pagehelper:
 
 #日志 TRACE < DEBUG < INFO < WARN < ERROR < FATAL
 logging:
-  level.root: debug
+  level.root: info
   path: logs/
   file: spider.log
