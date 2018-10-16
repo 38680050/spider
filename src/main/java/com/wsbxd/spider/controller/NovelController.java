@@ -57,7 +57,7 @@ public class NovelController {
             @RequestParam(value = "value",required = false)String value
     ){
         PageInfo<Book> books = bookService.getBooks(property,value);
-        log.info("书籍列表信息:共{}本书,当前查询{}页,{}本",books.getSize(),books.getPageNum(),books.getPageSize());
+        log.info("书籍列表信息:共{}本书,{}页,当前查询第{}页,本页{}本",books.getSize(),books.getPages(),books.getPageNum(),books.getPageSize());
         return new BusinessMsg(books);
     }
 
@@ -66,7 +66,7 @@ public class NovelController {
             @ApiImplicitParam(name = "name", value = "名称",required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam(name = "mapName", value = "映射名称",required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam(name = "type", value = "类型",required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name = "pid", value = "父id",required = true, dataType = "int",paramType = "query",example = "1")
+            @ApiImplicitParam(name = "pid", value = "父id",required = true, dataType = "String",paramType = "query")
     })
     @RequestMapping(value = "addDict",method = RequestMethod.POST)
     public BusinessMsg addDict(
