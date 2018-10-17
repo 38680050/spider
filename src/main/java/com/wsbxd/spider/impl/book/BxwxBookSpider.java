@@ -28,19 +28,19 @@ public class BxwxBookSpider extends AbstractBookSpider {
             for (int index = 0, size = trs.size(); index < size; index++) {
                 Element tr = trs.get(index);
                 System.out.println(tr);
-                Elements tds = tr.getElementsByTag("div");
+                Elements divs = tr.getElementsByTag("div");
                 Book book = new Book();
-                book.setTitle(tds.first().getElementsByTag("a").first().attr("title"));
-                String bookUrl = tds.get(1).getElementsByTag("a").first().absUrl("href");
+                book.setTitle(divs.first().getElementsByTag("a").first().attr("title"));
+                String bookUrl = divs.first().getElementsByTag("a").first().absUrl("href");
                 book.setUrl(bookUrl);
-                book.setLastUpdateContent(tds.get(1).text());
-                book.setLastUpdateContentUrl(tds.get(1).getElementsByTag("a").first().absUrl("href"));
-                book.setAuthor(tds.get(2).text());
+                book.setLastUpdateContent(divs.get(1).getElementsByTag("a").first().attr("title"));
+                book.setLastUpdateContentUrl(divs.get(1).getElementsByTag("a").first().absUrl("href"));
+                book.setAuthor(divs.get(2).text());
                 //yy-MM-dd
-                book.setLastUpdateTime(tds.get(4).text());
+                book.setLastUpdateTime(divs.get(3).text());
                 book.setAddTime(date);
                 book.setUpdateTime(date);
-                book.setStatus((String) redisUtil.getHashKey(Constant.REDIS_DICT_STATUS,tds.get(5).text()));
+                book.setStatus(null);
                 book.setSiteId(NovelSiteEnum.getByUrl(url).getId());
                 books.add(book);
             }
