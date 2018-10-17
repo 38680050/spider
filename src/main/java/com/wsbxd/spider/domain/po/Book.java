@@ -71,10 +71,10 @@ public class Book {
     private String lastUpdateContentUrl;
 
     /**
-     * 小说的状态：1 连载 2 完结
+     * 小说的状态：连载 完结
      */
     @Column(name = "status")
-    private Integer status;
+    private String status;
 
     /**
      * 入库时间

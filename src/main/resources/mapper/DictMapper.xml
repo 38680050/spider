@@ -4,7 +4,11 @@
 <mapper namespace="com.wsbxd.spider.mapper.DictMapper">
 
     <sql id="Base_Column_List">
-        id,name,type,pid
+        id,name,mapName,pid
     </sql>
+
+    <select id="selectByPid" parameterType="Integer" resultType="com.wsbxd.spider.domain.po.Dict">
+        select <include refid="Base_Column_List" /> from t_dict where pid = #{pid}
+    </select>
 
 </mapper>

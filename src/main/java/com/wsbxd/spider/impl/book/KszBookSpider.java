@@ -1,8 +1,8 @@
 package com.wsbxd.spider.impl.book;
 
+import com.wsbxd.common.constant.Constant;
 import com.wsbxd.common.utils.DateUtil;
 import com.wsbxd.common.utils.NovelSiteEnum;
-import com.wsbxd.common.utils.NovelSpiderUtil;
 import com.wsbxd.spider.domain.po.Book;
 import org.jsoup.select.Elements;
 
@@ -35,7 +35,7 @@ public class KszBookSpider extends AbstractBookSpider {
             for (int index = 1; index < (trs.size() - 1); index++) {
                 Elements tds = trs.get(index).getElementsByTag("td");
                 Book book = new Book();
-                book.setType(tds.first().text());
+                book.setType((String) redisUtil.getHashKey(Constant.REDIS_DICT_TYPR,tds.first().text()));
                 book.setTitle(tds.get(1).text());
                 book.setUrl(tds.get(1).getElementsByTag("a").first().absUrl("href"));
                 book.setLastUpdateContent(tds.get(2).text());
@@ -44,7 +44,7 @@ public class KszBookSpider extends AbstractBookSpider {
                 book.setLastUpdateTime(tds.get(4).text());
                 book.setAddTime(date);
                 book.setUpdateTime(date);
-                book.setStatus(NovelSpiderUtil.getBookStatus(tds.get(5).text()));
+                book.setStatus((String) redisUtil.getHashKey(Constant.REDIS_DICT_STATUS,tds.get(5).text()));
                 book.setSiteId(NovelSiteEnum.getByUrl(url).getId());
                 books.add(book);
             }

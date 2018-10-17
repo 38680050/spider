@@ -39,7 +39,7 @@ public class ScheduledTasks {
     @Scheduled(cron = "0 0 6 * * ?")
     public void updateNovel(){
         List<Site> sites = siteService.selectSiteAll();
-
+        
     }
 
 }

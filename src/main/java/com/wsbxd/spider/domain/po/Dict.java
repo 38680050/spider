@@ -41,12 +41,6 @@ public class Dict {
     private String mapName;
 
     /**
-     * 类型
-     */
-    @Column(name = "type")
-    private String type;
-
-    /**
      * 父id
      */
     @Column(name = "pid")

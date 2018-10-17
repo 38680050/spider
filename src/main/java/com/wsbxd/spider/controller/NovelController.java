@@ -65,17 +65,15 @@ public class NovelController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "name", value = "名称",required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam(name = "mapName", value = "映射名称",required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name = "type", value = "类型",required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam(name = "pid", value = "父id",required = true, dataType = "String",paramType = "query")
     })
     @RequestMapping(value = "addDict",method = RequestMethod.POST)
     public BusinessMsg addDict(
             @RequestParam(value = "name")String name,
             @RequestParam(value = "mapName")String mapName,
-            @RequestParam(value = "type")String type,
             @RequestParam(value = "pid")Integer pid
     ){
-        boolean flag = dictService.insertDict(name,mapName,type,pid);
+        boolean flag = dictService.insertDict(name,mapName,pid);
         return flag ? new BusinessMsg() : new BusinessMsg(BusinessCode.GLOBAL_ERROR);
     }
 

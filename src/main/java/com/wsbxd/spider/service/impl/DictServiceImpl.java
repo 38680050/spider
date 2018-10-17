@@ -6,6 +6,8 @@ import com.wsbxd.spider.service.IDictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * description: 字典impl
  *
@@ -23,9 +25,14 @@ public class DictServiceImpl implements IDictService {
     }
 
     @Override
-    public boolean insertDict(String name, String mapName, String type, Integer pid) {
-        int successNum = dictMapper.insert(new Dict(null, name, mapName, type, pid));
+    public boolean insertDict(String name, String mapName, Integer pid) {
+        int successNum = dictMapper.insert(new Dict(null, name, mapName, pid));
         return successNum == 1;
+    }
+
+    @Override
+    public List<Dict> selectByPid(Integer pid) {
+        return dictMapper.selectByPid(pid);
     }
 
 }

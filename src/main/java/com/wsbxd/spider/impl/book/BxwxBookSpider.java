@@ -1,8 +1,8 @@
 package com.wsbxd.spider.impl.book;
 
+import com.wsbxd.common.constant.Constant;
 import com.wsbxd.common.utils.DateUtil;
 import com.wsbxd.common.utils.NovelSiteEnum;
-import com.wsbxd.common.utils.NovelSpiderUtil;
 import com.wsbxd.spider.domain.po.Book;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -39,7 +39,7 @@ public class BxwxBookSpider extends AbstractBookSpider {
                 book.setLastUpdateTime(tds.get(4).text());
                 book.setAddTime(date);
                 book.setUpdateTime(date);
-                book.setStatus(NovelSpiderUtil.getBookStatus(tds.get(5).text()));
+                book.setStatus((String) redisUtil.getHashKey(Constant.REDIS_DICT_STATUS,tds.get(5).text()));
                 book.setSiteId(NovelSiteEnum.getByUrl(url).getId());
                 books.add(book);
             }

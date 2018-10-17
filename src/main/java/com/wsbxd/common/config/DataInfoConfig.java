@@ -2,8 +2,10 @@ package com.wsbxd.common.config;
 
 import com.wsbxd.common.constant.Constant;
 import com.wsbxd.common.utils.RedisUtil;
+import com.wsbxd.spider.domain.po.Dict;
 import com.wsbxd.spider.domain.po.NovelSelector;
 import com.wsbxd.spider.domain.po.Site;
+import com.wsbxd.spider.service.IDictService;
 import com.wsbxd.spider.service.INovelSelectorService;
 import com.wsbxd.spider.service.ISiteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +30,15 @@ public class DataInfoConfig implements CommandLineRunner {
 
     private final INovelSelectorService novelSelectorService;
 
+    private final IDictService dictService;
+
     private final RedisUtil redisUtil;
 
     @Autowired
-    public DataInfoConfig(ISiteService siteService, INovelSelectorService novelSelectorService, RedisUtil redisUtil) {
+    public DataInfoConfig(ISiteService siteService, INovelSelectorService novelSelectorService, IDictService dictService, RedisUtil redisUtil) {
         this.siteService = siteService;
         this.novelSelectorService = novelSelectorService;
+        this.dictService = dictService;
         this.redisUtil = redisUtil;
     }
 
@@ -45,6 +50,40 @@ public class DataInfoConfig implements CommandLineRunner {
         addNovelSiteToRedis();
         //添加小说选择器到Redis
         addNovelSelectorToRedis();
+        //添加小说状态到Redis
+        addNovelStatus();
+        //添加小说类型到Redis
+        addNovelType();
+    }
+
+    /**
+     * 添加小说类型到Redis
+     */
+    private void addNovelType() {
+        List<Dict> dicts = dictService.selectByPid(5);
+        Map<String,String> map = new HashMap<>(16);
+        for (Dict dict:dicts) {
+            map.put(dict.getName(),dict.getMapName());
+        }
+        if (redisUtil.isExists(Constant.REDIS_DICT_TYPR)){
+            redisUtil.delete(Constant.REDIS_DICT_TYPR);
+        }
+        redisUtil.putAll(Constant.REDIS_DICT_TYPR,map);
+    }
+
+    /**
+     * 添加小说类型到Redis
+     */
+    private void addNovelStatus() {
+        List<Dict> dicts = dictService.selectByPid(1);
+        Map<String,String> map = new HashMap<>(16);
+        for (Dict dict:dicts) {
+            map.put(dict.getName(),dict.getMapName());
+        }
+        if (redisUtil.isExists(Constant.REDIS_DICT_STATUS)){
+            redisUtil.delete(Constant.REDIS_DICT_STATUS);
+        }
+        redisUtil.putAll(Constant.REDIS_DICT_STATUS,map);
     }
 
     /**
@@ -71,45 +110,45 @@ public class DataInfoConfig implements CommandLineRunner {
             type.put(novelSelector.getUrl(),novelSelector.getType());
         }
         //章节列表选择器
-        if (redisUtil.isExists(Constant.REDIS_NOVEL_LIST)){
-            redisUtil.delete(Constant.REDIS_NOVEL_LIST);
+        if (redisUtil.isExists(Constant.REDIS_NOVEL_LIST_SELECT)){
+            redisUtil.delete(Constant.REDIS_NOVEL_LIST_SELECT);
         }
-        redisUtil.putAll(Constant.REDIS_NOVEL_LIST,list);
+        redisUtil.putAll(Constant.REDIS_NOVEL_LIST_SELECT,list);
         //小说标题选择器
-        if (redisUtil.isExists(Constant.REDIS_NOVEL_TITLE)){
-            redisUtil.delete(Constant.REDIS_NOVEL_TITLE);
+        if (redisUtil.isExists(Constant.REDIS_NOVEL_TITLE_SELECT)){
+            redisUtil.delete(Constant.REDIS_NOVEL_TITLE_SELECT);
         }
-        redisUtil.putAll(Constant.REDIS_NOVEL_TITLE,title);
+        redisUtil.putAll(Constant.REDIS_NOVEL_TITLE_SELECT,title);
         //小说内容选择器
-        if (redisUtil.isExists(Constant.REDIS_NOVEL_CONTENT)){
-            redisUtil.delete(Constant.REDIS_NOVEL_CONTENT);
+        if (redisUtil.isExists(Constant.REDIS_NOVEL_CONTENT_SELECT)){
+            redisUtil.delete(Constant.REDIS_NOVEL_CONTENT_SELECT);
         }
-        redisUtil.putAll(Constant.REDIS_NOVEL_CONTENT,content);
+        redisUtil.putAll(Constant.REDIS_NOVEL_CONTENT_SELECT,content);
         //上一页选择器
-        if (redisUtil.isExists(Constant.REDIS_NOVEL_PREV)){
-            redisUtil.delete(Constant.REDIS_NOVEL_PREV);
+        if (redisUtil.isExists(Constant.REDIS_NOVEL_PREV_SELECT)){
+            redisUtil.delete(Constant.REDIS_NOVEL_PREV_SELECT);
         }
-        redisUtil.putAll(Constant.REDIS_NOVEL_PREV,prev);
+        redisUtil.putAll(Constant.REDIS_NOVEL_PREV_SELECT,prev);
         //下一页选择器
-        if (redisUtil.isExists(Constant.REDIS_NOVEL_NEXT)){
-            redisUtil.delete(Constant.REDIS_NOVEL_NEXT);
+        if (redisUtil.isExists(Constant.REDIS_NOVEL_NEXT_SELECT)){
+            redisUtil.delete(Constant.REDIS_NOVEL_NEXT_SELECT);
         }
-        redisUtil.putAll(Constant.REDIS_NOVEL_NEXT,next);
+        redisUtil.putAll(Constant.REDIS_NOVEL_NEXT_SELECT,next);
         //书籍选择器
-        if (redisUtil.isExists(Constant.REDIS_NOVEL_BOOK)){
-            redisUtil.delete(Constant.REDIS_NOVEL_BOOK);
+        if (redisUtil.isExists(Constant.REDIS_NOVEL_BOOK_SELECT)){
+            redisUtil.delete(Constant.REDIS_NOVEL_BOOK_SELECT);
         }
-        redisUtil.putAll(Constant.REDIS_NOVEL_BOOK,book);
+        redisUtil.putAll(Constant.REDIS_NOVEL_BOOK_SELECT,book);
         //下一页书籍列表选择器
-        if (redisUtil.isExists(Constant.REDIS_NOVEL_NEXT_BOOK)){
-            redisUtil.delete(Constant.REDIS_NOVEL_NEXT_BOOK);
+        if (redisUtil.isExists(Constant.REDIS_NOVEL_NEXT_BOOK_SELECT)){
+            redisUtil.delete(Constant.REDIS_NOVEL_NEXT_BOOK_SELECT);
         }
-        redisUtil.putAll(Constant.REDIS_NOVEL_NEXT_BOOK,nextPage);
+        redisUtil.putAll(Constant.REDIS_NOVEL_NEXT_BOOK_SELECT,nextPage);
         //书籍类型选择器
-        if (redisUtil.isExists(Constant.REDIS_NOVEL_TYPE)){
-            redisUtil.delete(Constant.REDIS_NOVEL_TYPE);
+        if (redisUtil.isExists(Constant.REDIS_NOVEL_TYPE_SELECT)){
+            redisUtil.delete(Constant.REDIS_NOVEL_TYPE_SELECT);
         }
-        redisUtil.putAll(Constant.REDIS_NOVEL_TYPE,type);
+        redisUtil.putAll(Constant.REDIS_NOVEL_TYPE_SELECT,type);
     }
 
     /**
@@ -120,10 +159,10 @@ public class DataInfoConfig implements CommandLineRunner {
         List<Site> sites = siteService.selectSiteAll();
         //转换为map,key为链接,value为字符编码格式
         Map<String,String> map = sites.stream().collect(Collectors.toMap(Site::getUrl, Site::getCharset));
-        if (redisUtil.isExists(Constant.REDIS_NOVEL_SITE_CHARSET)){
-            redisUtil.delete(Constant.REDIS_NOVEL_SITE_CHARSET);
+        if (redisUtil.isExists(Constant.REDIS_NOVEL_SITE_CHARSET_SELECT)){
+            redisUtil.delete(Constant.REDIS_NOVEL_SITE_CHARSET_SELECT);
         }
-        redisUtil.putAll(Constant.REDIS_NOVEL_SITE_CHARSET,map);
+        redisUtil.putAll(Constant.REDIS_NOVEL_SITE_CHARSET_SELECT,map);
     }
 
 }
