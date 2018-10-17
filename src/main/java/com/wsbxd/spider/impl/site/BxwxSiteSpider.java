@@ -20,6 +20,8 @@ import java.util.List;
  */
 public class BxwxSiteSpider extends AbstractSiteSpider {
 
+    private final static Integer TWO = 2;
+
     @Override
     public List<Type> crawlTypes(String url) {
         String result = crawl( url );
@@ -27,7 +29,8 @@ public class BxwxSiteSpider extends AbstractSiteSpider {
         doc.setBaseUri( url );
         List<Type> types = new ArrayList<>();
         Elements elements = doc.select(getSelectorByIndex(url, RedisSelectorEnum.TYPE, 0));
-        for (Element element:elements) {
+        for (int i = 1; i < elements.size() - TWO; i++) {
+            Element element = elements.get(i);
             types.add(new Type(null,element.text().replaceAll(" ",""),element.absUrl("href"),url));
         }
         return types;

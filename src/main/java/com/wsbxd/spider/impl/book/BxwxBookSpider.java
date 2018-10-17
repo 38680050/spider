@@ -25,12 +25,13 @@ public class BxwxBookSpider extends AbstractBookSpider {
         try {
             Elements trs = super.crawlBooksPage(url, maxTryNum);
             String date = DateUtil.dateFormat(new Date(), DateUtil.DATE_TIME_PATTERN);
-            for (int index = 1, size = trs.size(); index < size; index++) {
+            for (int index = 0, size = trs.size(); index < size; index++) {
                 Element tr = trs.get(index);
-                Elements tds = tr.getElementsByTag("td");
+                System.out.println(tr);
+                Elements tds = tr.getElementsByTag("div");
                 Book book = new Book();
-                book.setTitle(tds.first().text());
-                String bookUrl = tds.first().getElementsByTag("a").first().absUrl("href").replace(".htm", "/").replace("/binfo/", "/b/");
+                book.setTitle(tds.first().getElementsByTag("a").first().attr("title"));
+                String bookUrl = tds.get(1).getElementsByTag("a").first().absUrl("href");
                 book.setUrl(bookUrl);
                 book.setLastUpdateContent(tds.get(1).text());
                 book.setLastUpdateContentUrl(tds.get(1).getElementsByTag("a").first().absUrl("href"));

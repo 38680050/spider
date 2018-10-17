@@ -89,8 +89,8 @@ public class SpiderApplicationTests {
 
     @Test
     public void testGetBooks() {
-        IBookSpider spider = BookSpiderFactory.getBookSpider("http://www.kanshuzhong.com/map/A/1/");
-        List<Book> Books = spider.crawlBooks("http://www.kanshuzhong.com/map/A/1/", 10);
+        IBookSpider spider = BookSpiderFactory.getBookSpider("http://www.bxwx.us/list/1.html");
+        List<Book> Books = spider.crawlBooks("http://www.bxwx.us/list/1.html", 3);
         for (Book Book : Books) {
             System.out.println(Book);
         }
