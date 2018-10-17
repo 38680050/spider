@@ -35,7 +35,7 @@ public class DownloadImpl implements IDownload {
         //整数除法的截断而导致意想不到的结果,因此乘1.0,得出最大线程数
         int maxThreadSize = (int) Math.ceil(chaptersSize * 1.0 / configSize);
         //一般来说要给map初始化容量的,但小说章节实在不好确定,因此不定了
-        Map<String, List<Chapter>> downloadTaskAlloc = new HashMap<>();
+        Map<String, List<Chapter>> downloadTaskAlloc = new HashMap<>(16);
         for (int i = 0; i < maxThreadSize; i++) {
             //当前开始下标
             int currentStartIndex = i * configSize;

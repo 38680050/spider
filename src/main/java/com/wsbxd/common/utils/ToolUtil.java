@@ -414,7 +414,7 @@ public class ToolUtil {
      * @return Map<String,Object>
      */
     public static Map<String, Object> caseInsensitiveMap(Map<String, Object> map) {
-        Map<String, Object> tempMap = new HashMap<>();
+        Map<String, Object> tempMap = new HashMap<>(16);
         for (String key : map.keySet()) {
             tempMap.put(key.toLowerCase(), map.get(key));
         }
