@@ -1,6 +1,5 @@
 package com.wsbxd.spider.impl.book;
 
-import com.wsbxd.common.constant.Constant;
 import com.wsbxd.common.utils.DateUtil;
 import com.wsbxd.common.utils.NovelSiteEnum;
 import com.wsbxd.spider.domain.po.Book;
@@ -40,7 +39,7 @@ public class BxwxBookSpider extends AbstractBookSpider {
                 book.setLastUpdateTime(divs.get(3).text());
                 book.setAddTime(date);
                 book.setUpdateTime(date);
-                book.setStatus(null);
+                book.setStatus("未知");
                 book.setSiteId(NovelSiteEnum.getByUrl(url).getId());
                 books.add(book);
             }

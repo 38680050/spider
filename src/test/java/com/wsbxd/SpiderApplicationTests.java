@@ -67,9 +67,9 @@ public class SpiderApplicationTests {
     }
 
     @Test
-    public void testKszIterator() {
-        IBookSpider spider = BookSpiderFactory.getBookSpider("http://www.kanshuzhong.com/map/A/1/");
-        Iterator<List<Book>> iterator = spider.iterator("http://www.kanshuzhong.com/map/A/1/", 3);
+    public void testBookIterator() {
+        IBookSpider spider = BookSpiderFactory.getBookSpider("http://www.bxwx.us/list/1.html");
+        Iterator<List<Book>> iterator = spider.iterator("http://www.bxwx.us/list/1.html", 3);
         while (iterator.hasNext()) {
             List<Book> books = iterator.next();
 			for (Book book : books) {
