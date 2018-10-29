@@ -31,4 +31,11 @@ public interface TypeMapper extends TkMapper<Type> {
      * @param siteUrl   站点链接
      */
     void deleteTypeBySiteUrl(@Param("siteUrl")String siteUrl);
+
+    /**
+     * 根据链接获取小说类型
+     * @param url   链接
+     * @return  小说类型
+     */
+    Type selectTypeByUrl(String url);
 }

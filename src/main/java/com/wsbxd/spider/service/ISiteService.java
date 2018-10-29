@@ -39,4 +39,10 @@ public interface ISiteService {
      */
     boolean insertTypes(String siteUrl);
 
+    /**
+     * 根据链接获取小说类型
+     * @param url   链接
+     * @return  小说类型
+     */
+    Type selectTypeByUrl(String url);
 }

@@ -59,4 +59,9 @@ public class SiteServiceImpl implements ISiteService {
         }
     }
 
+    @Override
+    public Type selectTypeByUrl(String url) {
+        return typeMapper.selectTypeByUrl(url);
+    }
+
 }

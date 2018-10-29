@@ -15,4 +15,8 @@
         delete from t_type where siteUrl = #{siteUrl}
     </delete>
 
+    <select id="selectTypeByUrl" parameterType="String" resultType="com.wsbxd.spider.domain.po.Type">
+        select <include refid="Base_Column_List"/> from t_type where url = #{url}
+    </select>
+
 </mapper>
