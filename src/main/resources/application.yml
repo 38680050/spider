@@ -21,14 +21,15 @@ spring:
       test-on-return: false
       pool-prepared-statements: true
       max-pool-prepared-statement-per-connection-size: 50
+      time-between-connect-error-millis: 3600000
       remove-abandoned: true
       filter:
         stat:
           merge-sql: true
           slow-sql-millis: 5000
           enabled: true
+        enabled: true
         wall:
-          enabled: true
   redis:
     database: 0
     host: www.wsbxd.com

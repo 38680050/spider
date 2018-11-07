@@ -26,7 +26,6 @@ public class BxwxBookSpider extends AbstractBookSpider {
             String date = DateUtil.dateFormat(new Date(), DateUtil.DATE_TIME_PATTERN);
             for (int index = 0, size = trs.size(); index < size; index++) {
                 Element tr = trs.get(index);
-                System.out.println(tr);
                 Elements divs = tr.getElementsByTag("div");
                 Book book = new Book();
                 book.setTitle(divs.first().getElementsByTag("a").first().attr("title"));

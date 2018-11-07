@@ -62,7 +62,7 @@ public class SpiderApplicationTests {
 
     @Test
     public void testInsertBooks() {
-        boolean flag = bookService.insertBooks("http://www.kanshuzhong.com/map/A/1/", 3);
+        boolean flag = bookService.insertBooks("http://www.bxwx.us/list/1.html", 3);
         System.out.println(flag);
     }
 
