@@ -1,5 +1,7 @@
 package com.wsbxd.common.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.Map.Entry;
@@ -492,7 +494,7 @@ public class CollectionKit {
 	 * @return Map
 	 */
 	public static Map<String, String> zip(String keys, String values, String delimiter) {
-		return zip(StrKit.split(keys, delimiter), StrKit.split(values, delimiter));
+		return zip(StringUtils.split(keys, delimiter), StringUtils.split(values, delimiter));
 	}
 	
 	/**

@@ -44,7 +44,7 @@ public class DownloadImpl implements IDownload {
             downloadTaskAlloc.put(currentStartIndex+"-"+currentDownIndex, chapters.subList(currentStartIndex,currentDownIndex));
         }
         //创建线程池
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10, 15, 100L, TimeUnit.SECONDS, new LinkedBlockingDeque(), new CustomThreadFactory("download-book"));
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10, 15, 100L, TimeUnit.SECONDS, new LinkedBlockingDeque<>(), new CustomThreadFactory("download-book"));
 
         Set<String> keySet = downloadTaskAlloc.keySet();
         List<Future<String>> tasks = new ArrayList<>();
