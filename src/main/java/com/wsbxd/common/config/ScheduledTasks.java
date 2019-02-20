@@ -34,9 +34,9 @@ public class ScheduledTasks {
     }
 
     /**
-     * 定时任务,每天临晨6点触发一次
+     * 定时任务,每天临晨3点触发一次
      */
-    @Scheduled(cron = "0 0 6 * * ?")
+    @Scheduled(cron = "0 0 3 * * ?")
     public void updateNovel(){
         List<Site> sites = siteService.selectSiteAll();
         

@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.wsbxd.common.utils.PageFactory;
 import com.wsbxd.spider.domain.po.Book;
+import com.wsbxd.spider.domain.po.Site;
 import com.wsbxd.spider.factory.BookSpiderFactory;
 import com.wsbxd.spider.interfaces.IBookSpider;
 import com.wsbxd.spider.mapper.BookMapper;
@@ -11,6 +12,7 @@ import com.wsbxd.spider.service.IBookService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import tk.mybatis.mapper.entity.Example;
@@ -32,6 +34,17 @@ public class BookServiceImpl implements IBookService {
     @Autowired
     public BookServiceImpl(BookMapper bookMapper) {
         this.bookMapper = bookMapper;
+    }
+
+    @Override
+    public void insertOrUpdateAllBook(List<Book> books) {
+
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW ,rollbackFor = Exception.class)
+    public void insertOrUpdateBookList(Site site, List<Book> books) {
+
     }
 
     @Override

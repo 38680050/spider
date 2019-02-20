@@ -44,8 +44,8 @@ public class ReflectUtil {
         filedName = removeLine(filedName);
         String methodName = "set" + filedName.substring(0,1).toUpperCase()+filedName.substring(1);
         try{
-            Method method =  clazz.getDeclaredMethod(methodName, new Class[]{typeClass});
-            method.invoke(obj, new Object[]{getClassTypeValue(typeClass, value)});
+            Method method =  clazz.getDeclaredMethod(methodName, typeClass);
+            method.invoke(obj, getClassTypeValue(typeClass, value));
         }catch(Exception ex){
             ex.printStackTrace();
         }
@@ -62,8 +62,8 @@ public class ReflectUtil {
         String methodName = "set" + filedName.substring(0,1).toUpperCase()+filedName.substring(1);
         Class<?> typeClass = obj.getClass().getDeclaredField(filedName).getType();
         try{
-            Method method =  obj.getClass().getDeclaredMethod(methodName, new Class[]{typeClass});
-            method.invoke(obj, new Object[]{getClassTypeValue(typeClass, value)});
+            Method method =  obj.getClass().getDeclaredMethod(methodName, typeClass);
+            method.invoke(obj, getClassTypeValue(typeClass, value));
         }catch(Exception ex){
             ex.printStackTrace();
         }

@@ -2,6 +2,7 @@ package com.wsbxd.spider.service;
 
 import com.github.pagehelper.PageInfo;
 import com.wsbxd.spider.domain.po.Book;
+import com.wsbxd.spider.domain.po.Site;
 
 import java.util.List;
 
@@ -12,6 +13,10 @@ import java.util.List;
  * @date 2018/10/3 14:51
  */
 public interface IBookService {
+
+    void insertOrUpdateAllBook(List<Book> books);
+
+    void insertOrUpdateBookList(Site site, List<Book> books);
 
     /**
      * 根据查询条件获取书籍
@@ -35,4 +40,5 @@ public interface IBookService {
      * @return  书籍id
      */
     Integer getIdByUrl(String url);
+
 }
