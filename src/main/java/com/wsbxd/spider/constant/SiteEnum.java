@@ -10,7 +10,7 @@ import lombok.Getter;
  * @date 2019/2/20 14:18
  */
 @Getter
-public enum Site {
+public enum SiteEnum {
 
     /**
      * 站点
@@ -31,12 +31,12 @@ public enum Site {
     /**
      * 根绝fullUrl获取Site
      * @param fullUrl    fullUrl
-     * @return  Site
+     * @return  SiteEnum
      */
-    public static Site getByFullUrl(String fullUrl){
-        for (Site site : values()){
-            if (site.fullUrl.equals(fullUrl)){
-                return site;
+    public static SiteEnum getByFullUrl(String fullUrl){
+        for (SiteEnum siteEnum : values()){
+            if (siteEnum.fullUrl.equals(fullUrl)){
+                return siteEnum;
             }
         }
         throw new RuntimeException("站点枚举未发现 fullUrl = " + fullUrl);
@@ -45,12 +45,12 @@ public enum Site {
     /**
      * 根绝url获取Site
      * @param url    url
-     * @return  Site
+     * @return  SiteEnum
      */
-    public static Site getByUrl(String url){
-        for (Site site : values()){
-            if (site.url.equals(url)){
-                return site;
+    public static SiteEnum getByUrl(String url){
+        for (SiteEnum siteEnum : values()){
+            if (siteEnum.url.equals(url)){
+                return siteEnum;
             }
         }
         throw new RuntimeException("站点枚举未发现 url = " + url);
@@ -59,18 +59,18 @@ public enum Site {
     /**
      * 根绝id获取Site
      * @param id    id
-     * @return  Site
+     * @return  SiteEnum
      */
-    public static Site getById(Integer id){
-        for (Site site : values()){
-            if (site.id.equals(id)){
-                return site;
+    public static SiteEnum getById(Integer id){
+        for (SiteEnum siteEnum : values()){
+            if (siteEnum.id.equals(id)){
+                return siteEnum;
             }
         }
         throw new RuntimeException("站点枚举未发现 id = " + id);
     }
 
-    Site(Integer id, String siteName, String charset, String url, String fullUrl) {
+    SiteEnum(Integer id, String siteName, String charset, String url, String fullUrl) {
         this.id = id;
         this.siteName = siteName;
         this.charset = charset;
