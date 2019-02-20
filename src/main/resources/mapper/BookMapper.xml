@@ -16,4 +16,8 @@
             url = #{url}
     </select>
 
+    <select id="selectBySiteId" parameterType="Integer" resultType="com.wsbxd.spider.domain.po.Book">
+        select <include refid="Base_Column_List" /> from t_book where siteId = #{siteId}
+    </select>
+
 </mapper>

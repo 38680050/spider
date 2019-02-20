@@ -5,6 +5,8 @@ import com.wsbxd.spider.domain.po.Book;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * description: 书籍mapper
  *
@@ -23,4 +25,10 @@ public interface BookMapper extends TkMapper<Book> {
      */
     Integer getIdByUrl(String url);
 
+    /**
+     * 根据站点id查询BookList
+     * @param siteId    站点id
+     * @return  List<Book>
+     */
+    List<Book> selectBySiteId(Integer siteId);
 }

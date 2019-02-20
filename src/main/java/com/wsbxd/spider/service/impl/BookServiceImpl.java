@@ -1,14 +1,13 @@
 package com.wsbxd.spider.service.impl;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.wsbxd.common.utils.PageFactory;
 import com.wsbxd.spider.domain.po.Book;
-import com.wsbxd.spider.domain.po.Site;
 import com.wsbxd.spider.factory.BookSpiderFactory;
 import com.wsbxd.spider.interfaces.IBookSpider;
 import com.wsbxd.spider.mapper.BookMapper;
 import com.wsbxd.spider.service.IBookService;
+import com.wsbxd.spider.utils.BookSpiderUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +18,7 @@ import tk.mybatis.mapper.entity.Example;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * description: 书籍service实现类
@@ -38,12 +38,18 @@ public class BookServiceImpl implements IBookService {
 
     @Override
     public void insertOrUpdateAllBook(List<Book> books) {
-
+        Map<Integer, List<Book>> siteIdAndBookList = BookSpiderUtil.bookListAccordSiteId(books);
+        for (Map.Entry<Integer, List<Book>> entry : siteIdAndBookList.entrySet()){
+            insertOrUpdateBookList(entry.getKey(),entry.getValue());
+        }
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW ,rollbackFor = Exception.class)
-    public void insertOrUpdateBookList(Site site, List<Book> books) {
+    public void insertOrUpdateBookList(Integer siteId, List<Book> newBookList) {
+        List<Book> oldBookList = bookMapper.selectBySiteId(siteId);
+        Map<String, Book> newUrlAndBook = BookSpiderUtil.parseBookListByUrl(newBookList);
+        Map<String, Book> oldUrlAndBook = BookSpiderUtil.parseBookListByUrl(oldBookList);
 
     }
 

@@ -29,6 +29,34 @@ public enum Site {
     private String fullUrl;
 
     /**
+     * 根绝fullUrl获取Site
+     * @param fullUrl    fullUrl
+     * @return  Site
+     */
+    public static Site getByFullUrl(String fullUrl){
+        for (Site site : values()){
+            if (site.fullUrl.equals(fullUrl)){
+                return site;
+            }
+        }
+        throw new RuntimeException("站点枚举未发现 fullUrl = " + fullUrl);
+    }
+
+    /**
+     * 根绝url获取Site
+     * @param url    url
+     * @return  Site
+     */
+    public static Site getByUrl(String url){
+        for (Site site : values()){
+            if (site.url.equals(url)){
+                return site;
+            }
+        }
+        throw new RuntimeException("站点枚举未发现 url = " + url);
+    }
+
+    /**
      * 根绝id获取Site
      * @param id    id
      * @return  Site

@@ -14,9 +14,18 @@ import java.util.List;
  */
 public interface IBookService {
 
+    /**
+     * 添加所有Book集合
+     * @param books Book集合
+     */
     void insertOrUpdateAllBook(List<Book> books);
 
-    void insertOrUpdateBookList(Site site, List<Book> books);
+    /**
+     * 新增或修改Book集合
+     * @param siteId            站点id
+     * @param newBookList       新Book集合
+     */
+    void insertOrUpdateBookList(Integer siteId, List<Book> newBookList);
 
     /**
      * 根据查询条件获取书籍
