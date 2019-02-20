@@ -16,9 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import tk.mybatis.mapper.entity.Example;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * description: 书籍service实现类
@@ -50,6 +48,18 @@ public class BookServiceImpl implements IBookService {
         List<Book> oldBookList = bookMapper.selectBySiteId(siteId);
         Map<String, Book> newUrlAndBook = BookSpiderUtil.parseBookListByUrl(newBookList);
         Map<String, Book> oldUrlAndBook = BookSpiderUtil.parseBookListByUrl(oldBookList);
+        List<Book> insertBooks = new ArrayList<>();
+        List<Book> updateBooks = new ArrayList<>();
+        for (String url : newUrlAndBook.keySet()){
+            Book newBook = newUrlAndBook.get(url);
+            Book oldBook = oldUrlAndBook.get(url);
+            if (oldBook == null){
+                insertBooks.add(newBook);
+            }else if (!BookSpiderUtil.compareNewAndOldBook(newBook,oldBook)){
+                updateBooks.add(newBook);
+            }
+        }
+        bookMapper.insertList(insertBooks);
 
     }
 

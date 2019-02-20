@@ -1,6 +1,7 @@
 package com.wsbxd.common.utils;
 
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 
@@ -15,58 +16,82 @@ public class ReflectUtil {
     private final static String UNDERLINE = "_";
 
     /**
-     * 根据属性，获取get方法
-     * @param ob 对象
-     * @param name 属性名
-     * @return
-     * @throws Exception
+     * 使用反射设置变量值
+     *
+     * @param target 被调用对象
+     * @param fieldName 被调用对象的字段，一般是成员变量或静态变量，不可是常量！
+     * @param value 值
+     * @param <T> value类型，泛型
      */
-    public static Object getGetMethod(Object ob , String name)throws Exception{
-        Method[] m = ob.getClass().getMethods();
-        for(int i = 0;i < m.length;i++){
-            if(("get"+name).toLowerCase().equals(m[i].getName().toLowerCase())){
-                return m[i].invoke(ob);
-            }
+    public static <T> void setValue(Object target,String fieldName,T value) {
+        try {
+            Class c = target.getClass();
+            Field f = c.getDeclaredField(fieldName);
+            f.setAccessible(true);
+            f.set(target, value);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
         }
-        return null;
     }
 
 
     /**
-     * 根据属性，拿到set方法，并把值set到对象中
-     * @param obj 对象
-     * @param clazz 对象的class
-     * @param filedName 需要设置值得属性
-     * @param typeClass 需要设置值得字段类型
-     * @param value 需要设置的值
+     * 使用反射设置变量值
+     *
+     * @param target 被调用对象
+     * @param fieldName 被调用对象的字段，一般是成员变量或静态变量，不可是常量！
+     * @param value 值
+     * @param <T> value类型，泛型
      */
-    public static void setValue(Object obj,Class<?> clazz,String filedName,Class<?> typeClass,Object value){
-        filedName = removeLine(filedName);
-        String methodName = "set" + filedName.substring(0,1).toUpperCase()+filedName.substring(1);
-        try{
-            Method method =  clazz.getDeclaredMethod(methodName, typeClass);
-            method.invoke(obj, getClassTypeValue(typeClass, value));
-        }catch(Exception ex){
-            ex.printStackTrace();
+    public static <T> void setValue(Object target, Class<?> clazz, String fieldName, T value) {
+        try {
+            Field f = clazz.getDeclaredField(fieldName);
+            f.setAccessible(true);
+            f.set(target, value);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
         }
     }
 
     /**
-     * 根据属性，拿到set方法，并把值set到对象中
-     * @param obj 对象
-     * @param filedName 需要设置值得属性
-     * @param value 需要设置的值
+     * 使用反射获取变量值
+     *
+     * @param target 被调用对象
+     * @param fieldName 被调用对象的字段，一般是成员变量或静态变量，不可以是常量
+     * @param <T> 返回类型，泛型
+     * @return 值
      */
-    public static void setValue1(Object obj,String filedName,Object value) throws Exception{
-        filedName = removeLine(filedName);
-        String methodName = "set" + filedName.substring(0,1).toUpperCase()+filedName.substring(1);
-        Class<?> typeClass = obj.getClass().getDeclaredField(filedName).getType();
-        try{
-            Method method =  obj.getClass().getDeclaredMethod(methodName, typeClass);
-            method.invoke(obj, getClassTypeValue(typeClass, value));
-        }catch(Exception ex){
-            ex.printStackTrace();
+    public static <T> T getValue(Object target,String fieldName) {
+        T value = null;
+        try {
+            Class c = target.getClass();
+            Field f = c.getDeclaredField(fieldName);
+            f.setAccessible(true);
+            value = (T) f.get(target);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
         }
+        return value;
+    }
+
+    /**
+     * 使用反射获取变量值
+     *
+     * @param target 被调用对象
+     * @param fieldName 被调用对象的字段，一般是成员变量或静态变量，不可以是常量
+     * @param <T> 返回类型，泛型
+     * @return 值
+     */
+    public static <T> T getValue(Object target, Class<?> clazz, String fieldName) {
+        T value = null;
+        try {
+            Field f = clazz.getDeclaredField(fieldName);
+            f.setAccessible(true);
+            value = (T) f.get(target);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return value;
     }
 
     /**
@@ -80,8 +105,7 @@ public class ReflectUtil {
             char ch = str.charAt(i+1);
             char newCh = (ch+"").substring(0, 1).toUpperCase().toCharArray()[0];
             String newStr = str.replace(str.charAt(i+1), newCh);
-            String newStr2 = newStr.replace(UNDERLINE, "");
-            return newStr2;
+            return newStr.replace(UNDERLINE, "");
         }
         return str;
     }
