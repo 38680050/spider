@@ -3,7 +3,7 @@
 
 <mapper namespace="com.wsbxd.spider.mapper.ChapterMapper">
 
-    <sql id="Base_Column_List">
+    <sql id="sql">
         id,title,url,sort,bookId
     </sql>
 

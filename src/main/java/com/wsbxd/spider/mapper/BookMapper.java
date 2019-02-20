@@ -2,7 +2,9 @@ package com.wsbxd.spider.mapper;
 
 import com.wsbxd.common.utils.TkMapper;
 import com.wsbxd.spider.domain.po.Book;
+import com.wsbxd.spider.mapper.provider.BookProvider;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.SelectProvider;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -31,4 +33,11 @@ public interface BookMapper extends TkMapper<Book> {
      * @return  List<Book>
      */
     List<Book> selectBySiteId(Integer siteId);
+
+    /**
+     * 批量修改 Book
+     * @param bookList      Book集合
+     */
+    @SelectProvider(type = BookProvider.class, method = "updateList")
+    void updateList(List<Book> bookList);
 }

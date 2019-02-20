@@ -82,16 +82,7 @@ public class SqlProviderUtil {
                 if (value != null){
                     String name = StrKit.toUnderlineCase(field.getName());
                     propertys.append("`").append(name).append("`").append(",");
-                    Class<?> type = field.getType();
-                    if (type == String.class){
-                        values.append("'").append(value).append("',");
-                    }else if (type == Date.class){
-                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                        String date = format.format(value);
-                        values.append("'").append(date).append("',");
-                    }else {
-                        values.append(value).append(",");
-                    }
+                    fieldValueInJoint(values, field, value);
                 }
             }
             int propertysLength = propertys.length();
@@ -116,16 +107,7 @@ public class SqlProviderUtil {
                 if (value != null){
                     String name = StrKit.toUnderlineCase(field.getName());
                     sql.append("`").append(name).append("`").append(" = ");
-                    Class<?> type = field.getType();
-                    if (type == String.class){
-                        sql.append("'").append(value).append("',");
-                    }else if (type == Date.class){
-                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                        String date = format.format(value);
-                        sql.append("'").append(date).append("',");
-                    }else {
-                        sql.append(value).append(",");
-                    }
+                    fieldValueInJoint(sql, field, value);
                 }
             }
             int length = sql.length();
@@ -138,9 +120,7 @@ public class SqlProviderUtil {
 
     public static String propertyAndValueWhereJoint(Object object) {
         try {
-            StringBuilder sql = new StringBuilder(
-                    " where "
-            );
+            StringBuilder sql = new StringBuilder(" where ");
             Class<?> aClass = object.getClass();
             Field[] fields = aClass.getDeclaredFields();
             for (Field field:fields) {
@@ -166,6 +146,25 @@ public class SqlProviderUtil {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    /**
+     * 字段与值sql拼接
+     * @param sql       sql
+     * @param field     字段
+     * @param value     字段值
+     */
+    private static void fieldValueInJoint(StringBuilder sql, Field field, Object value) {
+        Class<?> type = field.getType();
+        if (type == String.class){
+            sql.append("'").append(value).append("',");
+        }else if (type == Date.class){
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String date = format.format(value);
+            sql.append("'").append(date).append("',");
+        }else {
+            sql.append(value).append(",");
         }
     }
 

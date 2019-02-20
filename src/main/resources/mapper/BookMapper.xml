@@ -3,7 +3,7 @@
 
 <mapper namespace="com.wsbxd.spider.mapper.BookMapper">
 
-    <sql id="Base_Column_List">
+    <sql id="sql">
         id,url,title,author,type,lastUpdateTime,lastUpdateContent,lastUpdateContentUrl,status,addTime,updateTime,siteId
     </sql>
 
@@ -17,7 +17,7 @@
     </select>
 
     <select id="selectBySiteId" parameterType="Integer" resultType="com.wsbxd.spider.domain.po.Book">
-        select <include refid="Base_Column_List" /> from t_book where siteId = #{siteId}
+        select <include refid="sql" /> from t_book where siteId = #{siteId}
     </select>
 
 </mapper>

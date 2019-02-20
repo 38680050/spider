@@ -60,7 +60,7 @@ public class BookServiceImpl implements IBookService {
             }
         }
         bookMapper.insertList(insertBooks);
-
+        bookMapper.updateList(updateBooks);
     }
 
     @Override

@@ -3,7 +3,7 @@
 
 <mapper namespace="com.wsbxd.spider.mapper.SiteMapper">
 
-    <sql id="Base_Column_List">
+    <sql id="sql">
         id,title,charset,url
     </sql>
 
