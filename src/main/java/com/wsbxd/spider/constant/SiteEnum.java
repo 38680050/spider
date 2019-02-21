@@ -1,5 +1,6 @@
 package com.wsbxd.spider.constant;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
@@ -10,6 +11,7 @@ import lombok.Getter;
  * @date 2019/2/20 14:18
  */
 @Getter
+@AllArgsConstructor
 public enum SiteEnum {
 
     /**
@@ -68,13 +70,5 @@ public enum SiteEnum {
             }
         }
         throw new RuntimeException("站点枚举未发现 id = " + id);
-    }
-
-    SiteEnum(Integer id, String siteName, String charset, String url, String fullUrl) {
-        this.id = id;
-        this.siteName = siteName;
-        this.charset = charset;
-        this.url = url;
-        this.fullUrl = fullUrl;
     }
 }
