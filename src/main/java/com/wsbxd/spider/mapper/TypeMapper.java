@@ -21,10 +21,10 @@ public interface TypeMapper extends TkMapper<Type> {
 
     /**
      * 根据站点URL查询小说类型集合
-     * @param siteUrl   链接
+     * @param siteId   链接
      * @return  小说类型集合
      */
-    List<Type> selectBySiteUrl(@Param("siteId") String siteUrl);
+    List<Type> selectBySiteId(@Param("siteId") Integer siteId);
 
     /**
      * 根据siteUrl删除小说类型

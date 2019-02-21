@@ -37,8 +37,8 @@ public class SiteServiceImpl implements ISiteService {
     }
 
     @Override
-    public List<Type> selectTypesBySiteUrl(String siteUrl) {
-        return typeMapper.selectBySiteUrl(siteUrl);
+    public List<Type> selectTypesBySiteId(Integer siteId) {
+        return typeMapper.selectBySiteId(siteId);
     }
 
     @Override

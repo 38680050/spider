@@ -1,6 +1,5 @@
 package com.wsbxd.spider.impl.site;
 
-import com.wsbxd.common.utils.NovelSiteEnum;
 import com.wsbxd.common.utils.RedisSelectorEnum;
 import com.wsbxd.spider.constant.SiteEnum;
 import com.wsbxd.spider.domain.po.Type;

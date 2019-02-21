@@ -1,11 +1,20 @@
 package com.wsbxd.common.config;
 
+import com.wsbxd.spider.constant.SiteEnum;
+import com.wsbxd.spider.domain.po.Book;
+import com.wsbxd.spider.domain.po.Type;
+import com.wsbxd.spider.factory.BookSpiderFactory;
+import com.wsbxd.spider.interfaces.IBookSpider;
 import com.wsbxd.spider.service.IBookService;
 import com.wsbxd.spider.service.IChapterService;
 import com.wsbxd.spider.service.ISiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * description: 定时任务配置
@@ -35,7 +44,18 @@ public class ScheduledTasks {
      */
     @Scheduled(cron = "0 0 3 * * ?")
     public void updateNovel(){
-        
+        Integer id = SiteEnum.BXWF.getId();
+        List<Type> types = siteService.selectTypesBySiteId(id);
+        List<Book> bookList = new ArrayList<>();
+        for (Type type : types){
+            IBookSpider spider = BookSpiderFactory.getBookSpider(type.getUrl());
+            Iterator<List<Book>> iterator = spider.iterator(type.getUrl(), 3);
+            while (iterator.hasNext()) {
+                List<Book> books = iterator.next();
+                bookList.addAll(books);
+            }
+        }
+        bookService.insertOrUpdateBookList(id,bookList);
     }
 
 }

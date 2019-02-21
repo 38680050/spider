@@ -20,11 +20,11 @@ public interface ISiteService {
     List<Site> selectSiteAll();
 
     /**
-     * 根据站点URL查询类型集合
-     * @param siteUrl   站点URL
+     * 根据站点ID查询类型集合
+     * @param siteId   站点URL
      * @return  类型集合
      */
-    List<Type> selectTypesBySiteUrl(String siteUrl);
+    List<Type> selectTypesBySiteId(Integer siteId);
 
     /**
      * 根据siteUrl删除小说类型
