@@ -8,6 +8,7 @@ import com.wsbxd.spider.interfaces.IBookSpider;
 import com.wsbxd.spider.service.IBookService;
 import com.wsbxd.spider.service.IChapterService;
 import com.wsbxd.spider.service.ISiteService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -24,6 +25,7 @@ import java.util.List;
  * @date 2018/10/5 10:14
  */
 @Component
+@Slf4j
 public class ScheduledTasks {
 
     private final ISiteService siteService;
@@ -44,6 +46,7 @@ public class ScheduledTasks {
      */
     @Scheduled(cron = "0 0 3 * * ?")
     public void updateNovel(){
+        long start = System.currentTimeMillis();
         Integer id = SiteEnum.BXWF.getId();
         List<Type> types = siteService.selectTypesBySiteId(id);
         List<Book> bookList = new ArrayList<>();
@@ -56,6 +59,7 @@ public class ScheduledTasks {
             }
         }
         bookService.insertOrUpdateBookList(id,bookList);
+        log.info("笔下文学图书共 {} 本,用时 {} 毫秒!",bookList.size(),(System.currentTimeMillis() - start));
     }
 
 }
