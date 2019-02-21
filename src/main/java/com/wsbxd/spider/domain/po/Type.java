@@ -43,7 +43,7 @@ public class Type {
     /**
      * 站点url
      */
-    @Column(name = "siteUrl")
-    private String siteUrl;
+    @Column(name = "siteId")
+    private Integer siteId;
 
 }

@@ -2,6 +2,7 @@ package com.wsbxd.spider.impl.site;
 
 import com.wsbxd.common.utils.NovelSiteEnum;
 import com.wsbxd.common.utils.RedisSelectorEnum;
+import com.wsbxd.spider.constant.SiteEnum;
 import com.wsbxd.spider.domain.po.Type;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -31,7 +32,7 @@ public class BxwxSiteSpider extends AbstractSiteSpider {
         Elements elements = doc.select(getSelectorByIndex(url, RedisSelectorEnum.TYPE, 0));
         for (int i = 1; i < elements.size() - TWO; i++) {
             Element element = elements.get(i);
-            types.add(new Type(null,element.text().replaceAll(" ",""),element.absUrl("href"),url));
+            types.add(new Type(null,element.text().replaceAll(" ",""),element.absUrl("href"), SiteEnum.getByUrl(url).getId()));
         }
         return types;
     }

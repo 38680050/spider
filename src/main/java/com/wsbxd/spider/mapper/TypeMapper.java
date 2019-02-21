@@ -24,13 +24,13 @@ public interface TypeMapper extends TkMapper<Type> {
      * @param siteUrl   链接
      * @return  小说类型集合
      */
-    List<Type> selectBySiteUrl(@Param("siteUrl") String siteUrl);
+    List<Type> selectBySiteUrl(@Param("siteId") String siteUrl);
 
     /**
      * 根据siteUrl删除小说类型
      * @param siteUrl   站点链接
      */
-    void deleteTypeBySiteUrl(@Param("siteUrl")String siteUrl);
+    void deleteTypeBySiteUrl(@Param("siteId")String siteUrl);
 
     /**
      * 根据链接获取小说类型

@@ -37,7 +37,7 @@ public enum SiteEnum {
      */
     public static SiteEnum getByFullUrl(String fullUrl){
         for (SiteEnum siteEnum : values()){
-            if (siteEnum.fullUrl.equals(fullUrl)){
+            if (fullUrl.contains(siteEnum.fullUrl)){
                 return siteEnum;
             }
         }
@@ -51,7 +51,7 @@ public enum SiteEnum {
      */
     public static SiteEnum getByUrl(String url){
         for (SiteEnum siteEnum : values()){
-            if (siteEnum.url.equals(url)){
+            if (url.contains(siteEnum.url)){
                 return siteEnum;
             }
         }

@@ -1,18 +1,11 @@
 package com.wsbxd.common.config;
 
-import com.wsbxd.spider.constant.SiteEnum;
-import com.wsbxd.spider.domain.po.Book;
-import com.wsbxd.spider.factory.BookSpiderFactory;
-import com.wsbxd.spider.interfaces.IBookSpider;
 import com.wsbxd.spider.service.IBookService;
 import com.wsbxd.spider.service.IChapterService;
 import com.wsbxd.spider.service.ISiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * description: 定时任务配置
@@ -42,7 +35,7 @@ public class ScheduledTasks {
      */
     @Scheduled(cron = "0 0 3 * * ?")
     public void updateNovel(){
-
+        
     }
 
 }

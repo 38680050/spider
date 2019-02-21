@@ -2,6 +2,7 @@ package com.wsbxd.spider.impl.site;
 
 import com.wsbxd.common.utils.NovelSiteEnum;
 import com.wsbxd.common.utils.RedisSelectorEnum;
+import com.wsbxd.spider.constant.SiteEnum;
 import com.wsbxd.spider.domain.po.Type;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -32,7 +33,7 @@ public class KszSiteSpider extends AbstractSiteSpider {
         //从第二个开始取,取到倒数第二个
         for (int i = 1; i < elements.size() - TWO ; i++) {
             Element element = elements.get(i);
-            types.add(new Type(null,element.text(),element.absUrl("href"),url));
+            types.add(new Type(null,element.text(),element.absUrl("href"), SiteEnum.getByUrl(url).getId()));
         }
         return types;
     }
