@@ -1,6 +1,7 @@
 package com.wsbxd;
 
 import com.wsbxd.common.utils.DownloadConfig;
+import com.wsbxd.spider.constant.SiteEnum;
 import com.wsbxd.spider.domain.po.*;
 import com.wsbxd.spider.factory.BookSpiderFactory;
 import com.wsbxd.spider.factory.SiteSpiderFactory;
@@ -14,15 +15,18 @@ import com.wsbxd.spider.service.IBookService;
 import com.wsbxd.spider.service.IChapterService;
 import com.wsbxd.spider.service.IContentService;
 import com.wsbxd.spider.service.ISiteService;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+@Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SpiderApplicationTests {
@@ -42,6 +46,25 @@ public class SpiderApplicationTests {
     @Test
     public void test() throws Exception {
 
+    }
+
+    @Test
+    public void testCrawl(){
+        log.info("笔下文学爬取开始");
+        long start = System.currentTimeMillis();
+        Integer id = SiteEnum.BXWF.getId();
+        List<Type> types = siteService.selectTypesBySiteId(id);
+        List<Book> bookList = new ArrayList<>();
+        for (Type type : types){
+            IBookSpider spider = BookSpiderFactory.getBookSpider(type.getUrl());
+            Iterator<List<Book>> iterator = spider.iterator(type.getUrl(), 3);
+            while (iterator.hasNext()) {
+                List<Book> books = iterator.next();
+                bookList.addAll(books);
+            }
+        }
+        bookService.insertOrUpdateBookList(id,bookList);
+        log.info("笔下文学图书共 {} 本,用时 {} 毫秒!",bookList.size(),(System.currentTimeMillis() - start));
     }
 
     /**

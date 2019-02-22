@@ -44,8 +44,9 @@ public class ScheduledTasks {
     /**
      * 定时任务,每天临晨3点触发一次
      */
-    @Scheduled(cron = "0 0 3 * * ?")
+    @Scheduled(cron = "0 0 10 * * ?")
     public void updateNovel(){
+        log.info("笔下文学爬取开始");
         long start = System.currentTimeMillis();
         Integer id = SiteEnum.BXWF.getId();
         List<Type> types = siteService.selectTypesBySiteId(id);

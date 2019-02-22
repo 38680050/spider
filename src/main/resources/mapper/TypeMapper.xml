@@ -7,7 +7,7 @@
         id,name,url,siteId
     </sql>
 
-    <select id="selectBySiteId" parameterType="String" resultType="com.wsbxd.spider.domain.po.Type">
+    <select id="selectBySiteId" parameterType="Integer" resultType="com.wsbxd.spider.domain.po.Type">
         select <include refid="sql"/> from t_type where siteId = #{siteId}
     </select>
 
