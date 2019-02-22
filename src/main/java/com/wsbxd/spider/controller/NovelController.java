@@ -57,7 +57,7 @@ public class NovelController {
             @RequestParam(value = "value",required = false)String value
     ){
         PageInfo<Book> books = bookService.getBooks(property,value);
-        log.info("书籍列表信息:共{}本书,{}页,当前查询第{}页,本页{}本",books.getSize(),books.getPages(),books.getPageNum(),books.getPageSize());
+        log.info("书籍列表信息:共{}本书,{}页,当前查询第{}页,本页{}本",books.getTotal(),books.getPages(),books.getPageNum(),books.getPageSize());
         return new BusinessMsg(books);
     }
 

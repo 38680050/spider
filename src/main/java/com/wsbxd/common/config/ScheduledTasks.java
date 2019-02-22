@@ -44,7 +44,7 @@ public class ScheduledTasks {
     /**
      * 定时任务,每天临晨3点触发一次
      */
-    @Scheduled(cron = "0 20 10 * * ?")
+    @Scheduled(cron = "0 0 3 * * ?")
     public void updateNovel(){
         log.info("笔下文学爬取开始");
         long start = System.currentTimeMillis();
