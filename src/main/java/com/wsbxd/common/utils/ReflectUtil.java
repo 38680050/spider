@@ -95,71 +95,12 @@ public class ReflectUtil {
     }
 
     /**
-     * * 处理字符串  如：  abc_dex ---> abcDex
-     * * @param str
-     * * @return
-     * */
-    private static  String removeLine(String str){
-        if(null != str && str.contains(UNDERLINE)){
-            int i = str.indexOf(UNDERLINE);
-            char ch = str.charAt(i+1);
-            char newCh = (ch+"").substring(0, 1).toUpperCase().toCharArray()[0];
-            String newStr = str.replace(str.charAt(i+1), newCh);
-            return newStr.replace(UNDERLINE, "");
-        }
-        return str;
-    }
-
-    /**
-     * * 通过class类型获取获取对应类型的值
-     * * @param typeClass class类型
-     * * @param value 值
-     * * @return Object
-     * */
-    private static Object getClassTypeValue(Class<?> typeClass, Object value){
-        if(typeClass == int.class  || typeClass == Integer.class){
-            if(null == value){
-                return 0;
-            }
-            return Integer.parseInt(String.valueOf(value));
-        }else if(typeClass == short.class){
-            if(null == value){
-                return 0;
-            }
-            return value;
-        }else if(typeClass == byte.class){
-            if(null == value){
-                return 0;
-            }
-            return value;
-        }else if(typeClass == double.class){
-            if(null == value){
-                return 0;
-            }
-            return value;
-        }else if(typeClass == long.class){
-            if(null == value){
-                return 0;
-            }
-            return value;
-        }else if(typeClass == String.class){
-            if(null == value){
-                return "";
-            }
-            return value;
-        }else if(typeClass == boolean.class){
-            if(null == value){
-                return true;
-            }
-            return value;
-        }else if(typeClass == BigDecimal.class){
-            if(null == value){
-                return new BigDecimal(0);
-            }
-            return new BigDecimal(value+"");
-        }else {
-            return typeClass.cast(value);
-        }
+     * 是否是Java字符类型
+     * @param target    对象
+     * @return  true/false
+     */
+    public static boolean hasCharacter(Object target){
+        return target.getClass() == String.class || target.getClass() == char.class || target.getClass() == char[].class;
     }
 
 }

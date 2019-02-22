@@ -36,10 +36,13 @@ public class SqlProviderUtil {
                         Object value = parseFieldGetValue(entity,field);
                         if (value != null){
                             Object id = entityAndIdMap.get(entity);
+                            if (ReflectUtil.hasCharacter(id)){
+                                id = "'" + id + "'";
+                            }
                             if (this.containsKey(field)){
-                                this.get(field).append(" WHEN '").append(id).append("' THEN ").append(value).append(" ");
+                                this.get(field).append(" WHEN ").append(id).append(" THEN ").append(value).append(" ");
                             }else{
-                                this.put(field,new StringBuilder(StrKit.toUnderlineCase(field) + " = CASE id WHEN '" + id + "' THEN " + value));
+                                this.put(field,new StringBuilder(StrKit.toUnderlineCase(field) + " = CASE id WHEN " + id + " THEN " + value));
                             }
                         }
                     }
