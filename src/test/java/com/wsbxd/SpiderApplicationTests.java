@@ -48,25 +48,6 @@ public class SpiderApplicationTests {
 
     }
 
-    @Test
-    public void testCrawl(){
-        log.info("笔下文学爬取开始");
-        long start = System.currentTimeMillis();
-        Integer id = SiteEnum.BXWF.getId();
-        List<Type> types = siteService.selectTypesBySiteId(id);
-        List<Book> bookList = new ArrayList<>();
-        for (Type type : types){
-            IBookSpider spider = BookSpiderFactory.getBookSpider(type.getUrl());
-            Iterator<List<Book>> iterator = spider.iterator(type.getUrl(), 3);
-            while (iterator.hasNext()) {
-                List<Book> books = iterator.next();
-                bookList.addAll(books);
-            }
-        }
-        bookService.insertOrUpdateBookList(id,bookList);
-        log.info("笔下文学图书共 {} 本,用时 {} 毫秒!",bookList.size(),(System.currentTimeMillis() - start));
-    }
-
     /**
      * 遍历添加小说类型
      */

@@ -44,7 +44,7 @@ public class ScheduledTasks {
     /**
      * 定时任务,每天临晨3点触发一次
      */
-    @Scheduled(cron = "0 0 10 * * ?")
+    @Scheduled(cron = "0 20 10 * * ?")
     public void updateNovel(){
         log.info("笔下文学爬取开始");
         long start = System.currentTimeMillis();
@@ -56,6 +56,7 @@ public class ScheduledTasks {
             Iterator<List<Book>> iterator = spider.iterator(type.getUrl(), 3);
             while (iterator.hasNext()) {
                 List<Book> books = iterator.next();
+                log.info("当前爬取 {} 类型,本页共 {} 本",type.getName(),books.size());
                 bookList.addAll(books);
             }
         }
