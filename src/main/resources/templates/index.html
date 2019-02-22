@@ -6,7 +6,7 @@
 </head>
 <link rel="shortcut icon" href="/favicon.ico">
 <link  rel="stylesheet" href="/webjars/bootstrap/4.1.3/css/bootstrap.css" />
-<link  rel="stylesheet" href="/bootstrap-table/src/bootstrap-table.css" />
+<link  rel="stylesheet" href="/bootstrap-table/css/bootstrap-table.css" />
 <body>
 <div class="container-fluid">
     <table id="bookTable"></table>
@@ -27,18 +27,17 @@
             idField: "id",
             pagination: true,
             pageNumber: 1,
-            pageSize: 10,
-            pageList: [10,15,20, 50, 100],
+            pageSize: 15,
+            pageList: [10, 15, 20, 50, 100],
             paginationPreText: '‹',
             paginationNextText: '›',
             queryParams : function (params) {
-               var temp = {
-                   page : params.pageNumber,
-                   limit : params.pageSize,
-                   property:params.property,
-                   value : params.value
+                return {
+                   page: params.pageNumber,
+                   limit: params.pageSize,
+                   property: params.property,
+                   value: params.value
                };
-               return temp;
             },
             responseHandler: function(res) {
                 return {
