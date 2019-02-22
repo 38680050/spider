@@ -40,6 +40,13 @@
                };
                return temp;
             },
+
+            responseHandler: function(res) {
+                return {
+                    "total": res.data.total,//总页数
+                    "rows": res.data.list   //数据
+                };
+            },
             columns: [{
                 field: 'id',
                 title: 'ID'
