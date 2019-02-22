@@ -20,6 +20,7 @@
         $('#bookTable').bootstrapTable({
             url: "/spider/getBooks",
             method: 'post',
+            contentType : "application/x-www-form-urlencoded",
             dataType:"json",
             toolbar: "#toolbar",
             striped: true,
@@ -28,16 +29,18 @@
             pagination: true,
             pageNumber: 1,
             pageSize: 15,
-            pageList: [10, 15, 20, 50, 100],
+            /*pageList: [10, 15, 20, 50, 100],*/
             paginationPreText: '‹',
             paginationNextText: '›',
             queryParams : function (params) {
-                return {
-                   page: params.pageNumber,
-                   limit: params.pageSize,
+                var pars = {
+                   page: (params.offset / params.limit) + 1,
+                   limit: params.limit,
                    property: params.property,
                    value: params.value
-               };
+                };
+                console.log(pars);
+                return pars;
             },
             responseHandler: function(res) {
                 return {
